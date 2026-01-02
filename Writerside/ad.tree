@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="ad"
+                 name="ASP dotNET"
+                 start-page="001-00-asp-dot-net-core-fundamentals.md">
+
+    <toc-element topic="001-00-asp-dot-net-core-fundamentals.md">
+        <toc-element topic="001-01-asp-dot-net-beyond-fundamentals.md"/>
+    </toc-element>
+    <toc-element topic="02-00-routing.md">
+        <toc-element topic="001-01-advanced-routing.md"/>
+    </toc-element>
+    <toc-element topic="003-00-introducing-razor.md">
+        <toc-element topic="003-01-structured-views.md"/>
+    </toc-element>
+    <toc-element topic="004-00-services-and-dependency-injection.md">
+        <toc-element topic="004-01-advanced-services.md"/>
+    </toc-element>
+    <toc-element topic="005-00-entity-framework.md">
+        <toc-element topic="005-01-advanced-entity-framework.md"/>
+    </toc-element>
+    <toc-element topic="006-00-restful-api.md">
+        <toc-element topic="006-01-advanced-api.md"/>
+    </toc-element>
+    <toc-element topic="007-00-security.md">
+        <toc-element topic="007-01-advanced-security.md"/>
+    </toc-element>
+    <toc-element topic="008-00-deployment.md">
+        <toc-element topic="008-01-advanced-deloyment.md"/>
+    </toc-element>
+    <toc-element topic="090-conclusion.md"/>
+    <toc-element topic="091-00-corrections.md"/>
+    <toc-element topic="100-00-simple-project.md">
+        <toc-element topic="100-01-project-code.md"/>
+    </toc-element>
+    <toc-element topic="101-00-more-complex-project.md">
+        <toc-element topic="101-01-project-code.md"/>
+    </toc-element>
+</instance-profile>

@@ -1,0 +1,172 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2026-01-02T15:24:12.458128"><title>Module 6 : Construire et S&eacute;curiser une API RESTful - L'essentiel | ASP dotNET</title><script type="application/json" id="virtual-toc-data">[{"id":"objectifs-p-dagogiques","level":0,"title":"Objectifs Pédagogiques","anchor":"#objectifs-p-dagogiques"},{"id":"introduction-le-service-au-volant-de-votre-restaurant","level":0,"title":"Introduction : Le service au volant de votre restaurant","anchor":"#introduction-le-service-au-volant-de-votre-restaurant"},{"id":"1-les-principes-d-une-api-restful","level":0,"title":"1. Les Principes d\u0027une API RESTful","anchor":"#1-les-principes-d-une-api-restful"},{"id":"2-cr-er-une-api-avec-asp-net-core","level":0,"title":"2. Créer une API avec ASP.NET Core","anchor":"#2-cr-er-une-api-avec-asp-net-core"},{"id":"3-s-curit-des-apis-qui-tes-vous-et-que-pouvez-vous-faire","level":0,"title":"3. Sécurité des APIs : Qui êtes-vous et que pouvez-vous faire ?","anchor":"#3-s-curit-des-apis-qui-tes-vous-et-que-pouvez-vous-faire"},{"id":"tp-cr-er-une-api-pour-notre-gestionnaire-de-produits","level":0,"title":"TP : Créer une API pour notre gestionnaire de produits","anchor":"#tp-cr-er-une-api-pour-notre-gestionnaire-de-produits"},{"id":"auto-valuation","level":0,"title":"Auto-évaluation","anchor":"#auto-valuation"},{"id":"conclusion","level":0,"title":"Conclusion","anchor":"#conclusion"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Module 6 : Construire et S&eacute;curiser une API RESTful - L'essentiel | ASP dotNET"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ASP dotNET Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/006-00-restful-api.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Module 6 : Construire et S&eacute;curiser une API RESTful - L'essentiel | ASP dotNET"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/006-00-restful-api.html#webpage",
+    "url": "writerside-documentation/006-00-restful-api.html",
+    "name": "Module 6 : Construire et S&eacute;curiser une API RESTful - L'essentiel | ASP dotNET",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "ASP dotNET Help"
+}</script><!-- End Schema.org --></head><body data-id="006-00-restful-api" data-main-title="Module 6 : Construire et Sécuriser une API RESTful - L'essentiel" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ASP dotNET  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="006-00-restful-api" id="006-00-restful-api.md">Module 6 : Construire et Sécuriser une API RESTful - L'essentiel</h1><p id="z1lhvlm_2">Parfait ! Entamons ce sixi&egrave;me module. Nous avons pass&eacute; beaucoup de temps &agrave; construire une magnifique application web, con&ccedil;ue pour &ecirc;tre utilis&eacute;e par des humains via un navigateur. Mais le monde moderne ne se limite pas &agrave; &ccedil;a. Les applications mobiles, les services d'autres entreprises, les objets connect&eacute;s... tous ont besoin de communiquer avec nos syst&egrave;mes.</p><p id="z1lhvlm_3">Aujourd'hui, nous allons apprendre &agrave; parler leur langue. Nous allons ouvrir notre application au monde en cr&eacute;ant une API RESTful. C'est le passage oblig&eacute; pour construire des applications qui s'int&egrave;grent dans un &eacute;cosyst&egrave;me plus large, la comp&eacute;tence cl&eacute; pour le d&eacute;veloppement backend moderne.</p><section class="chapter"><h2 id="objectifs-p-dagogiques" data-toc="objectifs-p-dagogiques">Objectifs P&eacute;dagogiques</h2><p id="z1lhvlm_14">&Agrave; la fin de ce module, vous serez capable de :</p><ul class="list _bullet" id="z1lhvlm_15"><li class="list__item" id="z1lhvlm_16"><p id="z1lhvlm_22"><span class="control" id="z1lhvlm_23">Comprendre</span> les principes fondamentaux d'une API RESTful (ressources, verbes HTTP, codes de statut).</p></li><li class="list__item" id="z1lhvlm_17"><p id="z1lhvlm_24"><span class="control" id="z1lhvlm_25">Cr&eacute;er</span> un projet d'API Web avec ASP.NET Core.</p></li><li class="list__item" id="z1lhvlm_18"><p id="z1lhvlm_26"><span class="control" id="z1lhvlm_27">D&eacute;velopper</span> des contr&ocirc;leurs d'API qui g&egrave;rent les op&eacute;rations CRUD.</p></li><li class="list__item" id="z1lhvlm_19"><p id="z1lhvlm_28"><span class="control" id="z1lhvlm_29">Utiliser</span> les <code class="code" id="z1lhvlm_30">ActionResult&lt;T&gt;</code> pour retourner des r&eacute;ponses typ&eacute;es et des codes de statut HTTP appropri&eacute;s.</p></li><li class="list__item" id="z1lhvlm_20"><p id="z1lhvlm_31"><span class="control" id="z1lhvlm_32">Diff&eacute;rencier</span> l'Authentification et l'Autorisation.</p></li><li class="list__item" id="z1lhvlm_21"><p id="z1lhvlm_33"><span class="control" id="z1lhvlm_34">Mettre en place</span> un syst&egrave;me d'authentification et d'autorisation simple pour s&eacute;curiser vos points de terminaison ( endpoints).</p></li></ul></section><section class="chapter"><h2 id="introduction-le-service-au-volant-de-votre-restaurant" data-toc="introduction-le-service-au-volant-de-votre-restaurant">Introduction : Le service au volant de votre restaurant</h2><p id="z1lhvlm_35">Imaginez que votre application MVC est un restaurant traditionnel. Les clients (utilisateurs) entrent, s'assoient, consultent un menu joliment pr&eacute;sent&eacute; (les vues HTML), et un serveur (le contr&ocirc;leur) leur apporte des plats complets.</p><p id="z1lhvlm_36">Une <span class="control" id="z1lhvlm_39">API RESTful</span> est le service au volant (drive-in) de ce m&ecirc;me restaurant. Le client ne rentre pas. Il passe sa commande (la requ&ecirc;te HTTP) de mani&egrave;re tr&egrave;s structur&eacute;e (&quot;Je veux un produit avec l'ID 5&quot;). La cuisine (votre logique m&eacute;tier) pr&eacute;pare la commande, mais au lieu de la servir dans une belle assiette, elle la met dans un emballage standardis&eacute; et facile &agrave; transporter (le format <span class="control" id="z1lhvlm_40">JSON</span>). Le client r&eacute;cup&egrave;re les donn&eacute;es brutes et fait ce qu'il veut avec : les manger dans sa voiture (une application mobile), les ramener &agrave; la maison (un autre service web), etc.</p><p id="z1lhvlm_37">Construire une API, c'est donc exposer la logique et les donn&eacute;es de votre application de mani&egrave;re brute et universelle, pour qu'elle puisse &ecirc;tre consomm&eacute;e par d'autres programmes, et pas seulement par des navigateurs web.</p></section><section class="chapter"><h2 id="1-les-principes-d-une-api-restful" data-toc="1-les-principes-d-une-api-restful">1. Les Principes d'une API RESTful</h2><p id="z1lhvlm_41">REST (Representational State Transfer) n'est pas un protocole, mais un style d'architecture. Il repose sur quelques id&eacute;es simples pour rendre les APIs pr&eacute;visibles et faciles &agrave; utiliser.</p><ol class="list _decimal" id="z1lhvlm_42" type="1"><li class="list__item" id="z1lhvlm_44"><p id="z1lhvlm_48"><span class="control" id="z1lhvlm_50">Centr&eacute;e sur les Ressources :</span> Tout est une &quot;ressource&quot;. Un produit, un utilisateur, une commande... Chaque ressource est identifi&eacute;e par une URL unique (un endpoint).</p><ul class="list _bullet" id="z1lhvlm_49"><li class="list__item" id="z1lhvlm_51"><p id="z1lhvlm_53"><code class="code" id="z1lhvlm_54">/api/products</code>: La collection de tous les produits.</p></li><li class="list__item" id="z1lhvlm_52"><p id="z1lhvlm_55"><code class="code" id="z1lhvlm_56">/api/products/5</code>: La ressource &quot;produit&quot; avec l'ID 5.</p></li></ul></li><li class="list__item" id="z1lhvlm_45"><p id="z1lhvlm_57"><span class="control" id="z1lhvlm_59">Utilisation des Verbes HTTP :</span> On utilise les verbes HTTP standards pour dire ce qu'on veut faire avec la ressource.</p><ul class="list _bullet" id="z1lhvlm_58"><li class="list__item" id="z1lhvlm_60"><p id="z1lhvlm_64"><code class="code" id="z1lhvlm_65">GET</code>: Lire la ressource.</p></li><li class="list__item" id="z1lhvlm_61"><p id="z1lhvlm_66"><code class="code" id="z1lhvlm_67">POST</code>: Cr&eacute;er une nouvelle ressource.</p></li><li class="list__item" id="z1lhvlm_62"><p id="z1lhvlm_68"><code class="code" id="z1lhvlm_69">PUT</code>: Mettre &agrave; jour (remplacer) enti&egrave;rement une ressource.</p></li><li class="list__item" id="z1lhvlm_63"><p id="z1lhvlm_70"><code class="code" id="z1lhvlm_71">DELETE</code>: Supprimer une ressource.</p></li></ul></li><li class="list__item" id="z1lhvlm_46"><p id="z1lhvlm_72"><span class="control" id="z1lhvlm_74">Utilisation des Codes de Statut HTTP :</span> La r&eacute;ponse de l'API doit inclure un code de statut standard pour indiquer si l'op&eacute;ration a r&eacute;ussi et comment.</p><ul class="list _bullet" id="z1lhvlm_73"><li class="list__item" id="z1lhvlm_75"><p id="z1lhvlm_81"><code class="code" id="z1lhvlm_82">200 OK</code>: Succ&egrave;s (pour un GET).</p></li><li class="list__item" id="z1lhvlm_76"><p id="z1lhvlm_83"><code class="code" id="z1lhvlm_84">201 Created</code>: La ressource a &eacute;t&eacute; cr&eacute;&eacute;e avec succ&egrave;s (pour un POST).</p></li><li class="list__item" id="z1lhvlm_77"><p id="z1lhvlm_85"><code class="code" id="z1lhvlm_86">204 No Content</code>: Succ&egrave;s, mais il n'y a rien &agrave; renvoyer (pour un DELETE).</p></li><li class="list__item" id="z1lhvlm_78"><p id="z1lhvlm_87"><code class="code" id="z1lhvlm_88">400 Bad Request</code>: La requ&ecirc;te du client &eacute;tait mal form&eacute;e (ex: validation &eacute;chou&eacute;e).</p></li><li class="list__item" id="z1lhvlm_79"><p id="z1lhvlm_89"><code class="code" id="z1lhvlm_90">404 Not Found</code>: La ressource demand&eacute;e n'existe pas.</p></li><li class="list__item" id="z1lhvlm_80"><p id="z1lhvlm_91"><code class="code" id="z1lhvlm_92">500 Internal Server Error</code>: Une erreur s'est produite sur le serveur.</p></li></ul></li><li class="list__item" id="z1lhvlm_47"><p id="z1lhvlm_93"><span class="control" id="z1lhvlm_94">Communication sans &eacute;tat (Stateless) :</span> Chaque requ&ecirc;te du client doit contenir toutes les informations n&eacute;cessaires pour que le serveur la comprenne. Le serveur ne doit pas avoir besoin de se souvenir des requ&ecirc;tes pr&eacute;c&eacute;dentes.</p></li></ol></section><section class="chapter"><h2 id="2-cr-er-une-api-avec-asp-net-core" data-toc="2-cr-er-une-api-avec-asp-net-core">2. Cr&eacute;er une API avec ASP.NET Core</h2><p id="z1lhvlm_95">Cr&eacute;er une API est tr&egrave;s similaire &agrave; cr&eacute;er une application MVC. La principale diff&eacute;rence r&eacute;side dans le contr&ocirc;leur et ce qu'il retourne.</p><section class="procedure-steps"><h3 id="z1lhvlm_96" data-toc="z1lhvlm_96">Création d'un projet API</h3><ol class="list _decimal"><li class="list__item" id="z1lhvlm_99"><p id="z1lhvlm_101">Utilisez le template CLI appropri&eacute; :</p><div class="code-block" data-lang="none">```bash
+dotnet new webapi -o MaSuperApi
+cd MaSuperApi
+```
+</div></li><li class="list__item" id="z1lhvlm_100"><p id="z1lhvlm_103">Observez les diff&eacute;rences :</p><ul class="list _bullet" id="z1lhvlm_104"><li class="list__item" id="z1lhvlm_105"><p>Pas de dossiers <code class="code" id="z1lhvlm_108">Views</code> ou <code class="code" id="z1lhvlm_109">wwwroot</code>. Une API n'a pas d'interface utilisateur.</p></li><li class="list__item" id="z1lhvlm_106"><p>Les contr&ocirc;leurs h&eacute;ritent de <code class="code" id="z1lhvlm_110">ControllerBase</code> au lieu de <code class="code" id="z1lhvlm_111">Controller</code> (<code class="code" id="z1lhvlm_112">Controller</code> ajoute juste le support pour les Vues).</p></li><li class="list__item" id="z1lhvlm_107"><p>Les contr&ocirc;leurs sont souvent d&eacute;cor&eacute;s avec l'attribut <code class="code" id="z1lhvlm_113">[ApiController]</code>.</p></li></ul></li></ol></section><section class="chapter"><h3 id="l-attribut-apicontroller" data-toc="l-attribut-apicontroller">L'attribut <code class="code" id="z1lhvlm_117">[ApiController]</code></h3><p id="z1lhvlm_115">Cet attribut magique active plusieurs comportements qui facilitent la vie du d&eacute;veloppeur d'API :</p><ul class="list _bullet" id="z1lhvlm_116"><li class="list__item" id="z1lhvlm_118"><p id="z1lhvlm_121">Il active le routage par attributs par d&eacute;faut.</p></li><li class="list__item" id="z1lhvlm_119"><p id="z1lhvlm_122">Il d&eacute;clenche automatiquement la validation du mod&egrave;le (<code class="code" id="z1lhvlm_123">ModelState.IsValid</code>) et renvoie une r&eacute;ponse <code class="code" id="z1lhvlm_124">400 Bad Request</code> si la validation &eacute;choue, sans que vous ayez &agrave; &eacute;crire le <code class="code" id="z1lhvlm_125">if</code>.</p></li><li class="list__item" id="z1lhvlm_120"><p id="z1lhvlm_126">Il inf&egrave;re la source des param&egrave;tres (ex: <code class="code" id="z1lhvlm_127">[FromBody]</code>) pour plus de clart&eacute;.</p></li></ul></section><section class="chapter"><h3 id="exemple-un-productsapicontroller" data-toc="exemple-un-productsapicontroller">Exemple : Un <code class="code" id="z1lhvlm_131">ProductsApiController</code></h3><div class="code-block" data-lang="csharp">
+[ApiController]
+[Route(&quot;api/[controller]&quot;)] // Route de base : /api/products
+public class ProductsController : ControllerBase
+{
+    private readonly IProductRepository _repository;
+
+    public ProductsController(IProductRepository repository)
+    {
+        _repository = repository;
+    }
+
+    // GET: /api/products
+    [HttpGet]
+    public ActionResult&lt;IEnumerable&lt;Product&gt;&gt; GetProducts()
+    {
+        return Ok(_repository.GetAll()); // Retourne 200 OK + la liste des produits
+    }
+
+    // GET: /api/products/5
+    [HttpGet(&quot;{id}&quot;)]
+    public ActionResult&lt;Product&gt; GetProduct(int id)
+    {
+        var product = _repository.GetById(id);
+        if (product == null)
+        {
+            return NotFound(); // Retourne 404 Not Found
+        }
+        return Ok(product); // Retourne 200 OK + le produit
+    }
+
+    // POST: /api/products
+    [HttpPost]
+    public ActionResult&lt;Product&gt; CreateProduct(ProductCreateModel model)
+    {
+        // La validation est automatique grâce à [ApiController]
+
+        var newProduct = new Product { /* ... map from model ... */ };
+        _repository.Add(newProduct);
+        
+        // Retourne 201 Created, l'URL de la nouvelle ressource,
+        // et la ressource elle-même.
+        return CreatedAtAction(nameof(GetProduct), 
+                               new { id = newProduct.Id }, 
+                               newProduct);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="3-s-curit-des-apis-qui-tes-vous-et-que-pouvez-vous-faire" data-toc="3-s-curit-des-apis-qui-tes-vous-et-que-pouvez-vous-faire">3. S&eacute;curit&eacute; des APIs : Qui &ecirc;tes-vous et que pouvez-vous faire ?</h2><p id="z1lhvlm_132">Une API publique est une porte ouverte sur vos donn&eacute;es. Il est crucial de la s&eacute;curiser. La s&eacute;curit&eacute; se divise en deux concepts :</p><div class="tabs" id="z1lhvlm_133" data-anchors="[z1lhvlm_137,z1lhvlm_138]"><div class="tabs__content" data-gtm="tab" id="z1lhvlm_137" data-title="Authentification (AuthN)"><p><b id="z1lhvlm_139">La question :</b> &quot;Qui &ecirc;tes-vous ?&quot; <br> <b id="z1lhvlm_141">Le processus :</b> Le client doit prouver son identit&eacute;. La m&eacute;thode la plus courante est de fournir un nom d'utilisateur et un mot de passe. Si c'est correct, le serveur lui donne une &quot;carte d'identit&eacute;&quot; temporaire.</p></div><div class="tabs__content" data-gtm="tab" id="z1lhvlm_138" data-title="Autorisation (AuthZ)"><p><b id="z1lhvlm_142">La question :</b> &quot;Avez-vous le droit de faire &ccedil;a ?&quot; <br> <b id="z1lhvlm_144">Le processus :</b> Une fois le client authentifi&eacute;, le serveur v&eacute;rifie si sa carte d'identit&eacute; lui donne les permissions n&eacute;cessaires pour acc&eacute;der &agrave; une ressource sp&eacute;cifique. Par exemple, &quot;Seuls les administrateurs peuvent supprimer un produit&quot;.</p></div></div><section class="chapter"><h3 id="comment-a-marche-pour-une-api-les-tokens-jwt" data-toc="comment-a-marche-pour-une-api-les-tokens-jwt">Comment &ccedil;a marche pour une API ? Les Tokens JWT</h3><p id="z1lhvlm_145">Dans une application MVC, l'authentification est souvent g&eacute;r&eacute;e par des <span class="control" id="z1lhvlm_150">cookies</span>. Le serveur envoie un cookie au navigateur apr&egrave;s la connexion, et le navigateur le renvoie &agrave; chaque requ&ecirc;te.</p><p id="z1lhvlm_146">Cela ne fonctionne pas bien pour les APIs, car les clients ne sont pas toujours des navigateurs. La solution standard est le <span class="control" id="z1lhvlm_151">JSON Web Token (JWT)</span>.</p><p id="z1lhvlm_147">Pensez &agrave; un laissez-passer pour un festival :</p><ol class="list _decimal" id="z1lhvlm_148" type="1"><li class="list__item" id="z1lhvlm_152"><p id="z1lhvlm_155"><span class="control" id="z1lhvlm_156">Authentification :</span> Vous allez au guichet (<code class="code" id="z1lhvlm_157">/api/auth/login</code>) et montrez votre billet (login/mot de passe).</p></li><li class="list__item" id="z1lhvlm_153"><p id="z1lhvlm_158"><span class="control" id="z1lhvlm_159">G&eacute;n&eacute;ration du Token :</span> Le guichetier v&eacute;rifie votre billet et vous donne un bracelet (<code class="code" id="z1lhvlm_160">JWT Token</code>). Ce bracelet contient des informations sur vous (votre ID, si vous &ecirc;tes VIP/Admin, et une date d'expiration) et il est scell&eacute; avec une signature secr&egrave;te que seul le festival conna&icirc;t.</p></li><li class="list__item" id="z1lhvlm_154"><p id="z1lhvlm_161"><span class="control" id="z1lhvlm_162">Requ&ecirc;tes suivantes :</span> Pour acc&eacute;der &agrave; n'importe quelle sc&egrave;ne (endpoint), vous n'avez plus besoin de montrer votre billet, juste votre bracelet. Le garde &agrave; l'entr&eacute;e (<code class="code" id="z1lhvlm_163">Middleware d'authentification</code>) v&eacute;rifie que le sceau n'est pas cass&eacute; et que le bracelet est valide.</p></li></ol><p id="z1lhvlm_149">Le client stocke ce token et l'envoie &agrave; chaque requ&ecirc;te dans l'en-t&ecirc;te HTTP <code class="code" id="z1lhvlm_164">Authorization</code>: <code class="code" id="z1lhvlm_165">Authorization: Bearer &lt;votre_long_token_jwt&gt;</code>.</p></section><section class="chapter"><h3 id="mise-en-place-simplifi-e" data-toc="mise-en-place-simplifi-e">Mise en place (simplifi&eacute;e)</h3><p id="z1lhvlm_166">La mise en place compl&egrave;te est un peu longue, mais voici les grandes &eacute;tapes :</p><ol class="list _decimal" id="z1lhvlm_167" type="1"><li class="list__item" id="z1lhvlm_168"><p id="z1lhvlm_172"><span class="control" id="z1lhvlm_173">Installer les paquets NuGet :</span> <code class="code" id="z1lhvlm_174">Microsoft.AspNetCore.Authentication.JwtBearer</code>.</p></li><li class="list__item" id="z1lhvlm_169"><p id="z1lhvlm_175"><span class="control" id="z1lhvlm_177">Configurer dans <code class="code" id="z1lhvlm_178">Program.cs</code>:</span></p><div class="code-block" data-lang="csharp">
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =&gt;
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            // Configurez ici comment valider le token
+            // (qui l'a signé, pour qui il est, etc.)
+        };
+    });
+builder.Services.AddAuthorization();
+</div></li><li class="list__item" id="z1lhvlm_170"><p id="z1lhvlm_179"><span class="control" id="z1lhvlm_181">Ajouter les middlewares (dans le bon ordre !) :</span></p><div class="code-block" data-lang="csharp">
+app.UseAuthentication(); // 1. Qui êtes-vous ?
+app.UseAuthorization();  // 2. Que pouvez-vous faire ?
+</div></li><li class="list__item" id="z1lhvlm_171"><p id="z1lhvlm_182"><span class="control" id="z1lhvlm_184">Utiliser les attributs <code class="code" id="z1lhvlm_185">[Authorize]</code> et <code class="code" id="z1lhvlm_186">[AllowAnonymous]</code>:</span></p><div class="code-block" data-lang="csharp">
+[ApiController]
+[Route(&quot;api/[controller]&quot;)]
+public class ProductsController : ControllerBase
+{
+    // Tout le monde peut voir les produits.
+    [HttpGet]
+    [AllowAnonymous]
+    public ActionResult&lt;IEnumerable&lt;Product&gt;&gt; GetProducts() { /* ... */ }
+
+    // Seuls les utilisateurs authentifiés peuvent voir les détails.
+    [HttpGet(&quot;{id}&quot;)]
+    [Authorize] 
+    public ActionResult&lt;Product&gt; GetProduct(int id) { /* ... */ }
+
+    // Seuls les utilisateurs authentifiés ET qui ont le rôle &quot;Admin&quot;
+    // peuvent supprimer un produit.
+    [HttpDelete(&quot;{id}&quot;)]
+    [Authorize(Roles = &quot;Admin&quot;)]
+    public IActionResult DeleteProduct(int id) { /* ... */ }
+}
+</div></li></ol></section><section class="chapter"><h3 id="exercice-3-s-curiser-un-endpoint" data-toc="exercice-3-s-curiser-un-endpoint">Exercice 3 : S&eacute;curiser un endpoint</h3><p id="z1lhvlm_187">En supposant que l'authentification est configur&eacute;e, comment modifieriez-vous l'action <code class="code" id="z1lhvlm_189">CreateProduct</code> (POST) pour qu'elle ne soit accessible qu'aux utilisateurs authentifi&eacute;s ayant le r&ocirc;le &quot;Editor&quot; ou &quot;Admin&quot; ?</p><section class="chapter"><div class="collapse"><div class="collapse__title"><h4 id="correction-exercice-3" data-toc="correction-exercice-3">Correction exercice 3</h4></div><div class="collapse__content"><p id="z1lhvlm_190">Il suffit d'ajouter l'attribut <code class="code" id="z1lhvlm_193">[Authorize]</code> avec la propri&eacute;t&eacute; <code class="code" id="z1lhvlm_194">Roles</code>. Vous pouvez sp&eacute;cifier plusieurs r&ocirc;les en les s&eacute;parant par une virgule.</p><div class="code-block" data-lang="csharp">
+// POST: /api/products
+[HttpPost]
+[Authorize(Roles = &quot;Admin,Editor&quot;)]
+public ActionResult&lt;Product&gt; CreateProduct(ProductCreateModel model)
+{
+    // ...
+}
+</div></div></div></section></section></section><section class="chapter"><h2 id="tp-cr-er-une-api-pour-notre-gestionnaire-de-produits" data-toc="tp-cr-er-une-api-pour-notre-gestionnaire-de-produits">TP : Cr&eacute;er une API pour notre gestionnaire de produits</h2><p id="z1lhvlm_195">Nous allons exposer les fonctionnalit&eacute;s de notre gestionnaire de produits via une API RESTful.</p><section class="procedure-steps" id="z1lhvlm_196"><ol class="list _decimal"><li class="list__item" id="z1lhvlm_198"><p id="z1lhvlm_202">Cr&eacute;ez un projet `dotnet new webapi` nomm&eacute; `ProductApi`. Copiez-y les dossiers <code class="code" id="z1lhvlm_203">Models</code>, <code class="code" id="z1lhvlm_204">Interfaces</code>, <code class="code" id="z1lhvlm_205">Services</code>, <code class="code" id="z1lhvlm_206">Data</code> et le <code class="code" id="z1lhvlm_207">appsettings.json</code> de votre projet MVC pour r&eacute;utiliser toute la logique d'acc&egrave;s aux donn&eacute;es avec EF Core.</p></li><li class="list__item" id="z1lhvlm_199"><p id="z1lhvlm_208">Dans le <code class="code" id="z1lhvlm_209">Program.cs</code> de l'API, configurez le <code class="code" id="z1lhvlm_210">DbContext</code> et l'injection de d&eacute;pendances pour votre <code class="code" id="z1lhvlm_211">IProductRepository</code>, exactement comme dans le projet MVC.</p></li><li class="list__item" id="z1lhvlm_200"><p id="z1lhvlm_212">Cr&eacute;ez un contr&ocirc;leur d'API <code class="code" id="z1lhvlm_215">ProductsController</code>. Injectez <code class="code" id="z1lhvlm_216">IProductRepository</code>. Impl&eacute;mentez les cinq actions RESTful de base :</p><ul class="list _bullet" id="z1lhvlm_213"><li class="list__item" id="z1lhvlm_217"><p><code class="code" id="z1lhvlm_222">GET /api/products</code>: R&eacute;cup&egrave;re tous les produits.</p></li><li class="list__item" id="z1lhvlm_218"><p><code class="code" id="z1lhvlm_223">GET /api/products/{id}</code>: R&eacute;cup&egrave;re un produit par son ID.</p></li><li class="list__item" id="z1lhvlm_219"><p><code class="code" id="z1lhvlm_224">POST /api/products</code>: Cr&eacute;e un nouveau produit.</p></li><li class="list__item" id="z1lhvlm_220"><p><code class="code" id="z1lhvlm_225">PUT /api/products/{id}</code>: Met &agrave; jour un produit existant.</p></li><li class="list__item" id="z1lhvlm_221"><p><code class="code" id="z1lhvlm_226">DELETE /api/products/{id}</code>: Supprime un produit.</p></li></ul><p id="z1lhvlm_214">Utilisez les verbes HTTP appropri&eacute;s (`[HttpGet]`, `[HttpPost]`, etc.) et retournez les codes de statut corrects.</p></li><li class="list__item" id="z1lhvlm_201"><p id="z1lhvlm_227">Lancez votre API. Le template `webapi` inclut par d&eacute;faut <b id="z1lhvlm_228">Swagger/OpenAPI</b>, qui vous donne une interface web pour tester vos endpoints directement depuis votre navigateur. Utilisez cette interface pour cr&eacute;er, lister, mettre &agrave; jour et supprimer des produits.</p></li></ol></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h3 id="correction-tp-cr-er-une-api-pour-notre-gestionnaire-de-produits" data-toc="correction-tp-cr-er-une-api-pour-notre-gestionnaire-de-produits">Correction TP : Cr&eacute;er une API pour notre gestionnaire de produits</h3></div><div class="collapse__content"><p id="z1lhvlm_229"><span class="control" id="z1lhvlm_232"><code class="code" id="z1lhvlm_233">Controllers/ProductsController.cs</code></span></p><div class="code-block" data-lang="csharp">
+using Microsoft.AspNetCore.Mvc;
+using MonAppMvc.Interfaces;
+using MonAppMvc.Models;
+
+[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class ProductsController : ControllerBase
+{
+    private readonly IProductRepository _repository;
+
+    public ProductsController(IProductRepository repository)
+    {
+        _repository = repository;
+    }
+
+    [HttpGet]
+    public ActionResult&lt;IEnumerable&lt;Product&gt;&gt; GetProducts()
+    {
+        return Ok(_repository.GetAll());
+    }
+
+    [HttpGet(&quot;{id}&quot;)]
+    public ActionResult&lt;Product&gt; GetProduct(int id)
+    {
+        var product = _repository.GetById(id);
+        if (product == null) return NotFound();
+        return Ok(product);
+    }
+
+    [HttpPost]
+    public ActionResult&lt;Product&gt; PostProduct(Product product)
+    {
+        // Dans une vraie app, on utiliserait un DTO/ViewModel
+        _repository.Add(product);
+        return CreatedAtAction(nameof(GetProduct), 
+                               new { id = product.Id }, product);
+    }
+
+    [HttpPut(&quot;{id}&quot;)]
+    public IActionResult PutProduct(int id, Product product)
+    {
+        if (id != product.Id)
+        {
+            return BadRequest();
+        }
+        _repository.Update(product);
+        return NoContent(); // Code 204
+    }
+
+    [HttpDelete(&quot;{id}&quot;)]
+    public IActionResult DeleteProduct(int id)
+    {
+        var product = _repository.GetById(id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+        _repository.Delete(id);
+        return NoContent(); // Code 204
+    }
+}
+</div></div></div></section></section><section class="chapter"><h2 id="auto-valuation" data-toc="auto-valuation">Auto-&eacute;valuation</h2><ol class="list _decimal" id="z1lhvlm_234" type="1"><li class="list__item" id="z1lhvlm_236"><p id="z1lhvlm_243">Quel verbe HTTP est utilis&eacute; pour mettre &agrave; jour une ressource existante ? a) <code class="code" id="z1lhvlm_244">GET</code> b) <code class="code" id="z1lhvlm_245">POST</code> c) <code class="code" id="z1lhvlm_246">PUT</code> d) <code class="code" id="z1lhvlm_247">UPDATE</code></p></li><li class="list__item" id="z1lhvlm_237"><p id="z1lhvlm_248">Quel code de statut HTTP indique qu'une ressource a &eacute;t&eacute; cr&eacute;&eacute;e avec succ&egrave;s ? a) <code class="code" id="z1lhvlm_249">200 OK</code> b) <code class="code" id="z1lhvlm_250">201 Created</code> c) <code class="code" id="z1lhvlm_251">204 No Content</code> d) <code class="code" id="z1lhvlm_252">400 Bad Request</code></p></li><li class="list__item" id="z1lhvlm_238"><p id="z1lhvlm_253">Quelle est la diff&eacute;rence entre l'Authentification et l'Autorisation ? a) Il n'y en a pas, c'est la m&ecirc;me chose. b) L'authentification v&eacute;rifie qui vous &ecirc;tes, l'autorisation v&eacute;rifie ce que vous pouvez faire. c) L'autorisation v&eacute;rifie qui vous &ecirc;tes, l'authentification v&eacute;rifie ce que vous pouvez faire. d) L'authentification est pour les APIs, l'autorisation pour le MVC.</p></li><li class="list__item" id="z1lhvlm_239"><p id="z1lhvlm_254">Quel attribut place-t-on sur une action pour exiger que l'utilisateur soit authentifi&eacute; ? a) <code class="code" id="z1lhvlm_255">[ApiController]</code> b) <code class="code" id="z1lhvlm_256">[Authenticate]</code> c) <code class="code" id="z1lhvlm_257">[AllowAnonymous]</code> d) <code class="code" id="z1lhvlm_258">[Authorize]</code></p></li><li class="list__item" id="z1lhvlm_240"><p id="z1lhvlm_259">Qu'est-ce qu'une ressource dans le contexte de REST ? Donnez un exemple.</p></li><li class="list__item" id="z1lhvlm_241"><p id="z1lhvlm_260">Expliquez le flux d'authentification bas&eacute; sur les tokens JWT en 3 &eacute;tapes.</p></li><li class="list__item" id="z1lhvlm_242"><p id="z1lhvlm_261">Pourquoi l'attribut <code class="code" id="z1lhvlm_262">[ApiController]</code> est-il si utile pour d&eacute;velopper des APIs ? Citez deux de ses avantages.</p></li></ol></section><section class="chapter"><h2 id="conclusion" data-toc="conclusion">Conclusion</h2><p id="z1lhvlm_263">F&eacute;licitations ! Vous avez ajout&eacute; une corde essentielle &agrave; votre arc de d&eacute;veloppeur backend. Vous ne savez plus seulement construire des applications pour les humains, mais aussi pour les machines. Vous comprenez les principes de l'architecture <span class="control" id="z1lhvlm_266">REST</span>, vous savez comment les impl&eacute;menter avec ASP.NET Core pour cr&eacute;er des <span class="control" id="z1lhvlm_267">contr&ocirc;leurs d'API</span> propres et efficaces, et vous avez fait vos premiers pas dans le monde crucial de la <span class="control" id="z1lhvlm_268">s&eacute;curit&eacute; des APIs</span>.</p><p id="z1lhvlm_264">Cette comp&eacute;tence est fondamentale dans l'&eacute;cosyst&egrave;me technologique actuel, o&ugrave; les applications sont de plus en plus interconnect&eacute;es. C'est la base pour construire des applications mobiles, des architectures microservices, et bien plus encore.</p><p id="z1lhvlm_265">Dans le dernier module, nous aborderons la derni&egrave;re &eacute;tape du cycle de vie d'une application : comment l'empaqueter et la d&eacute;ployer pour qu'elle soit accessible au monde entier.</p></section><div class="last-modified">29 août 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="005-01-advanced-entity-framework.html" class="navigation-links__prev">Module 5 : Ma&icirc;trise d'Entity Framework Core - Pour aller plus loin</a><a href="006-01-advanced-api.html" class="navigation-links__next">Module 6 : Conception d'API Avanc&eacute;e et Bonnes Pratiques - Pour aller plus loin</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

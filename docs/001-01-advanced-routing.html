@@ -1,0 +1,180 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2026-01-02T15:24:12.519661"><title>Module 2 : Routage et Liaison de Donn&eacute;es Avanc&eacute;s - Pour aller plus loin | ASP dotNET</title><script type="application/json" id="virtual-toc-data">[{"id":"objectifs-p-dagogiques","level":0,"title":"Objectifs Pédagogiques","anchor":"#objectifs-p-dagogiques"},{"id":"introduction-devenir-l-architecte-du-flux-d-informations","level":0,"title":"Introduction : Devenir l\u0027architecte du flux d\u0027informations","anchor":"#introduction-devenir-l-architecte-du-flux-d-informations"},{"id":"1-le-routage-de-pr-cision","level":0,"title":"1. Le Routage de Précision","anchor":"#1-le-routage-de-pr-cision"},{"id":"2-des-r-sultats-d-actions-sp-cifiques-avec-actionresult-t","level":0,"title":"2. Des Résultats d\u0027Actions Spécifiques avec ActionResult\u003cT\u003e","anchor":"#2-des-r-sultats-d-actions-sp-cifiques-avec-actionresult-t"},{"id":"3-le-model-binding-d-mystifi-les-sources-de-liaison","level":0,"title":"3. Le Model Binding Démystifié : Les Sources de Liaison","anchor":"#3-le-model-binding-d-mystifi-les-sources-de-liaison"},{"id":"4-aller-plus-loin-avec-la-validation","level":0,"title":"4. Aller plus loin avec la Validation","anchor":"#4-aller-plus-loin-avec-la-validation"},{"id":"conclusion","level":0,"title":"Conclusion","anchor":"#conclusion"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Module 2 : Routage et Liaison de Donn&eacute;es Avanc&eacute;s - Pour aller plus loin | ASP dotNET"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ASP dotNET Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/001-01-advanced-routing.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Module 2 : Routage et Liaison de Donn&eacute;es Avanc&eacute;s - Pour aller plus loin | ASP dotNET"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/001-01-advanced-routing.html#webpage",
+    "url": "writerside-documentation/001-01-advanced-routing.html",
+    "name": "Module 2 : Routage et Liaison de Donn&eacute;es Avanc&eacute;s - Pour aller plus loin | ASP dotNET",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "ASP dotNET Help"
+}</script><!-- End Schema.org --></head><body data-id="001-01-advanced-routing" data-main-title="Module 2 : Routage et Liaison de Données Avancés - Pour aller plus loin" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="02-00-routing.md|Module 2 : Routage, Contrôleurs et Actions - L'essentiel"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ASP dotNET  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="001-01-advanced-routing" id="001-01-advanced-routing.md">Module 2 : Routage et Liaison de Données Avancés - Pour aller plus loin</h1><section class="chapter"><h2 id="objectifs-p-dagogiques" data-toc="objectifs-p-dagogiques">Objectifs P&eacute;dagogiques</h2><p id="z4rhe05_10">&Agrave; la fin de ce module compl&eacute;mentaire, vous serez capable de :</p><ul class="list _bullet" id="z4rhe05_11"><li class="list__item" id="z4rhe05_12"><p id="z4rhe05_18"><span class="control" id="z4rhe05_19">Appliquer</span> des contraintes de route pour des URLs plus robustes.</p></li><li class="list__item" id="z4rhe05_13"><p id="z4rhe05_20"><span class="control" id="z4rhe05_21">G&eacute;n&eacute;rer</span> des URLs de mani&egrave;re dynamique et s&eacute;curis&eacute;e dans votre code.</p></li><li class="list__item" id="z4rhe05_14"><p id="z4rhe05_22"><span class="control" id="z4rhe05_23">Utiliser</span> des types de retour d'action fortement typ&eacute;s avec <code class="code" id="z4rhe05_24">ActionResult&lt;T&gt;</code>.</p></li><li class="list__item" id="z4rhe05_15"><p id="z4rhe05_25"><span class="control" id="z4rhe05_26">Contr&ocirc;ler</span> pr&eacute;cis&eacute;ment la source des donn&eacute;es avec les attributs de liaison de mod&egrave;le (Model Binding).</p></li><li class="list__item" id="z4rhe05_16"><p id="z4rhe05_27"><span class="control" id="z4rhe05_28">Mettre en place</span> la validation c&ocirc;t&eacute; client pour une meilleure exp&eacute;rience utilisateur.</p></li><li class="list__item" id="z4rhe05_17"><p id="z4rhe05_29"><span class="control" id="z4rhe05_30">Cr&eacute;er</span> vos propres r&egrave;gles de validation personnalis&eacute;es.</p></li></ul></section><section class="chapter"><h2 id="introduction-devenir-l-architecte-du-flux-d-informations" data-toc="introduction-devenir-l-architecte-du-flux-d-informations">Introduction : Devenir l'architecte du flux d'informations</h2><p id="z4rhe05_31">Dans la partie pr&eacute;c&eacute;dente, vous avez appris &agrave; guider les requ&ecirc;tes des utilisateurs vers les bons services de votre ville-application. C'&eacute;tait le travail du postier : suivre une adresse standard pour livrer le courrier.</p><p id="z4rhe05_32">Maintenant, vous allez devenir l'architecte de la circulation. Vous allez d&eacute;finir des r&egrave;gles de circulation sp&eacute;cifiques (&quot;cette rue est r&eacute;serv&eacute;e aux entiers !&quot;), installer des panneaux indicateurs intelligents qui s'adaptent au trafic (g&eacute;n&eacute;ration d'URL), et mettre en place des postes de contr&ocirc;le plus sophistiqu&eacute;s pour inspecter les &quot;cargaisons&quot; ( liaison de mod&egrave;le avanc&eacute;e) avant m&ecirc;me qu'elles n'arrivent &agrave; destination. Ces techniques sont essentielles pour construire des applications complexes, et surtout des APIs RESTful robustes.</p></section><section class="chapter"><h2 id="1-le-routage-de-pr-cision" data-toc="1-le-routage-de-pr-cision">1. Le Routage de Pr&eacute;cision</h2><section class="chapter"><h3 id="les-contraintes-de-route-le-videur-l-entr-e" data-toc="les-contraintes-de-route-le-videur-l-entr-e">Les Contraintes de Route : Le Videur &agrave; l'entr&eacute;e</h3><p id="z4rhe05_36"><span class="control" id="z4rhe05_41">Le probl&egrave;me :</span> Votre route par d&eacute;faut est <code class="code" id="z4rhe05_42">/{controller}/{action}/{id?}</code>. Si un utilisateur navigue vers <code class="code" id="z4rhe05_43">/Products/Details/hello</code>, votre action <code class="code" id="z4rhe05_44">Details(int id)</code> va planter car &quot;hello&quot; ne peut pas &ecirc;tre converti en <code class="code" id="z4rhe05_45">int</code>. Comment refuser cette requ&ecirc;te avant m&ecirc;me qu'elle n'atteigne l'action ?</p><p id="z4rhe05_37"><span class="control" id="z4rhe05_46">La solution :</span> Les contraintes de route. Pensez-y comme un videur &agrave; l'entr&eacute;e d'une rue. Il v&eacute;rifie l'identit&eacute; du v&eacute;hicule avant de le laisser passer.</p><p id="z4rhe05_38">Vous pouvez ajouter ces contraintes directement dans le pattern de la route.</p><ul class="list _bullet" id="z4rhe05_39"><li class="list__item" id="z4rhe05_47"><p id="z4rhe05_49"><span class="control" id="z4rhe05_51">Avec le routage par convention (<code class="code" id="z4rhe05_52">Program.cs</code>) :</span></p><div class="code-block" data-lang="csharp">
+app.MapControllerRoute(
+    name: &quot;default&quot;,
+    pattern: &quot;{controller=Home}/{action=Index}/{id:int?}&quot;); // id doit être un entier
+</div></li><li class="list__item" id="z4rhe05_48"><p id="z4rhe05_53"><span class="control" id="z4rhe05_55">Avec le routage par attributs (sur le contr&ocirc;leur/action) :</span> C'est encore plus pr&eacute;cis.</p><div class="code-block" data-lang="csharp">
+[HttpGet(&quot;details/{id:int}&quot;)] // L'id DOIT être un entier
+public IActionResult Details(int id) { /* ... */ }
+
+[HttpGet(&quot;user/{username:alpha:minlength(3)}&quot;)] // Le username ne doit contenir
+                                                // que des lettres et faire
+                                                // au moins 3 caractères
+public IActionResult Profile(string username) { /* ... */ }
+</div></li></ul><p id="z4rhe05_40">Avec ces contraintes, une URL comme <code class="code" id="z4rhe05_56">/Products/Details/hello</code> ne correspondra plus &agrave; la route et g&eacute;n&eacute;rera directement une erreur 404. C'est plus propre et plus s&eacute;curis&eacute;.</p></section><section class="chapter"><h3 id="g-n-ration-d-urls-ne-jamais-coder-une-url-en-dur" data-toc="g-n-ration-d-urls-ne-jamais-coder-une-url-en-dur">G&eacute;n&eacute;ration d'URLs : Ne jamais coder une URL en dur</h3><p id="z4rhe05_57"><span class="control" id="z4rhe05_62">Le probl&egrave;me :</span> Dans votre code, vous devez cr&eacute;er un lien vers une autre page. Tenteriez-vous d'&eacute;crire <code class="code" id="z4rhe05_63">string url = &quot;/Products/Details/&quot; + product.Id;</code>? C'est une tr&egrave;s mauvaise id&eacute;e ! Si vous changez votre structure de routage plus tard, tous ces liens cod&eacute;s en dur seront cass&eacute;s.</p><p id="z4rhe05_58"><span class="control" id="z4rhe05_64">La solution :</span> Les helpers de g&eacute;n&eacute;ration d'URL. Demandez &agrave; ASP.NET Core de construire l'URL pour vous en lui donnant le <span class="emphasis" id="z4rhe05_65">nom</span> de la destination (le contr&ocirc;leur et l'action). C'est comme demander &agrave; votre GPS &quot;G&eacute;n&egrave;re-moi l'itin&eacute;raire vers la maison&quot; au lieu de m&eacute;moriser l'adresse.</p><p id="z4rhe05_59">Dans un contr&ocirc;leur, vous pouvez utiliser <code class="code" id="z4rhe05_66">Url.Action()</code> ou <code class="code" id="z4rhe05_67">RedirectToAction()</code>. Dans une vue Razor, vous avez d&eacute;j&agrave; utilis&eacute; les Tag Helpers comme <code class="code" id="z4rhe05_68">asp-action</code> qui font exactement cela.</p><div class="code-block" data-lang="csharp">
+// Dans une action de contrôleur
+public IActionResult ProcessSomething()
+{
+    int newProductId = 42;
+    
+    // Mauvais : coder l'URL en dur
+    // return Redirect(&quot;/Products/Details/42&quot;);
+
+    // Bon : laisser le système de routage générer l'URL
+    return RedirectToAction(&quot;Details&quot;, &quot;Products&quot;, new { id = newProductId });
+}
+</div></section></section><section class="chapter"><h2 id="2-des-r-sultats-d-actions-sp-cifiques-avec-actionresult-t" data-toc="2-des-r-sultats-d-actions-sp-cifiques-avec-actionresult-t">2. Des R&eacute;sultats d'Actions Sp&eacute;cifiques avec <code class="code" id="z4rhe05_76">ActionResult&lt;T&gt;</code></h2><p id="z4rhe05_70"><span class="control" id="z4rhe05_77">Le probl&egrave;me :</span> <code class="code" id="z4rhe05_78">IActionResult</code> est flexible, mais il ne dit rien sur le type de donn&eacute;es que votre action est cens&eacute;e retourner en cas de succ&egrave;s. Pour une application MVC, ce n'est pas tr&egrave;s grave, mais pour une API, c'est un probl&egrave;me. Les outils de documentation automatique (comme Swagger/OpenAPI) ne peuvent pas deviner ce que vous retournez.</p><p id="z4rhe05_71"><span class="control" id="z4rhe05_79">La solution :</span> <code class="code" id="z4rhe05_80">ActionResult&lt;T&gt;</code>. C'est un type de retour qui dit : &quot;Je suis un r&eacute;sultat d'action, et si tout se passe bien, je retournerai un objet de type <code class="code" id="z4rhe05_81">T</code> &quot;.</p><p id="z4rhe05_72">Pensez &agrave; <code class="code" id="z4rhe05_82">IActionResult</code> comme une commande &quot;Apportez-moi quelque chose &agrave; manger&quot;. <code class="code" id="z4rhe05_83">ActionResult&lt;Product&gt;</code> est une commande &quot;Apportez-moi le plat du jour, qui est un <code class="code" id="z4rhe05_84">Product</code> &quot;. C'est plus pr&eacute;cis pour le cuisinier et pour vous.</p><div class="code-block" data-lang="csharp">
+// Ancien code (fonctionnel mais moins descriptif)
+public IActionResult GetProduct(int id)
+{
+    var product = _products.FirstOrDefault(p =&gt; p.Id == id);
+    if (product == null)
+    {
+        return NotFound();
+    }
+    return Ok(product); // Ok() retourne un IActionResult
+}
+
+// Nouveau code avec ActionResult&lt;T&gt; (pratique moderne)
+public ActionResult&lt;Product&gt; GetProduct(int id)
+{
+    var product = _products.FirstOrDefault(p =&gt; p.Id == id);
+    if (product == null)
+    {
+        return NotFound(); // Le framework gère la conversion
+    }
+    return product; // On peut retourner l'objet directement !
+                    // Le framework le convertira en Ok(product)
+}
+</div><aside class="prompt" data-type="tip" data-title="" id="z4rhe05_74"><p id="z4rhe05_85">L'utilisation de <code class="code" id="z4rhe05_86">ActionResult&lt;T&gt;</code> est devenue la norme pour le d&eacute;veloppement d'API avec ASP.NET Core car elle am&eacute;liore la lisibilit&eacute;, la maintenabilit&eacute; et l'int&eacute;gration avec les outils de g&eacute;n&eacute;ration de documentation.</p></aside><section class="chapter"><h3 id="exercice-3-moderniser-une-action" data-toc="exercice-3-moderniser-une-action">Exercice 3 : Moderniser une action</h3><p id="z4rhe05_87">Reprenez l'action <code class="code" id="z4rhe05_89">Details(int id)</code> du TP sur les produits et modifiez sa signature et son code pour utiliser <code class="code" id="z4rhe05_90">ActionResult&lt;Product&gt;</code>.</p><section class="chapter"><div class="collapse"><div class="collapse__title"><h4 id="correction-exercice-3" data-toc="correction-exercice-3">Correction exercice 3</h4></div><div class="collapse__content"><div class="code-block" data-lang="csharp">
+// Controllers/ProductsController.cs
+
+// La signature de la méthode change
+public ActionResult&lt;Product&gt; Details(int id)
+{
+    var product = _products.FirstOrDefault(p =&gt; p.Id == id);
+    if (product == null)
+    {
+        return NotFound(); // NotFound() est toujours un type de résultat valide
+    }
+
+    // Ici, au lieu de 'return View(product)', qui est spécifique à MVC,
+    // on retourne le produit.
+    // Pour une API, ce serait parfait. Pour une vue, il faut
+    // toujours retourner View().
+    // L'avantage ici est purement pour la clarté de la signature.
+    return View(product); 
+}
+</div><aside class="prompt" data-type="warning" data-title="" id="z4rhe05_92"><p id="z4rhe05_94">Dans une application MVC pure qui retourne toujours des vues, l'int&eacute;r&ecirc;t de <code class="code" id="z4rhe05_95">ActionResult&lt;T&gt;</code> est moindre. <code class="code" id="z4rhe05_96">IActionResult</code> reste parfaitement valable. Cependant, <code class="code" id="z4rhe05_97">ActionResult&lt;T&gt;</code> devient indispensable dans le contexte des APIs, o&ugrave; l'on retourne directement des donn&eacute;es (JSON).</p></aside></div></div></section></section></section><section class="chapter"><h2 id="3-le-model-binding-d-mystifi-les-sources-de-liaison" data-toc="3-le-model-binding-d-mystifi-les-sources-de-liaison">3. Le Model Binding D&eacute;mystifi&eacute; : Les Sources de Liaison</h2><p id="z4rhe05_98"><span class="control" id="z4rhe05_106">Le probl&egrave;me :</span> Parfois, le Model Binding automatique ne trouve pas les donn&eacute;es. Par exemple, vous envoyez des donn&eacute;es JSON dans le corps (body) d'une requ&ecirc;te, mais votre param&egrave;tre d'action reste <code class="code" id="z4rhe05_107">null</code>. Comment dire explicitement au Model Binder <span class="emphasis" id="z4rhe05_108">o&ugrave;</span> chercher ?</p><p id="z4rhe05_99"><span class="control" id="z4rhe05_109">La solution :</span> Les attributs de source de liaison. Vous les placez devant les param&egrave;tres de votre action pour dire : &quot;Toi, <code class="code" id="z4rhe05_110">id</code>, tu viens de la route. Toi, <code class="code" id="z4rhe05_111">searchQuery</code>, tu viens de la query string. Et toi, <code class="code" id="z4rhe05_112">product</code>, tu viens du corps de la requ&ecirc;te.&quot;</p><p id="z4rhe05_100">C'est comme donner des instructions pr&eacute;cises &agrave; un coursier : &quot;Le premier colis est sur le palier (<code class="code" id="z4rhe05_113">FromRoute</code>), le deuxi&egrave;me est dans la bo&icirc;te aux lettres (<code class="code" id="z4rhe05_114">FromQuery</code>), et pour le troisi&egrave;me, il faut sonner et je vous le donnerai en main propre (<code class="code" id="z4rhe05_115">FromBody</code> ).&quot;</p><p id="z4rhe05_101">Les attributs les plus courants :</p><ul class="list _bullet" id="z4rhe05_102"><li class="list__item" id="z4rhe05_116"><p id="z4rhe05_121"><code class="code" id="z4rhe05_122">[FromRoute]</code>: Lie &agrave; partir des donn&eacute;es de la route (ex: <code class="code" id="z4rhe05_123">{id}</code>).</p></li><li class="list__item" id="z4rhe05_117"><p id="z4rhe05_124"><code class="code" id="z4rhe05_125">[FromQuery]</code>: Lie &agrave; partir de la query string (ex: <code class="code" id="z4rhe05_126">?name=...</code>).</p></li><li class="list__item" id="z4rhe05_118"><p id="z4rhe05_127"><code class="code" id="z4rhe05_128">[FromForm]</code>: Lie &agrave; partir des champs d'un formulaire envoy&eacute;.</p></li><li class="list__item" id="z4rhe05_119"><p id="z4rhe05_129"><code class="code" id="z4rhe05_130">[FromBody]</code>: Lie &agrave; partir du corps de la requ&ecirc;te (souvent du JSON).</p></li><li class="list__item" id="z4rhe05_120"><p id="z4rhe05_131"><code class="code" id="z4rhe05_132">[FromHeader]</code>: Lie &agrave; partir d'un en-t&ecirc;te HTTP.</p></li></ul><div class="code-block" data-lang="csharp">
+[HttpPost(&quot;api/products/{id}/update&quot;)]
+public IActionResult UpdateProduct(
+    [FromRoute] int id, 
+    [FromQuery] bool notifyUsers, 
+    [FromBody] ProductUpdateModel model)
+{
+    // id viendra de l'URL (ex: /api/products/5/update)
+    // notifyUsers viendra de la query string (ex: ?notifyUsers=true)
+    // model sera rempli à partir du JSON envoyé dans le corps de la requête
+    
+    // ...
+    return Ok();
+}
+</div><aside class="prompt" data-type="warning" data-title="" id="z4rhe05_104"><p>Attention : une action ne peut avoir **qu'un seul** param&egrave;tre d&eacute;cor&eacute; avec `[FromBody]`. En effet, le corps de la requ&ecirc;te ne peut &ecirc;tre lu qu'une seule fois.</p></aside></section><section class="chapter"><h2 id="4-aller-plus-loin-avec-la-validation" data-toc="4-aller-plus-loin-avec-la-validation">4. Aller plus loin avec la Validation</h2><section class="chapter"><h3 id="validation-c-t-client" data-toc="validation-c-t-client">Validation C&ocirc;t&eacute; Client</h3><p id="z4rhe05_136"><span class="control" id="z4rhe05_143">Le probl&egrave;me :</span> Actuellement, pour voir les erreurs de validation, l'utilisateur doit soumettre le formulaire, attendre la r&eacute;ponse du serveur, puis voir la page se recharger avec les erreurs. C'est lent et frustrant.</p><p id="z4rhe05_137"><span class="control" id="z4rhe05_144">La solution :</span> La validation c&ocirc;t&eacute; client. ASP.NET Core facilite grandement cela. Les Data Annotations que vous avez mises sur votre mod&egrave;le (<code class="code" id="z4rhe05_145">[Required]</code>, <code class="code" id="z4rhe05_146">[StringLength]</code>, etc.) peuvent &ecirc;tre automatiquement transform&eacute;es en attributs HTML <code class="code" id="z4rhe05_147">data-*</code>.</p><div class="code-block" data-lang="markup">
+&lt;input asp-for=&quot;Name&quot; class=&quot;form-control&quot;/&gt;
+</div><p id="z4rhe05_139">... sera rendu en HTML comme :</p><div class="code-block" data-lang="markup">
+&lt;input class=&quot;form-control&quot; type=&quot;text&quot; data-val=&quot;true&quot;
+       data-val-required=&quot;Le nom du produit est obligatoire.&quot;
+       id=&quot;Name&quot; name=&quot;Name&quot; value=&quot;&quot;&gt;
+</div><p id="z4rhe05_141">Il suffit ensuite d'inclure les scripts de validation jQuery Unobtrusive dans votre page (le template par d&eacute;faut le fait d&eacute;j&agrave; via <code class="code" id="z4rhe05_148">_ValidationScriptsPartial.cshtml</code>). Ces scripts lisent les attributs <code class="code" id="z4rhe05_149">data-val</code> et effectuent la validation directement dans le navigateur, donnant un retour imm&eacute;diat &agrave; l'utilisateur.</p><aside class="prompt" data-type="tip" data-title="" id="z4rhe05_142"><p>La validation c&ocirc;t&eacute; client est une **am&eacute;lioration de l'exp&eacute;rience utilisateur**, pas une mesure de s&eacute;curit&eacute;. Un utilisateur malveillant peut la contourner. Vous devez **TOUJOURS** re-valider les donn&eacute;es c&ocirc;t&eacute; serveur avec `ModelState.IsValid`.</p></aside></section><section class="chapter"><h3 id="attributs-de-validation-personnalis-s" data-toc="attributs-de-validation-personnalis-s">Attributs de Validation Personnalis&eacute;s</h3><p id="z4rhe05_150"><span class="control" id="z4rhe05_155">Le probl&egrave;me :</span> Les validateurs int&eacute;gr&eacute;s sont excellents, mais que faire si vous avez une r&egrave;gle m&eacute;tier complexe ? Par exemple, &quot;La date de d&eacute;but de l'&eacute;v&eacute;nement doit &ecirc;tre dans le futur&quot;. Il n'y a pas d'attribut pour &ccedil;a.</p><p id="z4rhe05_151"><span class="control" id="z4rhe05_156">La solution :</span> Cr&eacute;ez le v&ocirc;tre ! C'est comme &eacute;crire une nouvelle loi dans le code de la route de votre application. Il suffit de cr&eacute;er une classe qui h&eacute;rite de <code class="code" id="z4rhe05_157">ValidationAttribute</code> et de surcharger la m&eacute;thode <code class="code" id="z4rhe05_158">IsValid</code>.</p><p id="z4rhe05_152"><span class="control" id="z4rhe05_159">Exemple : Un validateur pour s'assurer qu'une date est dans le futur.</span></p><ol class="list _decimal" id="z4rhe05_153" type="1"><li class="list__item" id="z4rhe05_160"><p id="z4rhe05_163">Cr&eacute;ez un dossier <code class="code" id="z4rhe05_164">ValidationAttributes</code> &agrave; la racine du projet.</p></li><li class="list__item" id="z4rhe05_161"><p id="z4rhe05_165">Cr&eacute;ez un fichier <code class="code" id="z4rhe05_167">FutureDateAttribute.cs</code>.</p><div class="code-block" data-lang="csharp">
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace MonAppMvc.ValidationAttributes
+{
+    public class FutureDateAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            // On s'assure qu'on a bien une DateTime
+            if (value is DateTime dateValue)
+            {
+                // La règle métier : la date doit être supérieure à maintenant
+                return dateValue &gt; DateTime.Now;
+            }
+            // Si ce n'est pas une date, on considère que c'est valide
+            // pour ne pas interférer avec l'attribut [Required].
+            return true; 
+        }
+    }
+}
+</div></li><li class="list__item" id="z4rhe05_162"><p id="z4rhe05_168">Utilisez votre nouvel attribut sur un mod&egrave;le !</p><div class="code-block" data-lang="csharp">
+using MonAppMvc.ValidationAttributes;
+
+public class EventCreateModel
+{
+    [Required]
+    public string Name { get; set; }
+
+    [Required]
+    [FutureDate(ErrorMessage = &quot;La date de l'événement doit être dans le futur.&quot;)]
+    public DateTime EventDate { get; set; }
+}
+</div></li></ol><p id="z4rhe05_154">Et voil&agrave; ! Vous avez cr&eacute;&eacute; une r&egrave;gle de validation r&eacute;utilisable et parfaitement adapt&eacute;e &agrave; votre m&eacute;tier.</p></section><section class="chapter"><h3 id="exercice-4-validateur-personnalis" data-toc="exercice-4-validateur-personnalis">Exercice 4 : Validateur personnalis&eacute;</h3><p id="z4rhe05_170">Cr&eacute;ez un attribut de validation personnalis&eacute; <code class="code" id="z4rhe05_172">[AllowedDomain(&quot;gmail.com&quot;, &quot;outlook.com&quot;)]</code> qui v&eacute;rifie qu'une cha&icirc;ne de caract&egrave;res (un email) se termine par l'un des domaines autoris&eacute;s.</p><section class="chapter"><div class="collapse"><div class="collapse__title"><h4 id="correction-exercice-4" data-toc="correction-exercice-4">Correction exercice 4</h4></div><div class="collapse__content"><p id="z4rhe05_173"><span class="control" id="z4rhe05_178"><code class="code" id="z4rhe05_179">ValidationAttributes/AllowedDomainAttribute.cs</code></span></p><div class="code-block" data-lang="csharp">
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+
+namespace MonAppMvc.ValidationAttributes
+{
+    public class AllowedDomainAttribute : ValidationAttribute
+    {
+        private readonly string[] _allowedDomains;
+
+        // Le constructeur accepte les domaines autorisés
+        public AllowedDomainAttribute(params string[] allowedDomains)
+        {
+            _allowedDomains = allowedDomains;
+        }
+
+        public override bool IsValid(object value)
+        {
+            if (value is string email)
+            {
+                // On extrait le domaine de l'email
+                string domain = email.Split('@').LastOrDefault();
+
+                if (domain != null &amp;&amp; _allowedDomains.Contains(domain.ToLower()))
+                {
+                    return true; // Le domaine est autorisé
+                }
+            }
+            
+            // Si la valeur n'est pas un string, ou si le domaine n'est pas
+            // dans la liste, la validation échoue.
+            return false; 
+        }
+    }
+}
+</div><p id="z4rhe05_175"><span class="control" id="z4rhe05_180">Utilisation dans un mod&egrave;le :</span></p><div class="code-block" data-lang="csharp">
+public class RegisterViewModel
+{
+    [Required]
+    [EmailAddress]
+    [AllowedDomain(&quot;gmail.com&quot;, &quot;outlook.com&quot;, &quot;yahoo.com&quot;, 
+        ErrorMessage = &quot;Seuls les emails gmail, outlook ou yahoo sont autorisés.&quot;)]
+    public string Email { get; set; }
+}
+</div></div></div></section></section></section><section class="chapter"><h2 id="conclusion" data-toc="conclusion">Conclusion</h2><p id="z4rhe05_181">F&eacute;licitations ! Vous avez maintenant une compr&eacute;hension bien plus profonde et nuanc&eacute;e du fonctionnement interne du routage, des contr&ocirc;leurs et de la gestion des donn&eacute;es. Vous ne vous contentez plus d'utiliser les m&eacute;canismes par d&eacute;faut, vous &ecirc;tes capable de les modeler pour qu'ils r&eacute;pondent pr&eacute;cis&eacute;ment &agrave; vos besoins.</p><p id="z4rhe05_182">Savoir utiliser les <span class="control" id="z4rhe05_184">contraintes de route</span>, g&eacute;n&eacute;rer des <span class="control" id="z4rhe05_185">URLs dynamiquement</span>, choisir le bon <span class="control" id="z4rhe05_186">type de retour d'action</span>, sp&eacute;cifier les <span class="control" id="z4rhe05_187">sources de liaison</span> et cr&eacute;er des <span class="control" id="z4rhe05_188">r&egrave;gles de validation personnalis&eacute;es</span> sont des comp&eacute;tences qui distinguent un d&eacute;veloppeur junior d'un d&eacute;veloppeur confirm&eacute;. Elles sont la cl&eacute; pour b&acirc;tir des applications non seulement fonctionnelles, mais aussi robustes, s&eacute;curis&eacute;es et maintenables.</p><p id="z4rhe05_183">Dans le prochain module, nous aborderons la fa&ccedil;ade de notre application : la <span class="control" id="z4rhe05_189">Vue</span>. Nous verrons comment utiliser la puissance de Razor pour transformer nos donn&eacute;es en interfaces web &eacute;l&eacute;gantes et interactives.</p></section><div class="last-modified">29 août 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="02-00-routing.html" class="navigation-links__prev">Module 2 : Routage, Contr&ocirc;leurs et Actions - L'essentiel</a><a href="003-00-introducing-razor.html" class="navigation-links__next">Module 3 : La Vue avec Razor et Interactions Dynamiques - L'essentiel</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
