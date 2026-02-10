@@ -200,6 +200,48 @@ est, créer une ouverture de 1m x 1.5m".
 </step>
 </procedure>
 
+
+
+####  Bonnes pratiques : Nommer les migrations EF Core
+
+Le nom d'une migration doit décrire précisément **le changement** apporté au schéma, sans avoir à lire le code.
+
+##### La règle d'or : [Verbe] + [Sujet] + [Propriété]
+
+Utilisez l'anglais (standard) ou le français, mais restez cohérent. Utilisez toujours le **PascalCase**.
+
+| Action                  | Modèle de nom                  | Exemple                 |
+|:------------------------|:-------------------------------|:------------------------|
+| **Création**            | `InitialCreate`                | `InitialCreate`         |
+| **Ajouter une table**   | `Add[Table]Table`              | `AddProductsTable`      |
+| **Ajouter une colonne** | `Add[Champ]To[Table]`          | `AddSkuToProducts`      |
+| **Supprimer**           | `Remove[Champ]From[Table]`     | `RemoveAgeFromUsers`    |
+| **Modifier**            | `Update` / `Rename` / `Change` | `RenameLabelToTitle`    |
+| **Index / Clé**         | `Add[Type]To[Table]`           | `AddUniqueIndexToEmail` |
+
+##### À éviter (Bad Practices)
+
+* **Les noms vagues :** `Migration1`, `UpdateDatabase`, `FixBug`, `Changes`.
+* **Les noms trop longs :** Si vous avez plus de 4 ou 5 mots, votre migration est probablement trop complexe (
+  divisez-la).
+* **L'horodatage :** Inutile de mettre la date, EF Core l'ajoute automatiquement en préfixe du fichier.
+
+##### Principes clés
+
+* **Atomicité :** Une migration doit idéalement ne concerner qu'une seule entité ou un groupe de changements liés.
+* **Réversibilité :** Posez-vous la question : "Le nom permet-il de savoir exactement ce qui sera annulé en cas de
+  Rollback ?"
+
+##### Astuce : Correction
+
+Si vous avez nommé une migration par erreur et qu'elle n'a pas encore été appliquée (`database update`) :
+
+```bash
+dotnet ef migrations remove
+```
+
+*Cela supprime la dernière migration locale, vous permettant de la recréer avec un nom correct.*
+
 ---
 
 ### 4. Opérations CRUD (Create, Read, Update, Delete)
@@ -423,6 +465,7 @@ var app = builder.Build();
 // ...
 
 ```
+
 </tab>
 <tab title="EfProductRepository.cs">
 
@@ -488,29 +531,33 @@ Lancez l'application. Elle devrait fonctionner exactement comme avant, mais cett
 ### Auto-évaluation
 
 1. Que signifie "Code-First" ?
-   a) On écrit le code SQL avant le code C#.
-   b) On écrit les classes C# avant de générer la base de données.
-   c) Le code est la chose la plus importante.
-   d) On ne doit écrire que du code, pas de configuration.
+
+- a) On écrit le code SQL avant le code C#.
+- b) On écrit les classes C# avant de générer la base de données.
+- c) Le code est la chose la plus importante.
+- d) On ne doit écrire que du code, pas de configuration.
 
 2. Quelle classe représente votre session avec la base de données ?
-   a) `DbSet<T>`
-   b) `Entity`
-   c) `DbContext`
-   d) `Migration`
+
+- a) `DbSet<T>`
+- b) `Entity`
+- c) `DbContext`
+- d) `Migration`
 
 3. Quelle commande applique une migration en attente à la base de données ?
-   a) `Add-Migration`
-   b) `SaveChanges`
-   c) `Update-Database`
-   d) `New-Database`
+
+- a) `Add-Migration`
+- b) `SaveChanges`
+- c) `Update-Database`
+- d) `New-Database`
 
 4. Quand la requête SQL est-elle réellement envoyée à la base de données dans ce code :
    `var query = context.Products.Where(p => p.Price > 10);` ?
-   a) Immédiatement à la fin de la ligne.
-   b) Jamais.
-   c) Lorsque la variable `query` est utilisée dans une boucle ou convertie (ex: `.ToList()`).
-   d) Au démarrage de l'application.
+
+- a) Immédiatement à la fin de la ligne.
+- b) Jamais.
+- c) Lorsque la variable `query` est utilisée dans une boucle ou convertie (ex: `.ToList()`).
+- d) Au démarrage de l'application.
 
 5. Expliquez le rôle de la commande `Add-Migration` et ce qu'elle produit.
 6. Pourquoi est-il généralement préférable d'utiliser `Find(id)` plutôt que `FirstOrDefault(p => p.Id == id)` pour

@@ -10,7 +10,7 @@
         <toc-element topic="001-01-asp-dot-net-beyond-fundamentals.md"/>
     </toc-element>
     <toc-element topic="02-00-routing.md">
-        <toc-element topic="001-01-advanced-routing.md"/>
+        <toc-element topic="002-01-advanced-routing.md"/>
     </toc-element>
     <toc-element topic="003-00-introducing-razor.md">
         <toc-element topic="003-01-structured-views.md"/>

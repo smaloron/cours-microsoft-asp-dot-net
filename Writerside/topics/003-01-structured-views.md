@@ -128,7 +128,9 @@ public IActionResult Index()
 ```
 
 <warning>
+
 **Bonne pratique :** Pour toutes les données principales nécessaires à votre vue, utilisez toujours un **ViewModel fortement typé**. Réservez `ViewData`/`ViewBag` pour des cas très limités et non critiques.
+
 </warning>
 
 ---

@@ -203,6 +203,43 @@ C'est étonnamment simple grâce aux middlewares fournis.
 
 Le framework gère tout le flux complexe pour vous !
 
+<note title="Comment obtenir le ClientId et ClientSecret">
+
+1. **Accéder à Google Cloud Console**
+
+- Allez sur console.cloud.google.com
+- Connectez-vous avec votre compte Google
+
+2. **Créer un projet (si nécessaire)**
+
+Cliquez sur le sélecteur de projet en haut
+"Nouveau projet" → donnez-lui un nom
+
+3. **Activer l'API Google+ (ou Google Identity)**
+
+Menu ≡ → "APIs et services" → "Bibliothèque"
+Recherchez "Google+ API" ou "Google Identity"
+Cliquez sur "Activer"
+
+4. **Créer les identifiants OAuth**
+
+Menu ≡ → "APIs et services" → "Identifiants"
+Cliquez sur "+ CRÉER DES IDENTIFIANTS" → "ID client OAuth 2.0"
+Type d'application : Application Web
+Configurez :
+
+- Origines JavaScript autorisées : https://localhost:5001 (votre URL de dev)
+- URI de redirection autorisés : https://localhost:5001/signin-google (important !)
+
+
+
+5. **Récupérer les secrets**
+   Vous obtenez alors :
+
+- ID client (ClientId) - public
+- Code secret du client (ClientSecret) - à garder confidentiel !
+</note>
+
 ---
 
 ### Conclusion

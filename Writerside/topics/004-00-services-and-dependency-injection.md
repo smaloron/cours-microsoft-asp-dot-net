@@ -547,28 +547,28 @@ Pour qu'un filtre puisse lui-même utiliser l'injection de dépendances, il doit
 ### Auto-évaluation
 
 1. Quel est le principal bénéfice de l'Injection de Dépendances ?
-   a) Améliorer les performances de l'application.
-   b) Réduire le couplage entre les composants.
-   c) Simplifier la syntaxe du C#.
-   d) Sécuriser l'application contre les attaques SQL.
+- a) Améliorer les performances de l'application.
+- b) Réduire le couplage entre les composants.
+- c) Simplifier la syntaxe du C#.
+- d) Sécuriser l'application contre les attaques SQL.
 
 2. Quelle durée de vie de service est la plus appropriée pour un contexte de base de données EF Core (`DbContext`) ?
-   a) `Singleton`
-   b) `Scoped`
-   c) `Transient`
-   d) `Static`
+- a) `Singleton`
+- b) `Scoped`
+- c) `Transient`
+- d) `Static`
 
 3. Où enregistre-t-on les services pour l'injection de dépendances ?
-   a) Dans le constructeur du contrôleur.
-   b) Dans le fichier `appsettings.json`.
-   c) Dans le fichier `_Layout.cshtml`.
-   d) Dans le fichier `Program.cs`.
+- a) Dans le constructeur du contrôleur.
+- b) Dans le fichier `appsettings.json`.
+- c) Dans le fichier `_Layout.cshtml`.
+- d) Dans le fichier `Program.cs`.
 
 4. Un filtre d'action (`IActionFilter`) s'exécute :
-   a) Seulement avant l'action.
-   b) Seulement après l'action.
-   c) Avant et après l'action.
-   d) Pendant l'exécution de l'action.
+- a) Seulement avant l'action.
+- b) Seulement après l'action.
+- c) Avant et après l'action.
+- d) Pendant l'exécution de l'action.
 
 5. Expliquez avec vos propres mots la différence entre `Singleton`, `Scoped` et `Transient`.
 6. Pourquoi est-il préférable d'injecter une interface (`IProductRepository`) plutôt qu'une classe concrète (

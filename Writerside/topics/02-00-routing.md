@@ -637,28 +637,28 @@ namespace MonAppMvc.Controllers
 ### Auto-évaluation
 
 1. Quelle est la route par convention par défaut dans un projet MVC ?
-   a) `"{action}/{controller}/{id?}"`
-   b) `"{controller=Home}/{action=Index}/{id?}"`
-   c) `"/api/{controller}/{id}"`
-   d) Il n'y en a pas par défaut.
+- a) `"{action}/{controller}/{id?}"`
+- b) `"{controller=Home}/{action=Index}/{id?}"`
+- c) `"/api/{controller}/{id}"`
+- d) Il n'y en a pas par défaut.
 
 2. Quel `IActionResult` utiliser pour renvoyer une erreur "Non trouvé" (404) ?
-   a) `BadRequest()`
-   b) `View("Error")`
-   c) `NotFound()`
-   d) `Ok(null)`
+- a) `BadRequest()`
+- b) `View("Error")`
+- c) `NotFound()`
+- d) `Ok(null)`
 
 3. Quel est le rôle du "Model Binding" ?
-   a) Lier une base de données au modèle.
-   b) Lier une vue à un contrôleur.
-   c) Convertir automatiquement les données d'une requête HTTP en un objet C#.
-   d) Valider les données du modèle.
+- a) Lier une base de données au modèle.
+- b) Lier une vue à un contrôleur.
+- c) Convertir automatiquement les données d'une requête HTTP en un objet C#.
+- d) Valider les données du modèle.
 
 4. À quoi sert `ModelState.IsValid` ?
-   a) À vérifier si la connexion à la base de données est active.
-   b) À vérifier si le modèle de données respecte les règles de validation (Data Annotations).
-   c) À vérifier si la vue correspond au modèle.
-   d) À vérifier si l'URL est valide.
+- a) À vérifier si la connexion à la base de données est active.
+- b) À vérifier si le modèle de données respecte les règles de validation (Data Annotations).
+- c) À vérifier si la vue correspond au modèle.
+- d) À vérifier si l'URL est valide.
 
 5. Expliquez la différence entre une action de contrôleur marquée avec `[HttpGet]` et une autre avec `[HttpPost]` pour
    une même route (ex: `/Products/Create`). Pourquoi avons-nous besoin des deux ?

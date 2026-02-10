@@ -195,15 +195,7 @@ public class HomeController : Controller
       HTTPS.
 
 
-
-
----
-
-Absolument. Voici un TP complet axé sur la sécurité, qui utilise une nouvelle étude de cas : un mini-forum de discussion.
-
-Ce TP est conçu pour mettre en pratique les notions essentielles de sécurité dans une application MVC : l'intégration d'Identity, la gestion des rôles, et la protection des données en fonction de l'utilisateur qui les a créées.
-
----
+      
 
 ## TP : Sécurisation d'un Forum de Discussion
 
@@ -293,7 +285,7 @@ public class Post
 
 ---
 
-### Correction Détaillée du TP
+### Correction Détaillée du TP {collapsible="true"}
 
 #### Étape 1 : Intégration d'Identity
 

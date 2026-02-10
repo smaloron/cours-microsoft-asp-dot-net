@@ -476,7 +476,9 @@ deactivate JS
 
 </tab>
 <tab title="Étape 3 : AJAX Stock">
+
 **`Controllers/ProductsController.cs` (nouvelle action)**
+
 ```c#
 // Ajouté à la fin du contrôleur
 [HttpGet]
@@ -496,6 +498,7 @@ public IActionResult GetStock(int id)
 ```
 
 **`Views/Products/Details.cshtml` (modifié)**
+
 ```html
 @model MonAppMvc.Models.Product
 <!-- ... affichage des détails ... -->
@@ -545,33 +548,39 @@ public IActionResult GetStock(int id)
 ### Auto-évaluation
 
 1. Quel symbole est utilisé en Razor pour passer du HTML au C# ?
-   a) `#`
-   b) `$`
-   c) `%`
-   d) `@`
+
+- a) `#`
+- b) `$`
+- c) `%`
+- d) `@`
 
 2. Quel est le principal avantage d'un Tag Helper comme `<a asp-controller="Home" asp-action="Index">` par rapport à
    `<a href="/Home/Index">` ?
-   a) C'est plus court à écrire.
-   b) Il génère une URL qui s'adapte automatiquement aux changements de configuration du routage.
-   c) Il fonctionne mieux sur mobile.
-   d) Il permet d'ajouter du style CSS directement.
+
+- a) C'est plus court à écrire.
+- b) Il génère une URL qui s'adapte automatiquement aux changements de configuration du routage.
+- c) Il fonctionne mieux sur mobile.
+- d) Il permet d'ajouter du style CSS directement.
 
 3. À quoi sert la directive `@RenderBody()` dans un fichier `_Layout.cshtml` ?
-   a) À exécuter le code JavaScript de la page.
-   b) À définir le corps (`<body>`) de la page HTML.
-   c) À marquer l'emplacement où le contenu de la vue spécifique sera inséré.
-   d) À rendre une vue partielle.
+
+- a) À exécuter le code JavaScript de la page.
+- b) À définir le corps (`<body>`) de la page HTML.
+- c) À marquer l'emplacement où le contenu de la vue spécifique sera inséré.
+- d) À rendre une vue partielle.
 
 4. Lors d'un appel AJAX, quel type de réponse une action de contrôleur doit-elle typiquement retourner ?
-   a) `View()`
-   b) `RedirectToAction()`
-   c) `JsonResult`
-   d) `FileResult`
+
+- a) `View()`
+- b) `RedirectToAction()`
+- c) `JsonResult`
+- d) `FileResult`
 
 5. Expliquez le principe DRY et comment les layouts et les vues partielles aident à le respecter.
+
 6. Décrivez, dans l'ordre, les 5 étapes principales du flux d'un appel AJAX (du clic de l'utilisateur à la mise à jour
    de la page).
+
 7. Quelle est la différence entre une vue et une vue partielle ? Dans quel cas utiliseriez-vous l'une plutôt que l'
    autre ?
 

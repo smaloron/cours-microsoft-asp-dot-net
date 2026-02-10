@@ -271,13 +271,18 @@ public ActionResult<Product> CreateProduct(ProductCreateModel model)
 Nous allons exposer les fonctionnalités de notre gestionnaire de produits via une API RESTful.
 
 <procedure>
+
 <step title="Étape 1 : Créer un nouveau projet d'API Web">
+
 <p>Créez un projet `dotnet new webapi` nommé `ProductApi`. Copiez-y les dossiers <code>Models</code>, <code>Interfaces</code>, <code>Services</code>, <code>Data</code> et le <code>appsettings.json</code> de votre projet MVC pour réutiliser toute la logique d'accès aux données avec EF Core.</p>
+
 </step>
 <step title="Étape 2 : Configurer les services">
 <p>Dans le <code>Program.cs</code> de l'API, configurez le <code>DbContext</code> et l'injection de dépendances pour votre <code>IProductRepository</code>, exactement comme dans le projet MVC.</p>
 </step>
+
 <step title="Étape 3 : Créer le `ProductsController`">
+
 <p>Créez un contrôleur d'API <code>ProductsController</code>. Injectez <code>IProductRepository</code>. Implémentez les cinq actions RESTful de base :</p>
 <ul>
     <li><code>GET /api/products</code> : Récupère tous les produits.</li>
@@ -366,28 +371,32 @@ public class ProductsController : ControllerBase
 ### Auto-évaluation
 
 1. Quel verbe HTTP est utilisé pour mettre à jour une ressource existante ?
-   a) `GET`
-   b) `POST`
-   c) `PUT`
-   d) `UPDATE`
+
+- a) `GET`
+- b) `POST`
+- c) `PUT`
+- d) `UPDATE`
 
 2. Quel code de statut HTTP indique qu'une ressource a été créée avec succès ?
-   a) `200 OK`
-   b) `201 Created`
-   c) `204 No Content`
-   d) `400 Bad Request`
+
+- a) `200 OK`
+- b) `201 Created`
+- c) `204 No Content`
+- d) `400 Bad Request`
 
 3. Quelle est la différence entre l'Authentification et l'Autorisation ?
-   a) Il n'y en a pas, c'est la même chose.
-   b) L'authentification vérifie qui vous êtes, l'autorisation vérifie ce que vous pouvez faire.
-   c) L'autorisation vérifie qui vous êtes, l'authentification vérifie ce que vous pouvez faire.
-   d) L'authentification est pour les APIs, l'autorisation pour le MVC.
+
+- a) Il n'y en a pas, c'est la même chose.
+- b) L'authentification vérifie qui vous êtes, l'autorisation vérifie ce que vous pouvez faire.
+- c) L'autorisation vérifie qui vous êtes, l'authentification vérifie ce que vous pouvez faire.
+- d) L'authentification est pour les APIs, l'autorisation pour le MVC.
 
 4. Quel attribut place-t-on sur une action pour exiger que l'utilisateur soit authentifié ?
-   a) `[ApiController]`
-   b) `[Authenticate]`
-   c) `[AllowAnonymous]`
-   d) `[Authorize]`
+
+- a) `[ApiController]`
+- b) `[Authenticate]`
+- c) `[AllowAnonymous]`
+- d) `[Authorize]`
 
 5. Qu'est-ce qu'une ressource dans le contexte de REST ? Donnez un exemple.
 6. Expliquez le flux d'authentification basé sur les tokens JWT en 3 étapes.

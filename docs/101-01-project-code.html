@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2026-01-02T15:24:12.750603"><title>Correction du Projet &quot;KanbanFlow&quot; | ASP dotNET</title><script type="application/json" id="virtual-toc-data">[{"id":"tape-0-cr-ation-du-projet-et-installation-des-d-pendances","level":0,"title":"Étape 0 : Création du Projet et Installation des Dépendances","anchor":"#tape-0-cr-ation-du-projet-et-installation-des-d-pendances"},{"id":"tape-1-cr-ation-des-entit-s","level":0,"title":"Étape 1 : Création des Entités","anchor":"#tape-1-cr-ation-des-entit-s"},{"id":"tape-2-cr-ation-du-dbcontext","level":0,"title":"Étape 2 : Création du DbContext","anchor":"#tape-2-cr-ation-du-dbcontext"},{"id":"tape-3-configuration-dans-program-cs-et-appsettings-json","level":0,"title":"Étape 3 : Configuration dans Program.cs et appsettings.json","anchor":"#tape-3-configuration-dans-program-cs-et-appsettings-json"},{"id":"tape-4-cr-ation-de-la-base-de-donn-es-via-les-migrations","level":0,"title":"Étape 4 : Création de la Base de Données via les Migrations","anchor":"#tape-4-cr-ation-de-la-base-de-donn-es-via-les-migrations"},{"id":"tape-5-gestion-des-tableaux-user-story-1","level":0,"title":"Étape 5 : Gestion des Tableaux (User Story 1)","anchor":"#tape-5-gestion-des-tableaux-user-story-1"},{"id":"tape-6-vue-d-taill-e-et-ajout-de-cartes-user-story-2","level":0,"title":"Étape 6 : Vue Détaillée et Ajout de Cartes (User Story 2)","anchor":"#tape-6-vue-d-taill-e-et-ajout-de-cartes-user-story-2"},{"id":"tape-7-d-placement-de-cartes-user-story-3","level":0,"title":"Étape 7 : Déplacement de Cartes (User Story 3)","anchor":"#tape-7-d-placement-de-cartes-user-story-3"},{"id":"tape-8-finalisation-des-vues-et-lancement","level":0,"title":"Étape 8 : Finalisation des Vues et Lancement","anchor":"#tape-8-finalisation-des-vues-et-lancement"},{"id":"lancement-et-test","level":0,"title":"Lancement et Test","anchor":"#lancement-et-test"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Correction du Projet &quot;KanbanFlow&quot; | ASP dotNET"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ASP dotNET Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/101-01-project-code.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Correction du Projet &quot;KanbanFlow&quot; | ASP dotNET"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2026-02-10T08:27:08.225521"><title>Correction du Projet &quot;KanbanFlow&quot; | ASP dotNET</title><script type="application/json" id="virtual-toc-data">[{"id":"tape-0-cr-ation-du-projet-et-installation-des-d-pendances","level":0,"title":"Étape 0 : Création du Projet et Installation des Dépendances","anchor":"#tape-0-cr-ation-du-projet-et-installation-des-d-pendances"},{"id":"tape-1-cr-ation-des-entit-s","level":0,"title":"Étape 1 : Création des Entités","anchor":"#tape-1-cr-ation-des-entit-s"},{"id":"tape-2-cr-ation-du-dbcontext","level":0,"title":"Étape 2 : Création du DbContext","anchor":"#tape-2-cr-ation-du-dbcontext"},{"id":"tape-3-configuration-dans-program-cs-et-appsettings-json","level":0,"title":"Étape 3 : Configuration dans Program.cs et appsettings.json","anchor":"#tape-3-configuration-dans-program-cs-et-appsettings-json"},{"id":"tape-4-cr-ation-de-la-base-de-donn-es-via-les-migrations","level":0,"title":"Étape 4 : Création de la Base de Données via les Migrations","anchor":"#tape-4-cr-ation-de-la-base-de-donn-es-via-les-migrations"},{"id":"tape-5-gestion-des-tableaux-user-story-1","level":0,"title":"Étape 5 : Gestion des Tableaux (User Story 1)","anchor":"#tape-5-gestion-des-tableaux-user-story-1"},{"id":"tape-6-vue-d-taill-e-et-ajout-de-cartes-user-story-2","level":0,"title":"Étape 6 : Vue Détaillée et Ajout de Cartes (User Story 2)","anchor":"#tape-6-vue-d-taill-e-et-ajout-de-cartes-user-story-2"},{"id":"tape-7-d-placement-de-cartes-user-story-3","level":0,"title":"Étape 7 : Déplacement de Cartes (User Story 3)","anchor":"#tape-7-d-placement-de-cartes-user-story-3"},{"id":"tape-8-finalisation-des-vues-et-lancement","level":0,"title":"Étape 8 : Finalisation des Vues et Lancement","anchor":"#tape-8-finalisation-des-vues-et-lancement"},{"id":"lancement-et-test","level":0,"title":"Lancement et Test","anchor":"#lancement-et-test"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Correction du Projet &quot;KanbanFlow&quot; | ASP dotNET"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ASP dotNET Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/101-01-project-code.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Correction du Projet &quot;KanbanFlow&quot; | ASP dotNET"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": "writerside-documentation/101-01-project-code.html#webpage",
@@ -13,13 +13,13 @@
     "@id": "writerside-documentation/#website",
     "url": "writerside-documentation/",
     "name": "ASP dotNET Help"
-}</script><!-- End Schema.org --></head><body data-id="101-01-project-code" data-main-title="Correction du Projet &quot;KanbanFlow&quot;" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="101-00-more-complex-project.md|Projet 2 : &quot;KanbanFlow&quot;"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ASP dotNET  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="101-01-project-code" id="101-01-project-code.md">Correction du Projet &quot;KanbanFlow&quot;</h1><section class="chapter"><h2 id="tape-0-cr-ation-du-projet-et-installation-des-d-pendances" data-toc="tape-0-cr-ation-du-projet-et-installation-des-d-pendances">&Eacute;tape 0 : Cr&eacute;ation du Projet et Installation des D&eacute;pendances</h2><p id="z2i3khq_13">Ouvrez un terminal et ex&eacute;cutez les commandes suivantes.</p><ol class="list _decimal" id="z2i3khq_14" type="1"><li class="list__item" id="z2i3khq_15"><p id="z2i3khq_17"><span class="control" id="z2i3khq_19">Cr&eacute;er le projet MVC :</span></p><div class="code-block" data-lang="bash">
+}</script><!-- End Schema.org --></head><body data-id="101-01-project-code" data-main-title="Correction du Projet &quot;KanbanFlow&quot;" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="101-00-more-complex-project.md|Projet 2 : &quot;KanbanFlow&quot;"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ASP dotNET  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="101-01-project-code" id="101-01-project-code.md">Correction du Projet &quot;KanbanFlow&quot;</h1><section class="chapter"><h2 id="tape-0-cr-ation-du-projet-et-installation-des-d-pendances" data-toc="tape-0-cr-ation-du-projet-et-installation-des-d-pendances">&Eacute;tape 0 : Cr&eacute;ation du Projet et Installation des D&eacute;pendances</h2><p id="z2gss85_13">Ouvrez un terminal et ex&eacute;cutez les commandes suivantes.</p><ol class="list _decimal" id="z2gss85_14" type="1"><li class="list__item" id="z2gss85_15"><p id="z2gss85_17"><span class="control" id="z2gss85_19">Cr&eacute;er le projet MVC :</span></p><div class="code-block" data-lang="bash">
 dotnet new mvc -o KanbanFlow
 cd KanbanFlow
-</div></li><li class="list__item" id="z2i3khq_16"><p id="z2i3khq_20"><span class="control" id="z2i3khq_22">Installer les paquets NuGet n&eacute;cessaires :</span></p><div class="code-block" data-lang="bash">
+</div></li><li class="list__item" id="z2gss85_16"><p id="z2gss85_20"><span class="control" id="z2gss85_22">Installer les paquets NuGet n&eacute;cessaires :</span></p><div class="code-block" data-lang="bash">
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Tools
-</div></li></ol></section><section class="chapter"><h2 id="tape-1-cr-ation-des-entit-s" data-toc="tape-1-cr-ation-des-entit-s">&Eacute;tape 1 : Cr&eacute;ation des Entit&eacute;s</h2><p id="z2i3khq_23">Cr&eacute;ez un dossier <code class="code" id="z2i3khq_25">Entities</code> &agrave; la racine du projet et ajoutez les trois classes suivantes.</p><div class="tabs" id="z2i3khq_24" data-anchors="[z2i3khq_26,z2i3khq_27,z2i3khq_28]"><div class="tabs__content" data-gtm="tab" id="z2i3khq_26" data-title="Entities/Board.cs"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></li></ol></section><section class="chapter"><h2 id="tape-1-cr-ation-des-entit-s" data-toc="tape-1-cr-ation-des-entit-s">&Eacute;tape 1 : Cr&eacute;ation des Entit&eacute;s</h2><p id="z2gss85_23">Cr&eacute;ez un dossier <code class="code" id="z2gss85_25">Entities</code> &agrave; la racine du projet et ajoutez les trois classes suivantes.</p><div class="tabs" id="z2gss85_24" data-anchors="[z2gss85_26,z2gss85_27,z2gss85_28]"><div class="tabs__content" data-gtm="tab" id="z2gss85_26" data-title="Entities/Board.cs"><div class="code-block" data-lang="csharp" data-title="C#">
 using System.ComponentModel.DataAnnotations;
 
 namespace KanbanFlow.Entities
@@ -37,7 +37,7 @@ namespace KanbanFlow.Entities
         public ICollection&lt;Column&gt; Columns { get; set; } = new List&lt;Column&gt;();
     }
 }
-</div></div><div class="tabs__content" data-gtm="tab" id="z2i3khq_27" data-title="Entities/Column.cs"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div><div class="tabs__content" data-gtm="tab" id="z2gss85_27" data-title="Entities/Column.cs"><div class="code-block" data-lang="csharp" data-title="C#">
 using System.ComponentModel.DataAnnotations;
 
 namespace KanbanFlow.Entities
@@ -62,7 +62,7 @@ namespace KanbanFlow.Entities
         public ICollection&lt;Card&gt; Cards { get; set; } = new List&lt;Card&gt;();
     }
 }
-</div></div><div class="tabs__content" data-gtm="tab" id="z2i3khq_28" data-title="Entities/Card.cs"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div><div class="tabs__content" data-gtm="tab" id="z2gss85_28" data-title="Entities/Card.cs"><div class="code-block" data-lang="csharp" data-title="C#">
 using System.ComponentModel.DataAnnotations;
 
 namespace KanbanFlow.Entities
@@ -86,7 +86,7 @@ namespace KanbanFlow.Entities
         public Column Column { get; set; } = null!;
     }
 }
-</div></div></div></section><section class="chapter"><h2 id="tape-2-cr-ation-du-dbcontext" data-toc="tape-2-cr-ation-du-dbcontext">&Eacute;tape 2 : Cr&eacute;ation du DbContext</h2><p id="z2i3khq_32">Cr&eacute;ez un dossier <code class="code" id="z2i3khq_34">Data</code> et ajoutez-y le contexte.</p><div class="tabs" id="z2i3khq_33" data-anchors="[z2i3khq_35]"><div class="tabs__content" data-gtm="tab" id="z2i3khq_35" data-title="Data/ApplicationDbContext.cs"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div></div></section><section class="chapter"><h2 id="tape-2-cr-ation-du-dbcontext" data-toc="tape-2-cr-ation-du-dbcontext">&Eacute;tape 2 : Cr&eacute;ation du DbContext</h2><p id="z2gss85_32">Cr&eacute;ez un dossier <code class="code" id="z2gss85_34">Data</code> et ajoutez-y le contexte.</p><div class="tabs" id="z2gss85_33" data-anchors="[z2gss85_35]"><div class="tabs__content" data-gtm="tab" id="z2gss85_35" data-title="Data/ApplicationDbContext.cs"><div class="code-block" data-lang="csharp" data-title="C#">
 using KanbanFlow.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -121,7 +121,7 @@ namespace KanbanFlow.Data
         }
     }
 }
-</div></div></div></section><section class="chapter"><h2 id="tape-3-configuration-dans-program-cs-et-appsettings-json" data-toc="tape-3-configuration-dans-program-cs-et-appsettings-json">&Eacute;tape 3 : Configuration dans <code class="code" id="z2i3khq_39">Program.cs</code> et <code class="code" id="z2i3khq_40">appsettings.json</code></h2><div class="tabs" id="z2i3khq_38" data-anchors="[z2i3khq_41,z2i3khq_42]"><div class="tabs__content" data-gtm="tab" id="z2i3khq_41" data-title="Program.cs"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div></div></section><section class="chapter"><h2 id="tape-3-configuration-dans-program-cs-et-appsettings-json" data-toc="tape-3-configuration-dans-program-cs-et-appsettings-json">&Eacute;tape 3 : Configuration dans <code class="code" id="z2gss85_39">Program.cs</code> et <code class="code" id="z2gss85_40">appsettings.json</code></h2><div class="tabs" id="z2gss85_38" data-anchors="[z2gss85_41,z2gss85_42]"><div class="tabs__content" data-gtm="tab" id="z2gss85_41" data-title="Program.cs"><div class="code-block" data-lang="csharp" data-title="C#">
 using KanbanFlow.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -156,7 +156,7 @@ app.MapControllerRoute(
     pattern: &quot;{controller=Board}/{action=Index}/{id?}&quot;);
 
 app.Run();
-</div><ul class="list _bullet" id="z2i3khq_44"><li class="list__item" id="z2i3khq_45"><p id="z2i3khq_46"><span class="control" id="z2i3khq_47">Note :</span> Nous avons modifi&eacute; la route par d&eacute;faut pour que l'application d&eacute;marre directement sur la liste des tableaux.</p></li></ul></div><div class="tabs__content" data-gtm="tab" id="z2i3khq_42" data-title="appsettings.json"><div class="code-block" data-lang="json" data-title="JSON">
+</div><ul class="list _bullet" id="z2gss85_44"><li class="list__item" id="z2gss85_45"><p id="z2gss85_46"><span class="control" id="z2gss85_47">Note :</span> Nous avons modifi&eacute; la route par d&eacute;faut pour que l'application d&eacute;marre directement sur la liste des tableaux.</p></li></ul></div><div class="tabs__content" data-gtm="tab" id="z2gss85_42" data-title="appsettings.json"><div class="code-block" data-lang="json" data-title="JSON">
 {
   &quot;Logging&quot;: {
     &quot;LogLevel&quot;: {
@@ -169,10 +169,10 @@ app.Run();
     &quot;DefaultConnection&quot;: &quot;Data Source=kanbanflow.db&quot;
   }
 }
-</div></div></div></section><section class="chapter"><h2 id="tape-4-cr-ation-de-la-base-de-donn-es-via-les-migrations" data-toc="tape-4-cr-ation-de-la-base-de-donn-es-via-les-migrations">&Eacute;tape 4 : Cr&eacute;ation de la Base de Donn&eacute;es via les Migrations</h2><p id="z2i3khq_49">Ouvrez un terminal &agrave; la racine du projet et ex&eacute;cutez ces deux commandes :</p><div class="code-block" data-lang="bash">
+</div></div></div></section><section class="chapter"><h2 id="tape-4-cr-ation-de-la-base-de-donn-es-via-les-migrations" data-toc="tape-4-cr-ation-de-la-base-de-donn-es-via-les-migrations">&Eacute;tape 4 : Cr&eacute;ation de la Base de Donn&eacute;es via les Migrations</h2><p id="z2gss85_49">Ouvrez un terminal &agrave; la racine du projet et ex&eacute;cutez ces deux commandes :</p><div class="code-block" data-lang="bash">
 dotnet ef migrations add InitialSchema
 dotnet ef database update
-</div><p id="z2i3khq_51">Un fichier <code class="code" id="z2i3khq_52">kanbanflow.db</code> devrait maintenant &ecirc;tre pr&eacute;sent &agrave; la racine de votre projet.</p></section><section class="chapter"><h2 id="tape-5-gestion-des-tableaux-user-story-1" data-toc="tape-5-gestion-des-tableaux-user-story-1">&Eacute;tape 5 : Gestion des Tableaux (User Story 1)</h2><div class="tabs" id="z2i3khq_53" data-anchors="[z2i3khq_54,z2i3khq_55]"><div class="tabs__content" data-gtm="tab" id="z2i3khq_54" data-title="Controllers/BoardController.cs"><div class="code-block" data-lang="csharp" data-title="C#">
+</div><p id="z2gss85_51">Un fichier <code class="code" id="z2gss85_52">kanbanflow.db</code> devrait maintenant &ecirc;tre pr&eacute;sent &agrave; la racine de votre projet.</p></section><section class="chapter"><h2 id="tape-5-gestion-des-tableaux-user-story-1" data-toc="tape-5-gestion-des-tableaux-user-story-1">&Eacute;tape 5 : Gestion des Tableaux (User Story 1)</h2><div class="tabs" id="z2gss85_53" data-anchors="[z2gss85_54,z2gss85_55]"><div class="tabs__content" data-gtm="tab" id="z2gss85_54" data-title="Controllers/BoardController.cs"><div class="code-block" data-lang="csharp" data-title="C#">
 using KanbanFlow.Data;
 using KanbanFlow.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -222,7 +222,7 @@ namespace KanbanFlow.Controllers
         // La suite (Details) sera ajoutée à l'étape suivante
     }
 }
-</div></div><div class="tabs__content" data-gtm="tab" id="z2i3khq_55" data-title="Views/Board/Index.cshtml"><div class="code-block" data-lang="markup" data-title="HTML">
+</div></div><div class="tabs__content" data-gtm="tab" id="z2gss85_55" data-title="Views/Board/Index.cshtml"><div class="code-block" data-lang="markup" data-title="HTML">
 @model IEnumerable
 &lt;KanbanFlow.Entities.Board&gt;
 
@@ -265,7 +265,7 @@ namespace KanbanFlow.Controllers
         }
         }
     &lt;/div&gt;
-</div></div></div></section><section class="chapter"><h2 id="tape-6-vue-d-taill-e-et-ajout-de-cartes-user-story-2" data-toc="tape-6-vue-d-taill-e-et-ajout-de-cartes-user-story-2">&Eacute;tape 6 : Vue D&eacute;taill&eacute;e et Ajout de Cartes (User Story 2)</h2><div class="tabs" id="z2i3khq_58" data-anchors="[z2i3khq_59,z2i3khq_60,z2i3khq_61]"><div class="tabs__content" data-gtm="tab" id="z2i3khq_59" data-title="Controllers/BoardController.cs (suite)"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div></div></section><section class="chapter"><h2 id="tape-6-vue-d-taill-e-et-ajout-de-cartes-user-story-2" data-toc="tape-6-vue-d-taill-e-et-ajout-de-cartes-user-story-2">&Eacute;tape 6 : Vue D&eacute;taill&eacute;e et Ajout de Cartes (User Story 2)</h2><div class="tabs" id="z2gss85_58" data-anchors="[z2gss85_59,z2gss85_60,z2gss85_61]"><div class="tabs__content" data-gtm="tab" id="z2gss85_59" data-title="Controllers/BoardController.cs (suite)"><div class="code-block" data-lang="csharp" data-title="C#">
 // ... (code précédent)
 
 // GET: /Board/Details/5
@@ -287,7 +287,7 @@ public async Task&lt;IActionResult&gt; Details(int id)
     
     return View(board);
 }
-</div></div><div class="tabs__content" data-gtm="tab" id="z2i3khq_60" data-title="Controllers/CardController.cs (nouveau fichier)"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div><div class="tabs__content" data-gtm="tab" id="z2gss85_60" data-title="Controllers/CardController.cs (nouveau fichier)"><div class="code-block" data-lang="csharp" data-title="C#">
 using KanbanFlow.Data;
 using KanbanFlow.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -334,7 +334,7 @@ namespace KanbanFlow.Controllers
         }
     }
 }
-</div></div><div class="tabs__content" data-gtm="tab" id="z2i3khq_61" data-title="Views/Board/Details.cshtml (nouveau fichier)"><div class="code-block" data-lang="markup" data-title="HTML">
+</div></div><div class="tabs__content" data-gtm="tab" id="z2gss85_61" data-title="Views/Board/Details.cshtml (nouveau fichier)"><div class="code-block" data-lang="markup" data-title="HTML">
 @model KanbanFlow.Entities.Board
 
 @{
@@ -388,7 +388,7 @@ ViewData[&quot;Title&quot;] = $&quot;Tableau : {Model.Name}&quot;;
         }
     &lt;/div&gt;
 &lt;/div&gt;
-</div></div></div></section><section class="chapter"><h2 id="tape-7-d-placement-de-cartes-user-story-3" data-toc="tape-7-d-placement-de-cartes-user-story-3">&Eacute;tape 7 : D&eacute;placement de Cartes (User Story 3)</h2><div class="tabs" id="z2i3khq_65" data-anchors="[z2i3khq_66,z2i3khq_67]"><div class="tabs__content" data-gtm="tab" id="z2i3khq_66" data-title="Controllers/CardController.cs (suite)"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div></div></section><section class="chapter"><h2 id="tape-7-d-placement-de-cartes-user-story-3" data-toc="tape-7-d-placement-de-cartes-user-story-3">&Eacute;tape 7 : D&eacute;placement de Cartes (User Story 3)</h2><div class="tabs" id="z2gss85_65" data-anchors="[z2gss85_66,z2gss85_67]"><div class="tabs__content" data-gtm="tab" id="z2gss85_66" data-title="Controllers/CardController.cs (suite)"><div class="code-block" data-lang="csharp" data-title="C#">
 // ... (code précédent)
 
 // POST: /Card/Move
@@ -427,7 +427,7 @@ public async Task&lt;IActionResult&gt; Move(int id, string direction)
     return RedirectToAction(&quot;Details&quot;, &quot;Board&quot;, 
         new { id = cardToMove.Column.BoardId });
 }
-</div></div><div class="tabs__content" data-gtm="tab" id="z2i3khq_67" data-title="Views/Board/Details.cshtml (mise &agrave; jour)"><p id="z2i3khq_69">Ajoutez ce bloc de code &agrave; l'int&eacute;rieur de <code class="code" id="z2i3khq_71">&lt;div class=&quot;card-body&quot;&gt;</code> de la carte, juste apr&egrave;s la description.</p><div class="code-block" data-lang="markup" data-title="HTML">
+</div></div><div class="tabs__content" data-gtm="tab" id="z2gss85_67" data-title="Views/Board/Details.cshtml (mise &agrave; jour)"><p id="z2gss85_69">Ajoutez ce bloc de code &agrave; l'int&eacute;rieur de <code class="code" id="z2gss85_71">&lt;div class=&quot;card-body&quot;&gt;</code> de la carte, juste apr&egrave;s la description.</p><div class="code-block" data-lang="markup" data-title="HTML">
 @* ... après &lt;p class=&quot;card-text&quot;&gt; ... *@
 
 &lt;div class=&quot;d-flex justify-content-between mt-2&quot;&gt;
@@ -451,7 +451,7 @@ public async Task&lt;IActionResult&gt; Move(int id, string direction)
         &lt;/button&gt;
     &lt;/form&gt;
 &lt;/div&gt;
-</div></div></div></section><section class="chapter"><h2 id="tape-8-finalisation-des-vues-et-lancement" data-toc="tape-8-finalisation-des-vues-et-lancement">&Eacute;tape 8 : Finalisation des Vues et Lancement</h2><div class="tabs" id="z2i3khq_72" data-anchors="[z2i3khq_73,z2i3khq_74]"><div class="tabs__content" data-gtm="tab" id="z2i3khq_73" data-title="Views/Shared/_Layout.cshtml"><div class="code-block" data-lang="markup" data-title="HTML">
+</div></div></div></section><section class="chapter"><h2 id="tape-8-finalisation-des-vues-et-lancement" data-toc="tape-8-finalisation-des-vues-et-lancement">&Eacute;tape 8 : Finalisation des Vues et Lancement</h2><div class="tabs" id="z2gss85_72" data-anchors="[z2gss85_73,z2gss85_74]"><div class="tabs__content" data-gtm="tab" id="z2gss85_73" data-title="Views/Shared/_Layout.cshtml"><div class="code-block" data-lang="markup" data-title="HTML">
 &lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;fr&quot;&gt;
 &lt;head&gt;
@@ -489,11 +489,11 @@ public async Task&lt;IActionResult&gt; Move(int id, string direction)
 @await RenderSectionAsync(&quot;Scripts&quot;, required: false)
 &lt;/body&gt;
 &lt;/html&gt;
-</div></div><div class="tabs__content" data-gtm="tab" id="z2i3khq_74" data-title="Views/_ViewImports.cshtml"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div><div class="tabs__content" data-gtm="tab" id="z2gss85_74" data-title="Views/_ViewImports.cshtml"><div class="code-block" data-lang="csharp" data-title="C#">
 @using KanbanFlow
 @using KanbanFlow.Models
 @using KanbanFlow.Entities
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-</div></div></div></section><section class="chapter"><h2 id="lancement-et-test" data-toc="lancement-et-test">Lancement et Test</h2><p id="z2i3khq_77">Vous avez termin&eacute; la version de base du projet !</p><div class="code-block" data-lang="bash">
+</div></div></div></section><section class="chapter"><h2 id="lancement-et-test" data-toc="lancement-et-test">Lancement et Test</h2><p id="z2gss85_77">Vous avez termin&eacute; la version de base du projet !</p><div class="code-block" data-lang="bash">
 dotnet run
-</div><p id="z2i3khq_79">Testez le flux complet :</p><ol class="list _decimal" id="z2i3khq_80" type="1"><li class="list__item" id="z2i3khq_81"><p id="z2i3khq_87">Allez sur la page d'accueil (qui est maintenant la liste des tableaux).</p></li><li class="list__item" id="z2i3khq_82"><p id="z2i3khq_88">Cr&eacute;ez un nouveau tableau.</p></li><li class="list__item" id="z2i3khq_83"><p id="z2i3khq_89">Cliquez sur ce tableau pour voir la vue d&eacute;taill&eacute;e avec les 3 colonnes.</p></li><li class="list__item" id="z2i3khq_84"><p id="z2i3khq_90">Ajoutez quelques cartes dans la colonne &quot;&Agrave; faire&quot;.</p></li><li class="list__item" id="z2i3khq_85"><p id="z2i3khq_91">D&eacute;placez une carte vers &quot;En cours&quot;, puis vers &quot;Termin&eacute;&quot;.</p></li><li class="list__item" id="z2i3khq_86"><p id="z2i3khq_92">V&eacute;rifiez que les boutons de d&eacute;placement se d&eacute;sactivent correctement aux extr&eacute;mit&eacute;s.</p></li></ol></section><div class="last-modified">01 septembre 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="101-00-more-complex-project.html" class="navigation-links__prev">Projet 2 : &quot;KanbanFlow&quot;</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
+</div><p id="z2gss85_79">Testez le flux complet :</p><ol class="list _decimal" id="z2gss85_80" type="1"><li class="list__item" id="z2gss85_81"><p id="z2gss85_87">Allez sur la page d'accueil (qui est maintenant la liste des tableaux).</p></li><li class="list__item" id="z2gss85_82"><p id="z2gss85_88">Cr&eacute;ez un nouveau tableau.</p></li><li class="list__item" id="z2gss85_83"><p id="z2gss85_89">Cliquez sur ce tableau pour voir la vue d&eacute;taill&eacute;e avec les 3 colonnes.</p></li><li class="list__item" id="z2gss85_84"><p id="z2gss85_90">Ajoutez quelques cartes dans la colonne &quot;&Agrave; faire&quot;.</p></li><li class="list__item" id="z2gss85_85"><p id="z2gss85_91">D&eacute;placez une carte vers &quot;En cours&quot;, puis vers &quot;Termin&eacute;&quot;.</p></li><li class="list__item" id="z2gss85_86"><p id="z2gss85_92">V&eacute;rifiez que les boutons de d&eacute;placement se d&eacute;sactivent correctement aux extr&eacute;mit&eacute;s.</p></li></ol></section><div class="last-modified">01 septembre 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="101-00-more-complex-project.html" class="navigation-links__prev">Projet 2 : &quot;KanbanFlow&quot;</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>
