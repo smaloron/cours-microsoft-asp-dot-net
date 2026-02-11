@@ -266,6 +266,8 @@ public class GlobalExceptionFilter : IExceptionFilter
 ```
 Vous l'enregistrez ensuite globalement dans `Program.cs` comme les autres filtres.
 
+
+
 #### Filtres Asynchrones
 
 **Le problème :** Votre filtre de log a besoin d'écrire dans une base de données, une opération asynchrone. Mais `IActionFilter` est synchrone. Si vous faites un appel `async` dedans, vous bloquerez le thread.

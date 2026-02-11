@@ -54,6 +54,7 @@ idées simples pour rendre les APIs prévisibles et faciles à utiliser.
     * `GET` : Lire la ressource.
     * `POST` : Créer une nouvelle ressource.
     * `PUT` : Mettre à jour (remplacer) entièrement une ressource.
+    * `PATCH` : Mettre à jour partiellement une ressource.
     * `DELETE` : Supprimer une ressource.
 
 3. **Utilisation des Codes de Statut HTTP :** La réponse de l'API doit inclure un code de statut standard pour indiquer
@@ -92,10 +93,28 @@ qu'il retourne.
         <li>Les contrôleurs héritent de <code>ControllerBase</code> au lieu de <code>Controller</code> (<code>Controller</code> ajoute juste le support pour les Vues).</li>
         <li>Les contrôleurs sont souvent décorés avec l'attribut <code>[ApiController]</code>.</li>
     </ul>
+
+**Structure d'un projet API :**
+
+```
+MonAPI/
+├── Controllers/
+│   └── ProductsController.cs    ← Hérite de ControllerBase
+├── Models/
+│   └── Product.cs
+├── Services/
+│   └── ProductRepository.cs
+├── Data/
+│   └── ApplicationDbContext.cs
+├── Program.cs                   ← Configuration
+├── appsettings.json
+└── MonAPI.csproj
+```
+
 </step>
 </procedure>
 
-#### L'attribut `[ApiController]`
+#### 2.1 L'attribut `[ApiController]`
 
 Cet attribut magique active plusieurs comportements qui facilitent la vie du développeur d'API :
 
@@ -104,7 +123,7 @@ Cet attribut magique active plusieurs comportements qui facilitent la vie du dé
   si la validation échoue, sans que vous ayez à écrire le `if`.
 * Il infère la source des paramètres (ex: `[FromBody]`) pour plus de clarté.
 
-#### Exemple : Un `ProductsApiController`
+##### Exemple : Un `ProductsApiController`
 
 ```c#
 [ApiController]
@@ -151,6 +170,390 @@ public class ProductsController : ControllerBase
         return CreatedAtAction(nameof(GetProduct), 
                                new { id = newProduct.Id }, 
                                newProduct);
+    }
+}
+```
+
+**Les 6 avantages automatiques :**
+
+**1. Validation automatique du modèle**
+
+```c#
+// Sans [ApiController] - code manuel
+[HttpPost]
+public ActionResult<Product> Create(Product product)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
+    
+    _repository.Add(product);
+    return Ok(product);
+}
+
+// Avec [ApiController] - automatique
+[HttpPost]
+public ActionResult<Product> Create(Product product)
+{
+    // Si ModelState.IsValid == false → 400 automatique
+    // Pas besoin de vérifier !
+    
+    _repository.Add(product);
+    return Ok(product);
+}
+```
+
+**2. Inférence de la source des paramètres**
+
+```c#
+// Sans [ApiController] - annotations requises
+public IActionResult Update(
+    [FromRoute] int id, 
+    [FromBody] Product product)
+
+// Avec [ApiController] - inférence automatique
+public IActionResult Update(int id, Product product)
+// id → FromRoute (car dans {id})
+// product → FromBody (car objet complexe)
+```
+
+**Règles d'inférence :**
+- Paramètres simples dans route → `[FromRoute]`
+- Objets complexes → `[FromBody]`
+- Paramètres de query string → `[FromQuery]`
+
+**3. Routage par attributs requis**
+
+```c#
+// [ApiController] force l'utilisation de [Route]
+[ApiController]
+[Route("api/[controller]")]  // Obligatoire
+public class ProductsController : ControllerBase
+```
+
+**4. Réponses d'erreur détaillées**
+
+```c#
+// Avec [ApiController], les erreurs de validation retournent :
+{
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "Price": [
+      "Le champ Price doit être compris entre 0.01 et 999999.99"
+    ],
+    "Name": [
+      "Le champ Name est requis"
+    ]
+  }
+}
+```
+
+**5. Traitement automatique des 415**
+
+Si le client envoie un Content-Type non supporté → 415 Unsupported Media Type automatique
+
+**6. Support multipart/form-data**
+
+Meilleure gestion des uploads de fichiers.
+
+**6 avantages automatiques :**
+
+**1. Validation automatique du modèle**
+
+```c#
+// ❌ Sans [ApiController] - code manuel
+[HttpPost]
+public ActionResult<Product> Create(Product product)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
+    
+    _repository.Add(product);
+    return Ok(product);
+}
+
+// ✅ Avec [ApiController] - automatique
+[HttpPost]
+public ActionResult<Product> Create(Product product)
+{
+    // Si ModelState.IsValid == false → 400 automatique
+    // Pas besoin de vérifier !
+    
+    _repository.Add(product);
+    return Ok(product);
+}
+```
+
+**2. Inférence de la source des paramètres**
+
+```c#
+// ❌ Sans [ApiController] - annotations requises
+public IActionResult Update(
+    [FromRoute] int id, 
+    [FromBody] Product product)
+
+// ✅ Avec [ApiController] - inférence automatique
+public IActionResult Update(int id, Product product)
+// id → FromRoute (car dans {id})
+// product → FromBody (car objet complexe)
+```
+
+**Règles d'inférence :**
+- Paramètres simples dans route → `[FromRoute]`
+- Objets complexes → `[FromBody]`
+- Paramètres de query string → `[FromQuery]`
+
+**3. Routage par attributs requis**
+
+```c#
+// [ApiController] force l'utilisation de [Route]
+[ApiController]
+[Route("api/[controller]")]  // Obligatoire
+public class ProductsController : ControllerBase
+```
+
+**4. Réponses d'erreur détaillées**
+
+```c#
+// Avec [ApiController], les erreurs de validation retournent :
+{
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "Price": [
+      "Le champ Price doit être compris entre 0.01 et 999999.99"
+    ],
+    "Name": [
+      "Le champ Name est requis"
+    ]
+  }
+}
+```
+
+**5. Traitement automatique des 415**
+
+Si le client envoie un Content-Type non supporté → 415 Unsupported Media Type automatique
+
+**6. Support multipart/form-data**
+
+Meilleure gestion des uploads de fichiers.
+
+#### 2.2 `ActionResult<T>`
+
+**Le problème sans `ActionResult<T>` :**
+
+```c#
+// Approche ancienne
+[HttpGet("{id}")]
+public IActionResult GetProduct(int id)
+{
+    var product = _repository.GetById(id);
+    
+    if (product == null)
+        return NotFound();
+    
+    return Ok(product);  // Perte du type Product
+}
+
+// Le type de retour est IActionResult (non typé)
+// Swagger ne sait pas quel type de données retourner
+```
+
+**La solution avec `ActionResult<T>` :**
+
+```c#
+// Approche moderne
+[HttpGet("{id}")]
+public ActionResult<Product> GetProduct(int id)
+{
+    var product = _repository.GetById(id);
+    
+    if (product == null)
+        return NotFound();  // Retourne IActionResult
+    
+    return product;  // Conversion implicite Product → ActionResult<Product>
+    // OU
+    return Ok(product);  // Retourne ActionResult<Product>
+}
+```
+
+**Avantages :**
+- Type de retour documenté
+- Swagger génère la bonne doc
+- Conversion implicite
+- Flexibilité (peut retourner T ou IActionResult)
+
+##### **Patterns courants :**
+
+```c#
+// Pattern 1 : Retour direct de l'objet
+[HttpGet("{id}")]
+public ActionResult<Product> GetProduct(int id)
+{
+    var product = _repository.GetById(id);
+    return product == null ? NotFound() : product;  // Conversion implicite
+}
+
+// Pattern 2 : Retour avec Ok()
+[HttpGet]
+public ActionResult<IEnumerable<Product>> GetProducts()
+{
+    return Ok(_repository.GetAll());  // 200 + données
+}
+
+// Pattern 3 : Plusieurs types de retour
+[HttpPost]
+public ActionResult<Product> CreateProduct(Product product)
+{
+    if (_repository.Exists(product.Sku))
+        return Conflict();  // 409
+    
+    _repository.Add(product);
+    return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);  // 201
+}
+```
+
+##### **Déclaration ProducesResponseType (optionnel mais recommandé) :**
+
+```c#
+[HttpGet("{id}")]
+[ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+public ActionResult<Product> GetProduct(int id)
+{
+    var product = _repository.GetById(id);
+    return product == null ? NotFound() : Ok(product);
+}
+
+// Swagger sait que :
+// - 200 → retourne un Product
+// - 404 → pas de contenu
+```
+
+#### 2.3 Exemple Complet de Contrôleur
+
+```c#
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ProductsController : ControllerBase
+{
+    private readonly IProductRepository _repository;
+    private readonly ILogger<ProductsController> _logger;
+
+    public ProductsController(
+        IProductRepository repository,
+        ILogger<ProductsController> logger)
+    {
+        _repository = repository;
+        _logger = logger;
+    }
+
+    // GET: api/products
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<Product>), 200)]
+    public ActionResult<IEnumerable<Product>> GetAll()
+    {
+        _logger.LogInformation("Récupération de tous les produits");
+        var products = _repository.GetAll();
+        return Ok(products);
+    }
+
+    // GET: api/products/5
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(Product), 200)]
+    [ProducesResponseType(404)]
+    public ActionResult<Product> GetById(int id)
+    {
+        _logger.LogInformation("Récupération du produit {ProductId}", id);
+        
+        var product = _repository.GetById(id);
+        
+        if (product == null)
+        {
+            _logger.LogWarning("Produit {ProductId} non trouvé", id);
+            return NotFound();
+        }
+        
+        return Ok(product);
+    }
+
+    // POST: api/products
+    [HttpPost]
+    [ProducesResponseType(typeof(Product), 201)]
+    [ProducesResponseType(400)]
+    public ActionResult<Product> Create(ProductCreateDto dto)
+    {
+        _logger.LogInformation("Création d'un nouveau produit");
+        
+        var product = new Product
+        {
+            Name = dto.Name,
+            Price = dto.Price,
+            Stock = dto.Stock
+        };
+        
+        _repository.Add(product);
+        
+        _logger.LogInformation("Produit créé avec Id {ProductId}", product.Id);
+        
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = product.Id },
+            product
+        );
+    }
+
+    // PUT: api/products/5
+    [HttpPut("{id}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
+    public IActionResult Update(int id, ProductUpdateDto dto)
+    {
+        _logger.LogInformation("Mise à jour du produit {ProductId}", id);
+        
+        var product = _repository.GetById(id);
+        
+        if (product == null)
+        {
+            return NotFound();
+        }
+        
+        product.Name = dto.Name;
+        product.Price = dto.Price;
+        product.Stock = dto.Stock;
+        
+        _repository.Update(product);
+        
+        return NoContent();
+    }
+
+    // DELETE: api/products/5
+    [HttpDelete("{id}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult Delete(int id)
+    {
+        _logger.LogInformation("Suppression du produit {ProductId}", id);
+        
+        var product = _repository.GetById(id);
+        
+        if (product == null)
+        {
+            return NotFound();
+        }
+        
+        _repository.Delete(id);
+        
+        return NoContent();
     }
 }
 ```
@@ -202,24 +605,122 @@ La mise en place complète est un peu longue, mais voici les grandes étapes :
 
 1. **Installer les paquets NuGet :** `Microsoft.AspNetCore.Authentication.JwtBearer`.
 2. **Configurer dans `Program.cs` :**
-   ```c#
-   builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-       .AddJwtBearer(options =>
-       {
-           options.TokenValidationParameters = new TokenValidationParameters
-           {
-               // Configurez ici comment valider le token
-               // (qui l'a signé, pour qui il est, etc.)
-           };
-       });
-   builder.Services.AddAuthorization();
-   ```
+
+```c#
+
+// Configuration JWT
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+var secretKey = jwtSettings["SecretKey"];
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+    };
+});
+
+builder.Services.AddAuthorization();
+```
+
+**Définir la config dans `appsettings.json`**
+```
+{
+  "JwtSettings": {
+    "SecretKey": "VotreCleSecreteTresLongueEtComplexe123!",
+    "Issuer": "MonAPI",
+    "Audience": "MonAppClient",
+    "ExpirationMinutes": 60
+  }
+}
+```
+
 3. **Ajouter les middlewares (dans le bon ordre !) :**
-   ```c#
-   app.UseAuthentication(); // 1. Qui êtes-vous ?
-   app.UseAuthorization();  // 2. Que pouvez-vous faire ?
-   ```
-4. **Utiliser les attributs `[Authorize]` et `[AllowAnonymous]` :**
+
+```c#
+app.UseAuthentication(); // 1. Qui êtes-vous ?
+app.UseAuthorization();  // 2. Que pouvez-vous faire ?
+```
+
+4. **Génération du token :**
+
+```c#
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+
+public class AuthController : ControllerBase
+{
+    private readonly IConfiguration _configuration;
+
+    public AuthController(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
+    [HttpPost("login")]
+    public IActionResult Login([FromBody] LoginModel model)
+    {
+        // 1. Vérifier credentials (simplifié)
+        if (model.Username != "admin" || model.Password != "password")
+        {
+            return Unauthorized();
+        }
+
+        // 2. Créer les claims
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.NameIdentifier, "1"),
+            new Claim(ClaimTypes.Name, model.Username),
+            new Claim(ClaimTypes.Role, "Admin")
+        };
+
+        // 3. Créer la clé de signature
+        var jwtSettings = _configuration.GetSection("JwtSettings");
+        var key = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(jwtSettings["SecretKey"])
+        );
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        // 4. Créer le token
+        var token = new JwtSecurityToken(
+            issuer: jwtSettings["Issuer"],
+            audience: jwtSettings["Audience"],
+            claims: claims,
+            expires: DateTime.Now.AddMinutes(
+                int.Parse(jwtSettings["ExpirationMinutes"])
+            ),
+            signingCredentials: creds
+        );
+
+        // 5. Retourner le token
+        return Ok(new
+        {
+            token = new JwtSecurityTokenHandler().WriteToken(token),
+            expiration = token.ValidTo
+        });
+    }
+}
+
+public class LoginModel
+{
+    public string Username { get; set; }
+    public string Password { get; set; }
+}
+```
+
+5.**Utiliser les attributs `[Authorize]` et `[AllowAnonymous]` :**
 
    ```c#
    [ApiController]

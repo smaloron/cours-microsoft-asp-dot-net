@@ -144,11 +144,21 @@ BlogPost "0..*" -- "0..*" Tag : (BlogPostTag)
 @enduml
 ```
 
-#### La Fluent API : Le contrôle absolu
+### 2. La Fluent API : Le contrôle absolu
 
 Les Data Annotations sont pratiques, mais pour des configurations complexes (index, clés composites, noms de
 table/colonne personnalisés), elles sont limitées. La **Fluent API** vous donne un contrôle total sur le modèle. Vous
 surchargez la méthode `OnModelCreating` dans votre `DbContext`.
+
+**Data Annotations - Limites :**
+Ce qu'il est impossible de faire avec les data annotations
+
+- Index composites
+- Clés primaires composites
+- Noms de contraintes personnalisés
+- Configurations conditionnelles
+- Valeurs par défaut SQL
+
 
 ```c#
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -172,9 +182,181 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
+**Avantages :**
+- Séparation code métier / configuration
+- Configuration centralisée
+- IntelliSense complet
+- Refactoring sûr
+- Toutes les options disponibles
+
+#### 2.1 Configurations courantes
+
+**1. Configuration de table**
+
+```c#
+modelBuilder.Entity<Product>(entity =>
+{
+    // Nom de table personnalisé
+    entity.ToTable("tbl_Products", schema: "dbo");
+    
+    // Clé primaire
+    entity.HasKey(p => p.Id)
+        .HasName("PK_Product_Id");
+    
+    // Clé primaire composite
+    entity.HasKey(p => new { p.OrderId, p.ProductId });
+});
+```
+
+**2. Configuration de colonnes**
+
+```c#
+modelBuilder.Entity<Product>(entity =>
+{
+    // Nom de colonne
+    entity.Property(p => p.Name)
+        .HasColumnName("ProductName")
+        .HasColumnType("nvarchar(100)")
+        .IsRequired();
+    
+    // Type SQL précis
+    entity.Property(p => p.Price)
+        .HasColumnType("decimal(18,2)")
+        .HasPrecision(18, 2);
+    
+    // Valeur par défaut
+    entity.Property(p => p.CreatedDate)
+        .HasDefaultValueSql("GETDATE()");
+    
+    // Colonne calculée
+    entity.Property(p => p.TotalValue)
+        .HasComputedColumnSql("[Price] * [Stock]");
+    
+    // Longueur max
+    entity.Property(p => p.Description)
+        .HasMaxLength(500)
+        .IsUnicode();
+});
+```
+
+**3. Index**
+
+```c#
+modelBuilder.Entity<Product>(entity =>
+{
+    // Index simple
+    entity.HasIndex(p => p.Name)
+        .HasDatabaseName("IX_Product_Name");
+    
+    // Index unique
+    entity.HasIndex(p => p.Sku)
+        .IsUnique()
+        .HasDatabaseName("IX_Product_Sku_Unique");
+    
+    // Index composite
+    entity.HasIndex(p => new { p.CategoryId, p.Name })
+        .HasDatabaseName("IX_Product_Category_Name");
+    
+    // Index filtré (SQL Server)
+    entity.HasIndex(p => p.Stock)
+        .HasFilter("[Stock] > 0")
+        .HasDatabaseName("IX_Product_Stock_InStock");
+});
+```
+
+**4. Contraintes**
+
+```c#
+modelBuilder.Entity<Product>(entity =>
+{
+    // Check constraint
+    entity.HasCheckConstraint("CK_Product_Price", "[Price] > 0");
+    entity.HasCheckConstraint("CK_Product_Stock", "[Stock] >= 0");
+    
+    // Alternative property
+    entity.Property(p => p.Email)
+        .HasMaxLength(100)
+        .IsRequired();
+});
+```
+
+#### 2.2 Configuration des Relations
+
+
+**1. One-to-Many détaillé**
+
+```c#
+modelBuilder.Entity<Product>(entity =>
+{
+    entity.HasOne(p => p.Category)        // Un produit a une catégorie
+        .WithMany(c => c.Products)         // Une catégorie a plusieurs produits
+        .HasForeignKey(p => p.CategoryId)  // Via cette FK
+        .OnDelete(DeleteBehavior.Restrict) // Comportement de suppression
+        .HasConstraintName("FK_Product_Category"); // Nom de contrainte
+});
+
+// Configuration alternative (depuis Category)
+modelBuilder.Entity<Category>(entity =>
+{
+    entity.HasMany(c => c.Products)
+        .WithOne(p => p.Category)
+        .HasForeignKey(p => p.CategoryId);
+});
+```
+
+**2. Many-to-Many avec configuration**
+
+```c#
+modelBuilder.Entity<BlogPost>()
+    .HasMany(p => p.Tags)
+    .WithMany(t => t.BlogPosts)
+    .UsingEntity<Dictionary<string, object>>(
+        "BlogPostTag",  // Nom de la table de jonction
+        j => j.HasOne<Tag>().WithMany().HasForeignKey("TagId"),
+        j => j.HasOne<BlogPost>().WithMany().HasForeignKey("BlogPostId"),
+        j =>
+        {
+            j.HasKey("BlogPostId", "TagId");
+            j.ToTable("tbl_BlogPost_Tag");
+        }
+    );
+```
+
+**3. One-to-One avec principal/dependent**
+
+```c#
+modelBuilder.Entity<User>()
+    .HasOne(u => u.Profile)
+    .WithOne(p => p.User)
+    .HasForeignKey<UserProfile>(p => p.UserId)  // UserProfile est dependent
+    .OnDelete(DeleteBehavior.Cascade);
+```
+
+**4. Self-referencing**
+
+```c#
+// Exemple : Employee a un Manager (qui est aussi un Employee)
+public class Employee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    
+    public int? ManagerId { get; set; }
+    public Employee Manager { get; set; }
+    
+    public ICollection<Employee> Subordinates { get; set; }
+}
+
+modelBuilder.Entity<Employee>()
+    .HasOne(e => e.Manager)
+    .WithMany(e => e.Subordinates)
+    .HasForeignKey(e => e.ManagerId)
+    .OnDelete(DeleteBehavior.Restrict);  // Important pour éviter cycles
+```
+
 ---
 
-### 2. Stratégies de Chargement des Données
+### 3. Stratégies de Chargement des Données
 
 **Le problème :** Quand vous chargez un `Product`, voulez-vous charger sa `Category` en même temps ? La réponse est "ça
 dépend". Charger trop de données est inefficace. Ne pas en charger assez vous obligera à faire des allers-retours
@@ -204,6 +386,7 @@ EF Core propose plusieurs stratégies pour gérer cela :
     <strong>Comment :</strong> Avec la méthode <code>.Entry().Reference().Load()</code> ou <code>.Collection().Load()</code>.
     <br/>
     <strong>Exemple :</strong>
+
     <code-block lang="c#">
     var product = _context.Products.Find(1); // Requête 1
     // ... un peu de logique ...
@@ -212,6 +395,7 @@ EF Core propose plusieurs stratégies pour gérer cela :
         _context.Entry(product).Reference(p => p.Category).Load(); // Requête 2
     }
     </code-block>
+
     <br/>
     <strong>Quand l'utiliser :</strong> Quand vous n'avez besoin des données associées que dans certains cas conditionnels.
 </tab>
@@ -221,6 +405,7 @@ EF Core propose plusieurs stratégies pour gérer cela :
     <strong>Comment :</strong> Nécessite une configuration (paquet NuGet <code>Microsoft.EntityFrameworkCore.Proxies</code>) et que les propriétés de navigation soient déclarées <code>virtual</code>.
     <br/>
     <strong>Exemple :</strong>
+
     <code-block lang="c#">
     var product = _context.Products.Find(1); // Requête 1
     // ...
@@ -228,14 +413,35 @@ EF Core propose plusieurs stratégies pour gérer cela :
     // requête SQL en arrière-plan !
     string categoryName = product.Category.Name; // Requête 2
     </code-block>
+
     <br/>
     <strong>Quand l'utiliser :</strong> À utiliser avec une extrême prudence. Très pratique en développement, mais peut causer le problème du "N+1 query", où une simple boucle génère des centaines de requêtes à la base de données.
 </tab>
 </tabs>
 
 <warning>
+
 **Bonne pratique :** Privilégiez toujours l'**Eager Loading** (`.Include()`) par défaut. C'est la stratégie la plus explicite et la plus contrôlable en termes de performance.
+
 </warning>
+
+**Impact mesuré**
+- Sans Include : 101 requêtes, ~2000ms
+- Avec Include : 1 requête, ~50ms
+- **Gain : 40x plus rapide**
+
+**Comment détecter le problème**
+```c#
+// Activer le logging SQL
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString)
+        .LogTo(Console.WriteLine, LogLevel.Information));
+
+// Chercher dans les logs :
+// SELECT ... FROM Categories WHERE Id = @p0
+// SELECT ... FROM Categories WHERE Id = @p0  // Répété !
+// SELECT ... FROM Categories WHERE Id = @p0  // Répété !
+```
 
 #### Exercice 3 : Afficher la catégorie du produit
 
@@ -253,10 +459,12 @@ le nom de sa catégorie.
    également `public DbSet<Category> Categories { get; set; }` dans votre `ApplicationDbContext`.
 
 2. **Migrations :**
+
     * `dotnet ef migrations add AddCategoryAndProductRelation`
     * `dotnet ef database update`
 
 3. **`Services/EfProductRepository.cs`**
+
    ```c#
    public Product GetById(int id)
    {
@@ -266,8 +474,10 @@ le nom de sa catégorie.
                       .FirstOrDefault(p => p.Id == id);
    }
    ```
+   
 4. **`Views/Products/Details.cshtml`**
-   ```html
+
+```html
    <dl class="row">
        <!-- ... autres propriétés ... -->
        <dt class="col-sm-2">Catégorie</dt>
@@ -275,11 +485,11 @@ le nom de sa catégorie.
                                                        est une sécurité si la
                                                        catégorie est nulle -->
    </dl>
-   ```
+```
 
 ---
 
-### 3. Le Suivi des Modifications (`Change Tracker`)
+### 4. Le Suivi des Modifications (`Change Tracker`)
 
 EF Core est intelligent. Quand vous récupérez une entité de la base, il en garde une "photographie" de son état initial.
 Quand vous appelez `SaveChanges()`, il compare l'état actuel de l'entité avec la photo. S'il y a une différence, il
@@ -317,9 +527,16 @@ public IEnumerable<Product> GetAllForDisplay()
 }
 ```
 
-<tip>
-**Bonne pratique :** Utilisez `.AsNoTracking()` pour toutes vos requêtes de lecture seule.
-</tip>
+**Bonnes pratiques :**
+
+| Scénario                  | Recommandation    |
+|---------------------------|-------------------|
+| Lecture pour affichage    | AsNoTracking()    |
+| Lecture pour modification | Tracking (défaut) |
+| APIs GET                  | AsNoTracking()    |
+| APIs POST/PUT             | Tracking          |
+| Rapports                  | AsNoTracking()    |
+| Dashboards                | AsNoTracking()    |
 
 ---
 

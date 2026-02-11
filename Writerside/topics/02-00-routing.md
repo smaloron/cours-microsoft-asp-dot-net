@@ -415,7 +415,9 @@ deactivate C
 
 <tabs>
 <tab title="Modèles">
+
 **`Models/Product.cs`**
+
 ```c#
 namespace MonAppMvc.Models
 {

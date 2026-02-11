@@ -139,7 +139,8 @@ public class HomeController : Controller
   affichez**. Si une variable contient `<script>alert('hacké')</script>`, Razor la transformera en texte inoffensif
   `&lt;script&gt;alert('hacké')&lt;/script&gt;` dans le HTML.
 * **Comment être vulnérable :** En désactivant manuellement cette protection avec `@Html.Raw()`.
-  ```c#
+  
+```c#
   @{ string maliciousComment = "<script>steal_cookie()</script>"; }
   
   <!-- SÉCURISÉ : Razor encode le script -->
@@ -147,10 +148,12 @@ public class HomeController : Controller
   
   <!-- VULNÉRABLE : Vous injectez le script directement dans la page -->
   <p>@Html.Raw(maliciousComment)</p>
-  ```
-  <warning>
+ ```
+<warning>
+
   N'utilisez **jamais** `@Html.Raw()` sur des données provenant d'un utilisateur.
-  </warning>
+  
+</warning>
 
 #### Cross-Site Request Forgery (CSRF ou XSRF)
 
@@ -608,7 +611,6 @@ public async Task<IActionResult> Delete(int id)
 6.  Allez dans la table de jonction `AspNetUserRoles` et ajoutez une nouvelle ligne avec l'ID de votre utilisateur et l'ID du rôle "Moderator".
 7.  Reconnectez-vous. Vous devriez maintenant voir les boutons de suppression.
 
-Ce TP couvre un scénario de sécurité très réaliste et vous donne une base solide pour protéger vos applications MVC.
 
 ---
 

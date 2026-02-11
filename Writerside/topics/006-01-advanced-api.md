@@ -101,9 +101,248 @@ public ActionResult<ProductDto> GetProduct(int id)
 }
 ```
 
-<tip>
-Le mapping manuel peut devenir fastidieux. Des librairies comme **AutoMapper** peuvent automatiser ce processus. C'est un outil indispensable dans les projets de grande envergure.
-</tip>
+#### Mapping automatique
+Le mapping manuel peut devenir fastidieux. Des librairies comme **AutoMapper** peuvent automatiser ce processus. 
+C'est un outil indispensable dans les projets de grande envergure.
+
+##### Installation
+```
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+```
+
+##### Configuration
+
+```c#
+// Mappings/MappingProfile.cs
+
+using AutoMapper;
+
+
+/// PROFIL DE MAPPING AUTOMAPPER
+/// 
+/// AutoMapper est une bibliothèque qui permet de convertir automatiquement
+/// un objet d'un type vers un autre type (par exemple, Product vers ProductDto).
+/// 
+/// Un "Profile" est une classe qui définit COMMENT ces conversions doivent se faire.
+/// C'est comme un plan de correspondance entre différents objets.
+
+public class MappingProfile : Profile
+{
+
+    /// CONSTRUCTEUR - Appelé une seule fois au démarrage de l'application
+    /// C'est ici qu'on configure toutes les règles de conversion
+    public MappingProfile()
+    {
+        // ═══════════════════════════════════════════════════════════════
+        // MAPPING 1 : Product → ProductDto
+        // ═══════════════════════════════════════════════════════════════
+        // Convertit un objet "Product" (entité de base de données)
+        // vers un "ProductDto" (objet pour envoyer les données au client)
+        
+        CreateMap<Product, ProductDto>()
+            
+            // RÈGLE PERSONNALISÉE #1 : Calcul de TotalValue
+            // -----------------------------------------------
+            // .ForMember() = "Pour la propriété TotalValue de ProductDto..."
+            .ForMember(
+                dest => dest.TotalValue,  // dest = destination (ProductDto)
+                                           // On cible la propriété "TotalValue"
+                
+                opt => opt.MapFrom(       // opt.MapFrom = "prends la valeur depuis..."
+                    src => src.Price * src.Stock  // src = source (Product)
+                                                   // Calcul : Prix × Stock
+                )
+                // Résultat : TotalValue sera automatiquement calculé lors du mapping
+                // Exemple : Si Price=10 et Stock=5, alors TotalValue=50
+            )
+            
+            // RÈGLE PERSONNALISÉE #2 : Récupération du nom de catégorie
+            // ----------------------------------------------------------
+            .ForMember(
+                dest => dest.CategoryName,  // On cible "CategoryName" dans ProductDto
+                
+                opt => opt.MapFrom(
+                    src => src.Category.Name  // On va chercher le nom dans l'objet lié
+                                               // Product.Category.Name
+                )
+                // Résultat : Au lieu de renvoyer tout l'objet Category,
+                // on envoie juste son nom (string)
+                // Cela évite d'envoyer trop de données au client
+            );
+        
+        // NOTE : Les autres propriétés (Id, Name, Price, Stock) seront mappées
+        // automatiquement car elles ont le même nom dans Product et ProductDto
+        
+        
+        // ═══════════════════════════════════════════════════════════════
+        // MAPPING 2 : ProductCreateDto → Product
+        // ═══════════════════════════════════════════════════════════════
+        // Convertit les données de création (venant du client)
+        // vers un objet Product (pour l'enregistrer en base de données)
+        
+        CreateMap<ProductCreateDto, Product>();
+        
+        // Pas de règles personnalisées ici !
+        // AutoMapper fera automatiquement la correspondance entre
+        // les propriétés qui ont le même nom
+        // Exemple : ProductCreateDto.Name → Product.Name
+        
+        
+        // ═══════════════════════════════════════════════════════════════
+        // MAPPING 3 : ProductUpdateDto → Product
+        // ═══════════════════════════════════════════════════════════════
+        // Convertit les données de mise à jour (venant du client)
+        // vers un objet Product existant
+        
+        CreateMap<ProductUpdateDto, Product>()
+            
+            // RÈGLE SPÉCIALE : Ne mapper que les valeurs NON-NULL
+            // ----------------------------------------------------
+            // .ForAllMembers() = "Pour TOUTES les propriétés..."
+            .ForAllMembers(
+                opts => opts.Condition(  // .Condition() = "seulement si..."
+                    (src, dest, srcMember) => srcMember != null
+                    // src = ProductUpdateDto (source)
+                    // dest = Product (destination)
+                    // srcMember = la valeur de la propriété à mapper
+                    
+                    // Condition : srcMember != null
+                    // = "Ne mappe que si la valeur n'est pas null"
+                )
+            );
+        
+        /*
+          POURQUOI CETTE RÈGLE ?
+          ----------------------
+          Lors d'une mise à jour, l'utilisateur envoie parfois seulement
+          certains champs à modifier (par exemple, juste le prix).
+          
+          Sans cette règle :
+          - ProductUpdateDto { Price = 15, Name = null, Stock = null }
+          - Résultat : Product.Name et Product.Stock seraient écrasés avec null ❌
+          
+          Avec cette règle :
+          - Seul Product.Price est mis à jour avec 15
+          - Product.Name et Product.Stock gardent leurs valeurs actuelles ✅
+          
+          C'est ce qu'on appelle un "PATCH partiel"
+        */
+    }
+}
+```
+
+##### Résumé des concets clefs
+
+1. Profile
+   → Classe de configuration pour AutoMapper
+   → Définit les règles de mapping
+
+2. CreateMap<Source, Destination>()
+   → Crée une règle de conversion de Source vers Destination
+   → Par défaut, mappe automatiquement les propriétés de même nom
+
+3. ForMember(dest => dest.Property, ...)
+   → Définit une règle personnalisée pour UNE propriété spécifique
+   → Utile pour calculs, conversions, ou navigation dans objets liés
+
+4. MapFrom(src => ...)
+   → Indique d'où vient la valeur à mapper
+   → Peut contenir des calculs ou accès à des propriétés imbriquées
+
+5. ForAllMembers(...)
+   → Applique une règle à TOUTES les propriétés
+   
+6. Condition(...)
+   → Ajoute une condition : "ne mapper que si..."
+   → Exemple : seulement si la valeur n'est pas null
+
+**Avantages**
+
+- Moins de code répétitif
+- Conversions automatiques
+- Code plus propre et maintenable
+- Séparation entre entités (base de données) et DTOs (API)
+
+
+
+##### Déclaration du service
+
+```c#
+// Program.cs
+builder.Services.AddAutoMapper(typeof(Program));
+```
+
+##### Utilisation
+
+```c#
+public class ProductsController : ControllerBase
+{
+    private readonly IProductRepository _repository;
+    private readonly IMapper _mapper;  // Injecter AutoMapper
+
+    public ProductsController(IProductRepository repository, IMapper mapper)
+    {
+        _repository = repository;
+        _mapper = mapper;
+    }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<ProductDto>> GetAll()
+    {
+        var products = _repository.GetAll();
+        
+        // Mapping automatique
+        var dtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+        
+        return Ok(dtos);
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<ProductDto> GetById(int id)
+    {
+        var product = _repository.GetById(id);
+        
+        if (product == null)
+            return NotFound();
+        
+        // Mapping automatique
+        var dto = _mapper.Map<ProductDto>(product);
+        
+        return Ok(dto);
+    }
+
+    [HttpPost]
+    public ActionResult<ProductDto> Create(ProductCreateDto createDto)
+    {
+        // Mapping automatique DTO → Entité
+        var product = _mapper.Map<Product>(createDto);
+        
+        _repository.Add(product);
+        
+        // Mapping automatique Entité → DTO
+        var dto = _mapper.Map<ProductDto>(product);
+        
+        return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
+    }
+
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, ProductUpdateDto updateDto)
+    {
+        var product = _repository.GetById(id);
+        
+        if (product == null)
+            return NotFound();
+        
+        // Mapping automatique avec mise à jour de l'existant
+        _mapper.Map(updateDto, product);
+        
+        _repository.Update(product);
+        
+        return NoContent();
+    }
+}
+```
+
 
 ---
 
@@ -187,7 +426,9 @@ public ActionResult<IEnumerable<ProductDto>> GetProducts(
 ```
 
 <warning>
+
 **Important :** Il faut également retourner des informations sur la pagination dans la réponse (nombre total d'éléments, nombre total de pages, etc.) pour que le client puisse construire son interface de pagination. On le fait souvent via un en-tête HTTP personnalisé (`X-Pagination`) ou en enveloppant la réponse dans un objet plus complexe.
+
 </warning>
 
 #### Exercice 4 : Pagination simple
@@ -254,7 +495,9 @@ public ActionResult<IEnumerable<ProductDto>> GetProducts(
     * Écrire des scripts de test.
 
 <tip>
+
 Apprendre à utiliser Postman est une compétence non négociable pour un développeur backend. C'est votre principal outil pour interagir avec et déboguer vos APIs.
+
 </tip>
 
 ---
