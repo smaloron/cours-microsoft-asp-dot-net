@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2026-02-11T07:58:00.093349"><title>Module 5 : Acc&egrave;s aux Donn&eacute;es avec Entity Framework Core - L'essentiel | ASP dotNET</title><script type="application/json" id="virtual-toc-data">[{"id":"objectifs-p-dagogiques","level":0,"title":"Objectifs Pédagogiques","anchor":"#objectifs-p-dagogiques"},{"id":"introduction-le-traducteur-universel","level":0,"title":"Introduction : Le traducteur universel","anchor":"#introduction-le-traducteur-universel"},{"id":"1-concepts-fondamentaux-d-un-orm","level":0,"title":"1. Concepts Fondamentaux d\u0027un ORM","anchor":"#1-concepts-fondamentaux-d-un-orm"},{"id":"2-mod-lisation-des-donn-es-code-first","level":0,"title":"2. Modélisation des Données (Code-First)","anchor":"#2-mod-lisation-des-donn-es-code-first"},{"id":"3-gestion-de-la-base-de-donn-es-les-migrations","level":0,"title":"3. Gestion de la Base de Données : Les Migrations","anchor":"#3-gestion-de-la-base-de-donn-es-les-migrations"},{"id":"4-op-rations-crud-create-read-update-delete","level":0,"title":"4. Opérations CRUD (Create, Read, Update, Delete)","anchor":"#4-op-rations-crud-create-read-update-delete"},{"id":"5-requ-tage-avec-linq","level":0,"title":"5. Requêtage avec LINQ","anchor":"#5-requ-tage-avec-linq"},{"id":"tp-remplacer-le-d-p-t-en-m-moire-par-ef-core","level":0,"title":"TP : Remplacer le dépôt en mémoire par EF Core","anchor":"#tp-remplacer-le-d-p-t-en-m-moire-par-ef-core"},{"id":"auto-valuation","level":0,"title":"Auto-évaluation","anchor":"#auto-valuation"},{"id":"conclusion","level":0,"title":"Conclusion","anchor":"#conclusion"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Module 5 : Acc&egrave;s aux Donn&eacute;es avec Entity Framework Core - L'essentiel | ASP dotNET"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ASP dotNET Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/005-00-entity-framework.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Module 5 : Acc&egrave;s aux Donn&eacute;es avec Entity Framework Core - L'essentiel | ASP dotNET"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2026-02-12T08:25:54.441003"><title>Module 5 : Acc&egrave;s aux Donn&eacute;es avec Entity Framework Core - L'essentiel | ASP dotNET</title><script type="application/json" id="virtual-toc-data">[{"id":"objectifs-p-dagogiques","level":0,"title":"Objectifs Pédagogiques","anchor":"#objectifs-p-dagogiques"},{"id":"introduction-le-traducteur-universel","level":0,"title":"Introduction : Le traducteur universel","anchor":"#introduction-le-traducteur-universel"},{"id":"1-concepts-fondamentaux-d-un-orm","level":0,"title":"1. Concepts Fondamentaux d\u0027un ORM","anchor":"#1-concepts-fondamentaux-d-un-orm"},{"id":"2-mod-lisation-des-donn-es-code-first","level":0,"title":"2. Modélisation des Données (Code-First)","anchor":"#2-mod-lisation-des-donn-es-code-first"},{"id":"3-gestion-de-la-base-de-donn-es-les-migrations","level":0,"title":"3. Gestion de la Base de Données : Les Migrations","anchor":"#3-gestion-de-la-base-de-donn-es-les-migrations"},{"id":"4-op-rations-crud-create-read-update-delete","level":0,"title":"4. Opérations CRUD (Create, Read, Update, Delete)","anchor":"#4-op-rations-crud-create-read-update-delete"},{"id":"5-requ-tage-avec-linq","level":0,"title":"5. Requêtage avec LINQ","anchor":"#5-requ-tage-avec-linq"},{"id":"tp-remplacer-le-d-p-t-en-m-moire-par-ef-core","level":0,"title":"TP : Remplacer le dépôt en mémoire par EF Core","anchor":"#tp-remplacer-le-d-p-t-en-m-moire-par-ef-core"},{"id":"auto-valuation","level":0,"title":"Auto-évaluation","anchor":"#auto-valuation"},{"id":"conclusion","level":0,"title":"Conclusion","anchor":"#conclusion"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Module 5 : Acc&egrave;s aux Donn&eacute;es avec Entity Framework Core - L'essentiel | ASP dotNET"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ASP dotNET Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/005-00-entity-framework.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Module 5 : Acc&egrave;s aux Donn&eacute;es avec Entity Framework Core - L'essentiel | ASP dotNET"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": "writerside-documentation/005-00-entity-framework.html#webpage",
@@ -44,6 +44,7 @@ builder.Services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
 </div><p id="gfk63y_87">Il faut &eacute;galement ne pas oublier de charger les d&eacute;pendances suivantes avec Nuget</p><div class="code-block" data-lang="none">
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
 </div></section><section class="chapter"><h3 id="les-entit-s-dbset-t-les-plans-de-vos-tables" data-toc="les-entit-s-dbset-t-les-plans-de-vos-tables">Les Entit&eacute;s (<code class="code" id="gfk63y_100">DbSet&lt;T&gt;</code>) : Les plans de vos tables</h3><p id="gfk63y_94">Une entit&eacute; est une classe C# simple (un <span class="control" id="gfk63y_101">POCO</span> - Plain Old CLR Object) qui repr&eacute;sente une table. Vous d&eacute;clarez chaque entit&eacute; comme une propri&eacute;t&eacute; <code class="code" id="gfk63y_102">DbSet&lt;T&gt;</code> dans votre <code class="code" id="gfk63y_103">DbContext</code>.</p><p id="gfk63y_95"><span class="control" id="gfk63y_104">Comment configurer les entit&eacute;s ?</span></p><p id="gfk63y_96">EF Core est intelligent et utilise des <span class="control" id="gfk63y_105">conventions</span>. Par exemple, une propri&eacute;t&eacute; nomm&eacute;e <code class="code" id="gfk63y_106">Id</code> ou <code class="code" id="gfk63y_107">ProductId</code> sera automatiquement configur&eacute;e comme la cl&eacute; primaire de la table. Mais pour plus de contr&ocirc;le, on utilise les <span class="control" id="gfk63y_108">Data Annotations</span>.</p><div class="code-block" data-lang="csharp">
 // Models/Product.cs
 using System.ComponentModel.DataAnnotations;
@@ -346,23 +347,33 @@ TrustServerCertificate=True&quot;
 </div><p id="gfk63y_324"><span class="control" id="gfk63y_329">Program.cs</span></p><div class="code-block" data-lang="csharp">
 builder.Services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
     options.UseSqlServer(builder.Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
-</div></section></section><section class="chapter"><h2 id="3-gestion-de-la-base-de-donn-es-les-migrations" data-toc="3-gestion-de-la-base-de-donn-es-les-migrations">3. Gestion de la Base de Donn&eacute;es : Les Migrations</h2><p id="gfk63y_330"><span class="control" id="gfk63y_335">Le probl&egrave;me :</span> Vous venez d'ajouter une propri&eacute;t&eacute; <code class="code" id="gfk63y_336">Description</code> &agrave; votre classe <code class="code" id="gfk63y_337">Product</code>. Comment mettre &agrave; jour la base de donn&eacute;es pour qu'elle ait une nouvelle colonne <code class="code" id="gfk63y_338">Description</code> sans perdre toutes les donn&eacute;es existantes ?</p><p id="gfk63y_331"><span class="control" id="gfk63y_339">La solution :</span> Les Migrations. Une migration est un &quot;journal de modifications&quot;. C'est un fichier de code C# qui d&eacute;crit exactement comment passer de l'ancien &eacute;tat de votre base de donn&eacute;es au nouvel &eacute;tat.</p><p id="gfk63y_332">Pensez &agrave; un architecte qui modifie les plans d'un b&acirc;timent en construction. Il ne crie pas &quot;ajoutez une fen&ecirc;tre !&quot;. Il publie une r&eacute;vision du plan (une migration) qui dit pr&eacute;cis&eacute;ment : &quot;Sur le mur nord du 2&egrave;me &eacute;tage, &agrave; 3 m&egrave;tres du coin est, cr&eacute;er une ouverture de 1m x 1.5m&quot;.</p><section class="procedure-steps"><h3 id="gfk63y_333" data-toc="gfk63y_333">Le cycle de vie d'une migration</h3><ol class="list _decimal"><li class="list__item" id="gfk63y_340"><p id="gfk63y_344">Vous modifiez vos classes d'entit&eacute;s dans votre code C#.</p></li><li class="list__item" id="gfk63y_341"><p id="gfk63y_345">Vous ouvrez la console du Gestionnaire de Paquets (dans Visual Studio) ou un terminal et vous ex&eacute;cutez la commande :</p><div class="code-block" data-lang="none">```powershell
+</div></section></section><section class="chapter"><h2 id="3-gestion-de-la-base-de-donn-es-les-migrations" data-toc="3-gestion-de-la-base-de-donn-es-les-migrations">3. Gestion de la Base de Donn&eacute;es : Les Migrations</h2><p id="gfk63y_330"><span class="control" id="gfk63y_337">Le probl&egrave;me :</span> Vous venez d'ajouter une propri&eacute;t&eacute; <code class="code" id="gfk63y_338">Description</code> &agrave; votre classe <code class="code" id="gfk63y_339">Product</code>. Comment mettre &agrave; jour la base de donn&eacute;es pour qu'elle ait une nouvelle colonne <code class="code" id="gfk63y_340">Description</code> sans perdre toutes les donn&eacute;es existantes ?</p><p id="gfk63y_331"><span class="control" id="gfk63y_341">La solution :</span> Les Migrations. Une migration est un &quot;journal de modifications&quot;. C'est un fichier de code C# qui d&eacute;crit exactement comment passer de l'ancien &eacute;tat de votre base de donn&eacute;es au nouvel &eacute;tat.</p><p id="gfk63y_332">Pensez &agrave; un architecte qui modifie les plans d'un b&acirc;timent en construction. Il ne crie pas &quot;ajoutez une fen&ecirc;tre !&quot;. Il publie une r&eacute;vision du plan (une migration) qui dit pr&eacute;cis&eacute;ment : &quot;Sur le mur nord du 2&egrave;me &eacute;tage, &agrave; 3 m&egrave;tres du coin est, cr&eacute;er une ouverture de 1m x 1.5m&quot;.</p><p id="gfk63y_333"><span class="control" id="gfk63y_342">Installation des outils CLI Entity Framework</span></p><div class="code-block" data-lang="bash">
+
+# Installation
+dotnet tool install --global dotnet-ef
+
+# Mise à jour
+dotnet tool update --global dotnet-ef
+
+# test
+dotnet ef
+</div><section class="procedure-steps"><h3 id="gfk63y_335" data-toc="gfk63y_335">Le cycle de vie d'une migration</h3><ol class="list _decimal"><li class="list__item" id="gfk63y_343"><p id="gfk63y_347">Vous modifiez vos classes d'entit&eacute;s dans votre code C#.</p></li><li class="list__item" id="gfk63y_344"><p id="gfk63y_348">Vous ouvrez la console du Gestionnaire de Paquets (dans Visual Studio) ou un terminal et vous ex&eacute;cutez la commande :</p><div class="code-block" data-lang="none">```powershell
 # Pour Package Manager Console
 Add-Migration NomDeLaMigration
 
 # Pour le CLI dotnet
 dotnet ef migrations add NomDeLaMigration
 ```
-</div><p id="gfk63y_347">EF Core compare votre mod&egrave;le actuel &agrave; celui de la derni&egrave;re migration et g&eacute;n&egrave;re un nouveau fichier de migration avec le code C# pour appliquer les changements.</p></li><li class="list__item" id="gfk63y_342"><p id="gfk63y_348">Vous inspectez le fichier de migration pour vous assurer qu'il est correct.</p></li><li class="list__item" id="gfk63y_343"><p id="gfk63y_349">Vous appliquez la migration &agrave; la base de donn&eacute;es avec la commande :</p><div class="code-block" data-lang="none">```powershell
+</div><p id="gfk63y_350">EF Core compare votre mod&egrave;le actuel &agrave; celui de la derni&egrave;re migration et g&eacute;n&egrave;re un nouveau fichier de migration avec le code C# pour appliquer les changements.</p></li><li class="list__item" id="gfk63y_345"><p id="gfk63y_351">Vous inspectez le fichier de migration pour vous assurer qu'il est correct.</p></li><li class="list__item" id="gfk63y_346"><p id="gfk63y_352">Vous appliquez la migration &agrave; la base de donn&eacute;es avec la commande :</p><div class="code-block" data-lang="none">```powershell
 # Pour Package Manager Console
 Update-Database
 
 # Pour le CLI dotnet
 dotnet ef database update
 ```
-</div></li></ol></section><section class="chapter"><h3 id="bonnes-pratiques-nommer-les-migrations-ef-core" data-toc="bonnes-pratiques-nommer-les-migrations-ef-core">Bonnes pratiques : Nommer les migrations EF Core</h3><p id="gfk63y_351">Le nom d'une migration doit d&eacute;crire pr&eacute;cis&eacute;ment <span class="control" id="gfk63y_357">le changement</span> apport&eacute; au sch&eacute;ma, sans avoir &agrave; lire le code.</p><section class="chapter"><h4 id="la-r-gle-d-or-verbe-sujet-propri-t" data-toc="la-r-gle-d-or-verbe-sujet-propri-t">La r&egrave;gle d'or : [Verbe] + [Sujet] + [Propri&eacute;t&eacute;]</h4><p id="gfk63y_359">Utilisez l'anglais (standard) ou le fran&ccedil;ais, mais restez coh&eacute;rent. Utilisez toujours le <span class="control" id="gfk63y_361">PascalCase</span>.</p><div class="table-wrapper"><table class="wide" id="gfk63y_360"><thead><tr class="ijRowHead" id="gfk63y_362"><th id="gfk63y_369"><p>Action</p></th><th id="gfk63y_370"><p>Mod&egrave;le de nom</p></th><th id="gfk63y_371"><p>Exemple</p></th></tr></thead><tbody><tr id="gfk63y_363"><td id="gfk63y_372"><p><span class="control" id="gfk63y_375">Cr&eacute;ation</span></p></td><td id="gfk63y_373"><p><code class="code" id="gfk63y_376">InitialCreate</code></p></td><td id="gfk63y_374"><p><code class="code" id="gfk63y_377">InitialCreate</code></p></td></tr><tr id="gfk63y_364"><td id="gfk63y_378"><p><span class="control" id="gfk63y_381">Ajouter une table</span></p></td><td id="gfk63y_379"><p><code class="code" id="gfk63y_382">Add[Table]Table</code></p></td><td id="gfk63y_380"><p><code class="code" id="gfk63y_383">AddProductsTable</code></p></td></tr><tr id="gfk63y_365"><td id="gfk63y_384"><p><span class="control" id="gfk63y_387">Ajouter une colonne</span></p></td><td id="gfk63y_385"><p><code class="code" id="gfk63y_388">Add[Champ]To[Table]</code></p></td><td id="gfk63y_386"><p><code class="code" id="gfk63y_389">AddSkuToProducts</code></p></td></tr><tr id="gfk63y_366"><td id="gfk63y_390"><p><span class="control" id="gfk63y_393">Supprimer</span></p></td><td id="gfk63y_391"><p><code class="code" id="gfk63y_394">Remove[Champ]From[Table]</code></p></td><td id="gfk63y_392"><p><code class="code" id="gfk63y_395">RemoveAgeFromUsers</code></p></td></tr><tr id="gfk63y_367"><td id="gfk63y_396"><p><span class="control" id="gfk63y_399">Modifier</span></p></td><td id="gfk63y_397"><p><code class="code" id="gfk63y_400">Update</code>/<code class="code" id="gfk63y_401">Rename</code>/<code class="code" id="gfk63y_402">Change</code></p></td><td id="gfk63y_398"><p><code class="code" id="gfk63y_403">RenameLabelToTitle</code></p></td></tr><tr id="gfk63y_368"><td id="gfk63y_404"><p><span class="control" id="gfk63y_407">Index / Cl&eacute;</span></p></td><td id="gfk63y_405"><p><code class="code" id="gfk63y_408">Add[Type]To[Table]</code></p></td><td id="gfk63y_406"><p><code class="code" id="gfk63y_409">AddUniqueIndexToEmail</code></p></td></tr></tbody></table></div></section><section class="chapter"><h4 id="viter-bad-practices" data-toc="viter-bad-practices">&Agrave; &eacute;viter (Bad Practices)</h4><ul class="list _bullet" id="gfk63y_410"><li class="list__item" id="gfk63y_411"><p id="gfk63y_414"><span class="control" id="gfk63y_415">Les noms vagues :</span> <code class="code" id="gfk63y_416">Migration1</code>, <code class="code" id="gfk63y_417">UpdateDatabase</code>, <code class="code" id="gfk63y_418">FixBug</code>, <code class="code" id="gfk63y_419">Changes</code>.</p></li><li class="list__item" id="gfk63y_412"><p id="gfk63y_420"><span class="control" id="gfk63y_421">Les noms trop longs :</span> Si vous avez plus de 4 ou 5 mots, votre migration est probablement trop complexe ( divisez-la).</p></li><li class="list__item" id="gfk63y_413"><p id="gfk63y_422"><span class="control" id="gfk63y_423">L'horodatage :</span> Inutile de mettre la date, EF Core l'ajoute automatiquement en pr&eacute;fixe du fichier.</p></li></ul></section><section class="chapter"><h4 id="principes-cl-s" data-toc="principes-cl-s">Principes cl&eacute;s</h4><ul class="list _bullet" id="gfk63y_424"><li class="list__item" id="gfk63y_425"><p id="gfk63y_427"><span class="control" id="gfk63y_428">Atomicit&eacute; :</span> Une migration doit id&eacute;alement ne concerner qu'une seule entit&eacute; ou un groupe de changements li&eacute;s.</p></li><li class="list__item" id="gfk63y_426"><p id="gfk63y_429"><span class="control" id="gfk63y_430">R&eacute;versibilit&eacute; :</span> Posez-vous la question : &quot;Le nom permet-il de savoir exactement ce qui sera annul&eacute; en cas de Rollback ?&quot;</p></li></ul></section><section class="chapter"><h4 id="astuce-correction" data-toc="astuce-correction">Astuce : Correction</h4><p id="gfk63y_431">Si vous avez nomm&eacute; une migration par erreur et qu'elle n'a pas encore &eacute;t&eacute; appliqu&eacute;e (<code class="code" id="gfk63y_434">database update</code>) :</p><div class="code-block" data-lang="bash">
+</div></li></ol></section><section class="chapter"><h3 id="bonnes-pratiques-nommer-les-migrations-ef-core" data-toc="bonnes-pratiques-nommer-les-migrations-ef-core">Bonnes pratiques : Nommer les migrations EF Core</h3><p id="gfk63y_354">Le nom d'une migration doit d&eacute;crire pr&eacute;cis&eacute;ment <span class="control" id="gfk63y_360">le changement</span> apport&eacute; au sch&eacute;ma, sans avoir &agrave; lire le code.</p><section class="chapter"><h4 id="la-r-gle-d-or-verbe-sujet-propri-t" data-toc="la-r-gle-d-or-verbe-sujet-propri-t">La r&egrave;gle d'or : [Verbe] + [Sujet] + [Propri&eacute;t&eacute;]</h4><p id="gfk63y_362">Utilisez l'anglais (standard) ou le fran&ccedil;ais, mais restez coh&eacute;rent. Utilisez toujours le <span class="control" id="gfk63y_364">PascalCase</span>.</p><div class="table-wrapper"><table class="wide" id="gfk63y_363"><thead><tr class="ijRowHead" id="gfk63y_365"><th id="gfk63y_372"><p>Action</p></th><th id="gfk63y_373"><p>Mod&egrave;le de nom</p></th><th id="gfk63y_374"><p>Exemple</p></th></tr></thead><tbody><tr id="gfk63y_366"><td id="gfk63y_375"><p><span class="control" id="gfk63y_378">Cr&eacute;ation</span></p></td><td id="gfk63y_376"><p><code class="code" id="gfk63y_379">InitialCreate</code></p></td><td id="gfk63y_377"><p><code class="code" id="gfk63y_380">InitialCreate</code></p></td></tr><tr id="gfk63y_367"><td id="gfk63y_381"><p><span class="control" id="gfk63y_384">Ajouter une table</span></p></td><td id="gfk63y_382"><p><code class="code" id="gfk63y_385">Add[Table]Table</code></p></td><td id="gfk63y_383"><p><code class="code" id="gfk63y_386">AddProductsTable</code></p></td></tr><tr id="gfk63y_368"><td id="gfk63y_387"><p><span class="control" id="gfk63y_390">Ajouter une colonne</span></p></td><td id="gfk63y_388"><p><code class="code" id="gfk63y_391">Add[Champ]To[Table]</code></p></td><td id="gfk63y_389"><p><code class="code" id="gfk63y_392">AddSkuToProducts</code></p></td></tr><tr id="gfk63y_369"><td id="gfk63y_393"><p><span class="control" id="gfk63y_396">Supprimer</span></p></td><td id="gfk63y_394"><p><code class="code" id="gfk63y_397">Remove[Champ]From[Table]</code></p></td><td id="gfk63y_395"><p><code class="code" id="gfk63y_398">RemoveAgeFromUsers</code></p></td></tr><tr id="gfk63y_370"><td id="gfk63y_399"><p><span class="control" id="gfk63y_402">Modifier</span></p></td><td id="gfk63y_400"><p><code class="code" id="gfk63y_403">Update</code>/<code class="code" id="gfk63y_404">Rename</code>/<code class="code" id="gfk63y_405">Change</code></p></td><td id="gfk63y_401"><p><code class="code" id="gfk63y_406">RenameLabelToTitle</code></p></td></tr><tr id="gfk63y_371"><td id="gfk63y_407"><p><span class="control" id="gfk63y_410">Index / Cl&eacute;</span></p></td><td id="gfk63y_408"><p><code class="code" id="gfk63y_411">Add[Type]To[Table]</code></p></td><td id="gfk63y_409"><p><code class="code" id="gfk63y_412">AddUniqueIndexToEmail</code></p></td></tr></tbody></table></div></section><section class="chapter"><h4 id="viter-bad-practices" data-toc="viter-bad-practices">&Agrave; &eacute;viter (Bad Practices)</h4><ul class="list _bullet" id="gfk63y_413"><li class="list__item" id="gfk63y_414"><p id="gfk63y_417"><span class="control" id="gfk63y_418">Les noms vagues :</span> <code class="code" id="gfk63y_419">Migration1</code>, <code class="code" id="gfk63y_420">UpdateDatabase</code>, <code class="code" id="gfk63y_421">FixBug</code>, <code class="code" id="gfk63y_422">Changes</code>.</p></li><li class="list__item" id="gfk63y_415"><p id="gfk63y_423"><span class="control" id="gfk63y_424">Les noms trop longs :</span> Si vous avez plus de 4 ou 5 mots, votre migration est probablement trop complexe ( divisez-la).</p></li><li class="list__item" id="gfk63y_416"><p id="gfk63y_425"><span class="control" id="gfk63y_426">L'horodatage :</span> Inutile de mettre la date, EF Core l'ajoute automatiquement en pr&eacute;fixe du fichier.</p></li></ul></section><section class="chapter"><h4 id="principes-cl-s" data-toc="principes-cl-s">Principes cl&eacute;s</h4><ul class="list _bullet" id="gfk63y_427"><li class="list__item" id="gfk63y_428"><p id="gfk63y_430"><span class="control" id="gfk63y_431">Atomicit&eacute; :</span> Une migration doit id&eacute;alement ne concerner qu'une seule entit&eacute; ou un groupe de changements li&eacute;s.</p></li><li class="list__item" id="gfk63y_429"><p id="gfk63y_432"><span class="control" id="gfk63y_433">R&eacute;versibilit&eacute; :</span> Posez-vous la question : &quot;Le nom permet-il de savoir exactement ce qui sera annul&eacute; en cas de Rollback ?&quot;</p></li></ul></section><section class="chapter"><h4 id="astuce-correction" data-toc="astuce-correction">Astuce : Correction</h4><p id="gfk63y_434">Si vous avez nomm&eacute; une migration par erreur et qu'elle n'a pas encore &eacute;t&eacute; appliqu&eacute;e (<code class="code" id="gfk63y_437">database update</code>) :</p><div class="code-block" data-lang="bash">
 dotnet ef migrations remove
-</div><p id="gfk63y_433"><span class="emphasis" id="gfk63y_435">Cela supprime la derni&egrave;re migration locale, vous permettant de la recr&eacute;er avec un nom correct.</span></p></section><section class="chapter"><h4 id="r-capitulatif-des-commandes-essentielles-de-migration" data-toc="r-capitulatif-des-commandes-essentielles-de-migration">R&eacute;capitulatif des Commandes essentielles de migration</h4><p id="gfk63y_436"><span class="control" id="gfk63y_449">1. Cr&eacute;er une migration</span></p><div class="code-block" data-lang="powershell">
+</div><p id="gfk63y_436"><span class="emphasis" id="gfk63y_438">Cela supprime la derni&egrave;re migration locale, vous permettant de la recr&eacute;er avec un nom correct.</span></p></section><section class="chapter"><h4 id="r-capitulatif-des-commandes-essentielles-de-migration" data-toc="r-capitulatif-des-commandes-essentielles-de-migration">R&eacute;capitulatif des Commandes essentielles de migration</h4><p id="gfk63y_439"><span class="control" id="gfk63y_452">1. Cr&eacute;er une migration</span></p><div class="code-block" data-lang="powershell">
 # Package Manager Console
 Add-Migration NomDeLaMigration
 
@@ -373,7 +384,7 @@ dotnet ef migrations add NomDeLaMigration
 Add-Migration InitialCreate
 Add-Migration AddDescriptionToProducts
 Add-Migration CreateOrdersTable
-</div><p id="gfk63y_438"><span class="control" id="gfk63y_450">2. Appliquer les migrations</span></p><div class="code-block" data-lang="powershell">
+</div><p id="gfk63y_441"><span class="control" id="gfk63y_453">2. Appliquer les migrations</span></p><div class="code-block" data-lang="powershell">
 # Package Manager Console
 Update-Database
 
@@ -385,13 +396,13 @@ Update-Database -Migration NomMigration
 
 # Revenir en arrière
 Update-Database -Migration PreviousMigration
-</div><p id="gfk63y_440"><span class="control" id="gfk63y_451">3. Supprimer la derni&egrave;re migration</span></p><div class="code-block" data-lang="powershell">
+</div><p id="gfk63y_443"><span class="control" id="gfk63y_454">3. Supprimer la derni&egrave;re migration</span></p><div class="code-block" data-lang="powershell">
 # Package Manager Console (si pas encore appliquée)
 Remove-Migration
 
 # CLI .NET
 dotnet ef migrations remove
-</div><p id="gfk63y_442"><span class="control" id="gfk63y_452">4. G&eacute;n&eacute;rer un script SQL</span></p><div class="code-block" data-lang="powershell">
+</div><p id="gfk63y_445"><span class="control" id="gfk63y_455">4. G&eacute;n&eacute;rer un script SQL</span></p><div class="code-block" data-lang="powershell">
 # Package Manager Console
 Script-Migration
 
@@ -400,10 +411,10 @@ dotnet ef migrations script
 
 # Script pour une migration spécifique
 Script-Migration -From InitialCreate -To AddDescriptionToProducts
-</div><p id="gfk63y_444"><span class="control" id="gfk63y_453">5. Lister les migrations</span></p><div class="code-block" data-lang="powershell">
+</div><p id="gfk63y_447"><span class="control" id="gfk63y_456">5. Lister les migrations</span></p><div class="code-block" data-lang="powershell">
 # CLI .NET
 dotnet ef migrations list
-</div><p id="gfk63y_446"><span class="control" id="gfk63y_454">Anatomie d'une migration :</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_449"><span class="control" id="gfk63y_457">Anatomie d'une migration :</span></p><div class="code-block" data-lang="csharp">
 // Migrations/20240209123456_AddDescriptionToProducts.cs
 public partial class AddDescriptionToProducts : Migration
 {
@@ -426,7 +437,7 @@ public partial class AddDescriptionToProducts : Migration
             table: &quot;Products&quot;);
     }
 }
-</div></section></section></section><section class="chapter"><h2 id="4-op-rations-crud-create-read-update-delete" data-toc="4-op-rations-crud-create-read-update-delete">4. Op&eacute;rations CRUD (Create, Read, Update, Delete)</h2><p id="gfk63y_455">Une fois tout en place, interagir avec la base de donn&eacute;es devient un jeu d'enfant. Tout se passe via votre instance de <code class="code" id="gfk63y_461">DbContext</code>.</p><p id="gfk63y_456"><span class="control" id="gfk63y_462">L'&eacute;tape la plus importante : <code class="code" id="gfk63y_463">SaveChanges()</code></span></p><p id="gfk63y_457">Rien de ce que vous faites n'est envoy&eacute; &agrave; la base de donn&eacute;es tant que vous n'appelez pas <code class="code" id="gfk63y_464">_context.SaveChanges()</code>. EF Core travaille avec un &quot;patron d'unit&eacute; de travail&quot;. Il suit toutes vos modifications en m&eacute;moire et, lorsque vous appelez <code class="code" id="gfk63y_465">SaveChanges()</code>, il les envoie toutes en une seule transaction efficace. C'est le bouton &quot;Enregistrer&quot; de votre session de travail.</p><div class="code-block" data-lang="csharp">
+</div></section></section></section><section class="chapter"><h2 id="4-op-rations-crud-create-read-update-delete" data-toc="4-op-rations-crud-create-read-update-delete">4. Op&eacute;rations CRUD (Create, Read, Update, Delete)</h2><p id="gfk63y_458">Une fois tout en place, interagir avec la base de donn&eacute;es devient un jeu d'enfant. Tout se passe via votre instance de <code class="code" id="gfk63y_464">DbContext</code>.</p><p id="gfk63y_459"><span class="control" id="gfk63y_465">L'&eacute;tape la plus importante : <code class="code" id="gfk63y_466">SaveChanges()</code></span></p><p id="gfk63y_460">Rien de ce que vous faites n'est envoy&eacute; &agrave; la base de donn&eacute;es tant que vous n'appelez pas <code class="code" id="gfk63y_467">_context.SaveChanges()</code>. EF Core travaille avec un &quot;patron d'unit&eacute; de travail&quot;. Il suit toutes vos modifications en m&eacute;moire et, lorsque vous appelez <code class="code" id="gfk63y_468">SaveChanges()</code>, il les envoie toutes en une seule transaction efficace. C'est le bouton &quot;Enregistrer&quot; de votre session de travail.</p><div class="code-block" data-lang="csharp">
 // Exemple d'utilisation dans un dépôt
 public class EfProductRepository : IProductRepository
 {
@@ -475,7 +486,7 @@ public class EfProductRepository : IProductRepository
         }
     }
 }
-</div><section class="chapter"><h3 id="liste-des-op-rations-du-crud" data-toc="liste-des-op-rations-du-crud">Liste des op&eacute;rations du CRUD</h3><section class="chapter"><h4 id="4-1-create-ajouter-des-donn-es" data-toc="4-1-create-ajouter-des-donn-es">4.1 Create - Ajouter des Donn&eacute;es</h4><p id="gfk63y_470"><span class="control" id="gfk63y_479">M&eacute;thodes pour ajouter :</span></p><p id="gfk63y_471"><span class="control" id="gfk63y_480">1. Add() pour une entit&eacute;</span></p><div class="code-block" data-lang="csharp">
+</div><section class="chapter"><h3 id="liste-des-op-rations-du-crud" data-toc="liste-des-op-rations-du-crud">Liste des op&eacute;rations du CRUD</h3><section class="chapter"><h4 id="4-1-create-ajouter-des-donn-es" data-toc="4-1-create-ajouter-des-donn-es">4.1 Create - Ajouter des Donn&eacute;es</h4><p id="gfk63y_473"><span class="control" id="gfk63y_482">M&eacute;thodes pour ajouter :</span></p><p id="gfk63y_474"><span class="control" id="gfk63y_483">1. Add() pour une entit&eacute;</span></p><div class="code-block" data-lang="csharp">
 public void AddProduct(Product product)
 {
     // 1. Ajouter au contexte (en mémoire)
@@ -497,7 +508,7 @@ _context.SaveChanges();
 
 // L'Id est maintenant rempli automatiquement
 Console.WriteLine($&quot;Produit créé avec Id: {newProduct.Id}&quot;);
-</div><p id="gfk63y_473"><span class="control" id="gfk63y_481">2. AddRange() pour plusieurs entit&eacute;s</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_476"><span class="control" id="gfk63y_484">2. AddRange() pour plusieurs entit&eacute;s</span></p><div class="code-block" data-lang="csharp">
 var products = new List&lt;Product&gt;
 {
     new Product { Name = &quot;Mouse&quot;, Price = 29.99m, Stock = 50 },
@@ -507,13 +518,13 @@ var products = new List&lt;Product&gt;
 
 _context.Products.AddRange(products);
 _context.SaveChanges();
-</div><p id="gfk63y_475"><span class="control" id="gfk63y_482">3. Version asynchrone (recommand&eacute;e)</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_478"><span class="control" id="gfk63y_485">3. Version asynchrone (recommand&eacute;e)</span></p><div class="code-block" data-lang="csharp">
 public async Task AddProductAsync(Product product)
 {
     await _context.Products.AddAsync(product);
     await _context.SaveChangesAsync();
 }
-</div><p id="gfk63y_477"><span class="control" id="gfk63y_483">&Eacute;tats des entit&eacute;s :</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_480"><span class="control" id="gfk63y_486">&Eacute;tats des entit&eacute;s :</span></p><div class="code-block" data-lang="csharp">
 // État initial
 var product = new Product { Name = &quot;Test&quot; };
 // État: Detached (non suivi)
@@ -523,7 +534,7 @@ _context.Products.Add(product);
 
 _context.SaveChanges();
 // État: Unchanged (synchronisé avec la base)
-</div></section><section class="chapter"><h4 id="4-2-read-lire-des-donn-es" data-toc="4-2-read-lire-des-donn-es">4.2 Read - Lire des Donn&eacute;es</h4><p id="gfk63y_484"><span class="control" id="gfk63y_497">M&eacute;thodes de lecture :</span></p><p id="gfk63y_485"><span class="control" id="gfk63y_498">1. R&eacute;cup&eacute;rer tout</span></p><div class="code-block" data-lang="csharp">
+</div></section><section class="chapter"><h4 id="4-2-read-lire-des-donn-es" data-toc="4-2-read-lire-des-donn-es">4.2 Read - Lire des Donn&eacute;es</h4><p id="gfk63y_487"><span class="control" id="gfk63y_500">M&eacute;thodes de lecture :</span></p><p id="gfk63y_488"><span class="control" id="gfk63y_501">1. R&eacute;cup&eacute;rer tout</span></p><div class="code-block" data-lang="csharp">
 // ⚠️ Attention : charge TOUT en mémoire
 var allProducts = _context.Products.ToList();
 
@@ -531,14 +542,14 @@ var allProducts = _context.Products.ToList();
 var activeProducts = _context.Products
     .Where(p =&gt; p.Stock &gt; 0)
     .ToList();
-</div><p id="gfk63y_487"><span class="control" id="gfk63y_499">2. R&eacute;cup&eacute;rer par cl&eacute; primaire (Find)</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_490"><span class="control" id="gfk63y_502">2. R&eacute;cup&eacute;rer par cl&eacute; primaire (Find)</span></p><div class="code-block" data-lang="csharp">
 // ✅ Optimisé : cherche d'abord dans le cache
 var product = _context.Products.Find(5);
 
 // Équivalent mais moins optimisé
 var product = _context.Products
     .FirstOrDefault(p =&gt; p.Id == 5);
-</div><p id="gfk63y_489"><span class="control" id="gfk63y_500">3. Requ&ecirc;tes avec conditions</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_492"><span class="control" id="gfk63y_503">3. Requ&ecirc;tes avec conditions</span></p><div class="code-block" data-lang="csharp">
 // Premier élément qui correspond
 var firstExpensive = _context.Products
     .FirstOrDefault(p =&gt; p.Price &gt; 100);
@@ -555,7 +566,7 @@ bool hasExpensive = _context.Products
 int productCount = _context.Products.Count();
 int expensiveCount = _context.Products
     .Count(p =&gt; p.Price &gt; 100);
-</div><p id="gfk63y_491"><span class="control" id="gfk63y_501">4. Projection (Select)</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_494"><span class="control" id="gfk63y_504">4. Projection (Select)</span></p><div class="code-block" data-lang="csharp">
 // Ne récupérer que certaines colonnes
 var productNames = _context.Products
     .Select(p =&gt; p.Name)
@@ -579,7 +590,7 @@ var productDtos = _context.Products
         Price = p.Price
     })
     .ToList();
-</div><p id="gfk63y_493"><span class="control" id="gfk63y_502">5. Tri et pagination</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_496"><span class="control" id="gfk63y_505">5. Tri et pagination</span></p><div class="code-block" data-lang="csharp">
 // Tri
 var sortedProducts = _context.Products
     .OrderBy(p =&gt; p.Price)
@@ -599,7 +610,7 @@ var pagedProducts = _context.Products
     .Skip((pageNumber - 1) * pageSize)
     .Take(pageSize)
     .ToList();
-</div><p id="gfk63y_495"><span class="control" id="gfk63y_503">6. Chargement de relations</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_498"><span class="control" id="gfk63y_506">6. Chargement de relations</span></p><div class="code-block" data-lang="csharp">
 // Eager Loading (chargement immédiat)
 var products = _context.Products
     .Include(p =&gt; p.Category)
@@ -622,7 +633,7 @@ var product = _context.Products.Find(1);
 _context.Entry(product)
     .Reference(p =&gt; p.Category)
     .Load();
-</div></section><section class="chapter"><h4 id="4-3-update-modifier-des-donn-es" data-toc="4-3-update-modifier-des-donn-es">4.3 Update - Modifier des Donn&eacute;es</h4><p id="gfk63y_504"><span class="control" id="gfk63y_512">M&eacute;thode 1 : Charger puis modifier</span></p><div class="code-block" data-lang="csharp">
+</div></section><section class="chapter"><h4 id="4-3-update-modifier-des-donn-es" data-toc="4-3-update-modifier-des-donn-es">4.3 Update - Modifier des Donn&eacute;es</h4><p id="gfk63y_507"><span class="control" id="gfk63y_515">M&eacute;thode 1 : Charger puis modifier</span></p><div class="code-block" data-lang="csharp">
 // 1. Charger l'entité
 var product = _context.Products.Find(5);
 
@@ -635,7 +646,7 @@ if (product != null)
     // 3. Sauvegarder (UPDATE automatique)
     _context.SaveChanges();
 }
-</div><p id="gfk63y_506"><span class="control" id="gfk63y_513">M&eacute;thode 2 : Update() direct</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_509"><span class="control" id="gfk63y_516">M&eacute;thode 2 : Update() direct</span></p><div class="code-block" data-lang="csharp">
 // Quand on a déjà l'objet complet
 var product = new Product
 {
@@ -650,7 +661,7 @@ _context.Products.Update(product);
 _context.SaveChanges();
 
 // ⚠️ Met à jour TOUTES les colonnes
-</div><p id="gfk63y_508"><span class="control" id="gfk63y_514">M&eacute;thode 3 : Modification partielle</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_511"><span class="control" id="gfk63y_517">M&eacute;thode 3 : Modification partielle</span></p><div class="code-block" data-lang="csharp">
 // Ne modifier que certaines propriétés
 var product = _context.Products.Find(5);
 product.Price = 149.99m;
@@ -658,7 +669,7 @@ product.Price = 149.99m;
 // Ou via Entry
 _context.Entry(product).Property(p =&gt; p.Price).IsModified = true;
 _context.SaveChanges();
-</div><p id="gfk63y_510"><span class="control" id="gfk63y_515">UpdateRange() pour plusieurs :</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_513"><span class="control" id="gfk63y_518">UpdateRange() pour plusieurs :</span></p><div class="code-block" data-lang="csharp">
 var products = _context.Products
     .Where(p =&gt; p.Stock &lt; 10)
     .ToList();
@@ -670,7 +681,7 @@ foreach (var product in products)
 
 _context.UpdateRange(products);
 _context.SaveChanges();
-</div></section><section class="chapter"><h4 id="4-4-delete-supprimer-des-donn-es" data-toc="4-4-delete-supprimer-des-donn-es">4.4 Delete - Supprimer des Donn&eacute;es</h4><p id="gfk63y_516"><span class="control" id="gfk63y_524">M&eacute;thode 1 : Charger puis supprimer</span></p><div class="code-block" data-lang="csharp">
+</div></section><section class="chapter"><h4 id="4-4-delete-supprimer-des-donn-es" data-toc="4-4-delete-supprimer-des-donn-es">4.4 Delete - Supprimer des Donn&eacute;es</h4><p id="gfk63y_519"><span class="control" id="gfk63y_527">M&eacute;thode 1 : Charger puis supprimer</span></p><div class="code-block" data-lang="csharp">
 var product = _context.Products.Find(5);
 
 if (product != null)
@@ -678,7 +689,7 @@ if (product != null)
     _context.Products.Remove(product);
     _context.SaveChanges();
 }
-</div><p id="gfk63y_518"><span class="control" id="gfk63y_525">M&eacute;thode 2 : Suppression sans chargement</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_521"><span class="control" id="gfk63y_528">M&eacute;thode 2 : Suppression sans chargement</span></p><div class="code-block" data-lang="csharp">
 // Créer une entité avec juste l'Id
 var product = new Product { Id = 5 };
 
@@ -686,14 +697,14 @@ var product = new Product { Id = 5 };
 _context.Products.Attach(product);
 _context.Products.Remove(product);
 _context.SaveChanges();
-</div><p id="gfk63y_520"><span class="control" id="gfk63y_526">RemoveRange() pour plusieurs :</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_523"><span class="control" id="gfk63y_529">RemoveRange() pour plusieurs :</span></p><div class="code-block" data-lang="csharp">
 var oldProducts = _context.Products
     .Where(p =&gt; p.CreatedAt &lt; DateTime.Now.AddYears(-5))
     .ToList();
 
 _context.Products.RemoveRange(oldProducts);
 _context.SaveChanges();
-</div><p id="gfk63y_522"><span class="control" id="gfk63y_527">Soft Delete (suppression logique) :</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_525"><span class="control" id="gfk63y_530">Soft Delete (suppression logique) :</span></p><div class="code-block" data-lang="csharp">
 // Ajouter une propriété
 public class Product
 {
@@ -709,7 +720,7 @@ _context.SaveChanges();
 var activeProducts = _context.Products
     .Where(p =&gt; !p.IsDeleted)
     .ToList();
-</div></section></section><section class="chapter"><h3 id="exercice-2-impl-menter-la-suppression" data-toc="exercice-2-impl-menter-la-suppression">Exercice 2 : Impl&eacute;menter la suppression</h3><p id="gfk63y_528">Dans le code ci-dessus, l'impl&eacute;mentation de <code class="code" id="gfk63y_530">Delete</code> est d&eacute;j&agrave; fournie. Votre t&acirc;che est d'ajouter une action <code class="code" id="gfk63y_531">Delete(int id)</code> (POST) et une vue <code class="code" id="gfk63y_532">Delete.cshtml</code> &agrave; votre <code class="code" id="gfk63y_533">ProductsController</code> pour permettre &agrave; un utilisateur de supprimer un produit. La vue doit afficher les d&eacute;tails du produit et demander confirmation.</p><section class="chapter"><div class="collapse"><div class="collapse__title"><h4 id="correction-exercice-2" data-toc="correction-exercice-2">Correction exercice 2</h4></div><div class="collapse__content"><p id="gfk63y_534"><span class="control" id="gfk63y_539"><code class="code" id="gfk63y_540">Controllers/ProductsController.cs</code></span></p><div class="code-block" data-lang="csharp">
+</div></section></section><section class="chapter"><h3 id="exercice-2-impl-menter-la-suppression" data-toc="exercice-2-impl-menter-la-suppression">Exercice 2 : Impl&eacute;menter la suppression</h3><p id="gfk63y_531">Dans le code ci-dessus, l'impl&eacute;mentation de <code class="code" id="gfk63y_533">Delete</code> est d&eacute;j&agrave; fournie. Votre t&acirc;che est d'ajouter une action <code class="code" id="gfk63y_534">Delete(int id)</code> (POST) et une vue <code class="code" id="gfk63y_535">Delete.cshtml</code> &agrave; votre <code class="code" id="gfk63y_536">ProductsController</code> pour permettre &agrave; un utilisateur de supprimer un produit. La vue doit afficher les d&eacute;tails du produit et demander confirmation.</p><section class="chapter"><div class="collapse"><div class="collapse__title"><h4 id="correction-exercice-2" data-toc="correction-exercice-2">Correction exercice 2</h4></div><div class="collapse__content"><p id="gfk63y_537"><span class="control" id="gfk63y_542"><code class="code" id="gfk63y_543">Controllers/ProductsController.cs</code></span></p><div class="code-block" data-lang="csharp">
 // GET: Products/Delete/5
 public IActionResult Delete(int id)
 {
@@ -729,7 +740,7 @@ public IActionResult DeleteConfirmed(int id)
     _repository.Delete(id);
     return RedirectToAction(nameof(Index));
 }
-</div><p id="gfk63y_536"><span class="control" id="gfk63y_541"><code class="code" id="gfk63y_542">Views/Products/Delete.cshtml</code></span></p><div class="code-block" data-lang="markup">
+</div><p id="gfk63y_539"><span class="control" id="gfk63y_544"><code class="code" id="gfk63y_545">Views/Products/Delete.cshtml</code></span></p><div class="code-block" data-lang="markup">
 @model MonAppMvc.Models.Product
 
 @{ ViewData[&quot;Title&quot;] = &quot;Supprimer&quot;; }
@@ -750,7 +761,7 @@ public IActionResult DeleteConfirmed(int id)
         &lt;a asp-action=&quot;Index&quot;&gt;Retour à la liste&lt;/a&gt;
     &lt;/form&gt;
 &lt;/div&gt;
-</div></div></div></section></section></section><section class="chapter"><h2 id="5-requ-tage-avec-linq" data-toc="5-requ-tage-avec-linq">5. Requ&ecirc;tage avec LINQ</h2><p id="gfk63y_543">C'est l&agrave; que la magie op&egrave;re. Au lieu d'&eacute;crire du SQL, vous &eacute;crivez des requ&ecirc;tes en utilisant <span class="control" id="gfk63y_548">LINQ (Language-Integrated Query)</span>, une fonctionnalit&eacute; de C#. EF Core traduit ce C# en SQL optimis&eacute; pour vous.</p><div class="code-block" data-lang="csharp">
+</div></div></div></section></section></section><section class="chapter"><h2 id="5-requ-tage-avec-linq" data-toc="5-requ-tage-avec-linq">5. Requ&ecirc;tage avec LINQ</h2><p id="gfk63y_546">C'est l&agrave; que la magie op&egrave;re. Au lieu d'&eacute;crire du SQL, vous &eacute;crivez des requ&ecirc;tes en utilisant <span class="control" id="gfk63y_551">LINQ (Language-Integrated Query)</span>, une fonctionnalit&eacute; de C#. EF Core traduit ce C# en SQL optimis&eacute; pour vous.</p><div class="code-block" data-lang="csharp">
 // Obtenir tous les produits de plus de 50€, triés par nom
 var expensiveProducts = _context.Products
     .Where(p =&gt; p.Price &gt; 50)
@@ -761,7 +772,7 @@ var expensiveProducts = _context.Products
 var productNamesAndPrices = _context.Products
     .Select(p =&gt; new { p.Name, p.Price })
     .ToList();
-</div><section class="chapter"><h3 id="5-1-op-rateurs-essentiels" data-toc="5-1-op-rateurs-essentiels">5.1 Op&eacute;rateurs essentiels</h3><p id="gfk63y_549"><span class="control" id="gfk63y_561">1. Filtrage</span></p><div class="code-block" data-lang="csharp">
+</div><section class="chapter"><h3 id="5-1-op-rateurs-essentiels" data-toc="5-1-op-rateurs-essentiels">5.1 Op&eacute;rateurs essentiels</h3><p id="gfk63y_552"><span class="control" id="gfk63y_564">1. Filtrage</span></p><div class="code-block" data-lang="csharp">
 // Where
 var filtered = _context.Products
     .Where(p =&gt; p.Price &gt; 50 &amp;&amp; p.Stock &gt; 0);
@@ -771,7 +782,7 @@ var complex = _context.Products
     .Where(p =&gt; p.Price &gt; 50)
     .Where(p =&gt; p.Stock &gt; 0)
     .Where(p =&gt; p.Name.Contains(&quot;Laptop&quot;));
-</div><p id="gfk63y_551"><span class="control" id="gfk63y_562">2. Tri</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_554"><span class="control" id="gfk63y_565">2. Tri</span></p><div class="code-block" data-lang="csharp">
 // OrderBy, OrderByDescending
 var sorted = _context.Products
     .OrderBy(p =&gt; p.Price);
@@ -781,7 +792,7 @@ var multiSort = _context.Products
     .OrderBy(p =&gt; p.Category.Name)
     .ThenByDescending(p =&gt; p.Price)
     .ThenBy(p =&gt; p.Name);
-</div><p id="gfk63y_553"><span class="control" id="gfk63y_563">3. Projection</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_556"><span class="control" id="gfk63y_566">3. Projection</span></p><div class="code-block" data-lang="csharp">
 // Select
 var names = _context.Products
     .Select(p =&gt; p.Name);
@@ -793,7 +804,7 @@ var dtos = _context.Products
         Price = p.Price,
         CategoryName = p.Category.Name
     });
-</div><p id="gfk63y_555"><span class="control" id="gfk63y_564">4. Agr&eacute;gation</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_558"><span class="control" id="gfk63y_567">4. Agr&eacute;gation</span></p><div class="code-block" data-lang="csharp">
 // Count
 int count = _context.Products.Count();
 int expensiveCount = _context.Products.Count(p =&gt; p.Price &gt; 100);
@@ -807,7 +818,7 @@ decimal avgPrice = _context.Products.Average(p =&gt; p.Price);
 // Min, Max
 decimal minPrice = _context.Products.Min(p =&gt; p.Price);
 decimal maxPrice = _context.Products.Max(p =&gt; p.Price);
-</div><p id="gfk63y_557"><span class="control" id="gfk63y_565">5. Groupement</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_560"><span class="control" id="gfk63y_568">5. Groupement</span></p><div class="code-block" data-lang="csharp">
 // GroupBy
 var grouped = _context.Products
     .GroupBy(p =&gt; p.CategoryId)
@@ -818,7 +829,7 @@ var grouped = _context.Products
         TotalValue = g.Sum(p =&gt; p.Price * p.Stock)
     })
     .ToList();
-</div><p id="gfk63y_559"><span class="control" id="gfk63y_566">6. Jointures</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_562"><span class="control" id="gfk63y_569">6. Jointures</span></p><div class="code-block" data-lang="csharp">
 // Join explicite (rarement nécessaire avec EF)
 var joined = _context.Products
     .Join(
@@ -836,7 +847,7 @@ var joined = _context.Products
 var products = _context.Products
     .Include(p =&gt; p.Category)
     .ToList();
-</div></section><section class="chapter"><h3 id="5-2-ex-cution-diff-r-e-vs-imm-diate" data-toc="5-2-ex-cution-diff-r-e-vs-imm-diate">5.2 Ex&eacute;cution Diff&eacute;r&eacute;e vs. Imm&eacute;diate</h3><p id="gfk63y_567">C'est un concept crucial. Une requ&ecirc;te LINQ n'est <span class="control" id="gfk63y_576">pas</span> ex&eacute;cut&eacute;e tant que vous ne &quot;consommez&quot; pas les r&eacute;sultats.</p><ul class="list _bullet" id="gfk63y_568"><li class="list__item" id="gfk63y_577"><p id="gfk63y_579"><span class="control" id="gfk63y_581">Diff&eacute;r&eacute;e :</span> <code class="code" id="gfk63y_582">var query = _context.Products.Where(p =&gt; p.Stock &lt; 10);</code></p><ul class="list _bullet" id="gfk63y_580"><li class="list__item" id="gfk63y_583"><p id="gfk63y_584">&Agrave; ce stade, <span class="control" id="gfk63y_585">aucune requ&ecirc;te n'a &eacute;t&eacute; envoy&eacute;e &agrave; la base de donn&eacute;es</span>. Vous avez juste construit un plan de requ&ecirc;te.</p></li></ul></li><li class="list__item" id="gfk63y_578"><p id="gfk63y_586"><span class="control" id="gfk63y_588">Imm&eacute;diate :</span> <code class="code" id="gfk63y_589">var lowStockProducts = query.ToList();</code></p><ul class="list _bullet" id="gfk63y_587"><li class="list__item" id="gfk63y_590"><p id="gfk63y_591">C'est l'appel &agrave; <code class="code" id="gfk63y_592">.ToList()</code> (ou <code class="code" id="gfk63y_593">.FirstOrDefault()</code>, <code class="code" id="gfk63y_594">.Count()</code>, etc.) qui d&eacute;clenche l'envoi de la requ&ecirc;te SQL &agrave; la base et la r&eacute;cup&eacute;ration des donn&eacute;es.</p></li></ul></li></ul><p id="gfk63y_569">Cette ex&eacute;cution diff&eacute;r&eacute;e permet &agrave; EF Core de construire des requ&ecirc;tes SQL tr&egrave;s complexes et optimis&eacute;es en encha&icirc;nant les appels LINQ.</p><p id="gfk63y_570"><span class="control" id="gfk63y_595">M&eacute;thodes qui forcent l'ex&eacute;cution imm&eacute;diate :</span></p><div class="table-wrapper"><table class="wide" id="gfk63y_571"><thead><tr class="ijRowHead" id="gfk63y_596"><th id="gfk63y_605"><p>M&eacute;thode</p></th><th id="gfk63y_606"><p>Retourne</p></th><th id="gfk63y_607"><p>Quand utiliser</p></th></tr></thead><tbody><tr id="gfk63y_597"><td id="gfk63y_608"><p><code class="code" id="gfk63y_611">ToList()</code></p></td><td id="gfk63y_609"><p><code class="code" id="gfk63y_612">List&lt;T&gt;</code></p></td><td id="gfk63y_610"><p>Tout charger en m&eacute;moire</p></td></tr><tr id="gfk63y_598"><td id="gfk63y_613"><p><code class="code" id="gfk63y_616">ToArray()</code></p></td><td id="gfk63y_614"><p><code class="code" id="gfk63y_617">T[]</code></p></td><td id="gfk63y_615"><p>Array n&eacute;cessaire</p></td></tr><tr id="gfk63y_599"><td id="gfk63y_618"><p><code class="code" id="gfk63y_621">ToDictionary()</code></p></td><td id="gfk63y_619"><p><code class="code" id="gfk63y_622">Dictionary&lt;K,V&gt;</code></p></td><td id="gfk63y_620"><p>Lookup rapide</p></td></tr><tr id="gfk63y_600"><td id="gfk63y_623"><p><code class="code" id="gfk63y_626">FirstOrDefault()</code></p></td><td id="gfk63y_624"><p><code class="code" id="gfk63y_627">T</code></p></td><td id="gfk63y_625"><p>Premier &eacute;l&eacute;ment</p></td></tr><tr id="gfk63y_601"><td id="gfk63y_628"><p><code class="code" id="gfk63y_631">SingleOrDefault()</code></p></td><td id="gfk63y_629"><p><code class="code" id="gfk63y_632">T</code></p></td><td id="gfk63y_630"><p>&Eacute;l&eacute;ment unique</p></td></tr><tr id="gfk63y_602"><td id="gfk63y_633"><p><code class="code" id="gfk63y_636">Count()</code></p></td><td id="gfk63y_634"><p><code class="code" id="gfk63y_637">int</code></p></td><td id="gfk63y_635"><p>Compter</p></td></tr><tr id="gfk63y_603"><td id="gfk63y_638"><p><code class="code" id="gfk63y_641">Any()</code></p></td><td id="gfk63y_639"><p><code class="code" id="gfk63y_642">bool</code></p></td><td id="gfk63y_640"><p>V&eacute;rifier existence</p></td></tr><tr id="gfk63y_604"><td id="gfk63y_643"><p><code class="code" id="gfk63y_646">Sum()</code>, <code class="code" id="gfk63y_647">Max()</code>, etc.</p></td><td id="gfk63y_644"><p>Valeur</p></td><td id="gfk63y_645"><p>Agr&eacute;gation</p></td></tr></tbody></table></div><p id="gfk63y_572"><span class="control" id="gfk63y_648">IQueryable vs IEnumerable :</span></p><div class="code-block" data-lang="csharp">
+</div></section><section class="chapter"><h3 id="5-2-ex-cution-diff-r-e-vs-imm-diate" data-toc="5-2-ex-cution-diff-r-e-vs-imm-diate">5.2 Ex&eacute;cution Diff&eacute;r&eacute;e vs. Imm&eacute;diate</h3><p id="gfk63y_570">C'est un concept crucial. Une requ&ecirc;te LINQ n'est <span class="control" id="gfk63y_579">pas</span> ex&eacute;cut&eacute;e tant que vous ne &quot;consommez&quot; pas les r&eacute;sultats.</p><ul class="list _bullet" id="gfk63y_571"><li class="list__item" id="gfk63y_580"><p id="gfk63y_582"><span class="control" id="gfk63y_584">Diff&eacute;r&eacute;e :</span> <code class="code" id="gfk63y_585">var query = _context.Products.Where(p =&gt; p.Stock &lt; 10);</code></p><ul class="list _bullet" id="gfk63y_583"><li class="list__item" id="gfk63y_586"><p id="gfk63y_587">&Agrave; ce stade, <span class="control" id="gfk63y_588">aucune requ&ecirc;te n'a &eacute;t&eacute; envoy&eacute;e &agrave; la base de donn&eacute;es</span>. Vous avez juste construit un plan de requ&ecirc;te.</p></li></ul></li><li class="list__item" id="gfk63y_581"><p id="gfk63y_589"><span class="control" id="gfk63y_591">Imm&eacute;diate :</span> <code class="code" id="gfk63y_592">var lowStockProducts = query.ToList();</code></p><ul class="list _bullet" id="gfk63y_590"><li class="list__item" id="gfk63y_593"><p id="gfk63y_594">C'est l'appel &agrave; <code class="code" id="gfk63y_595">.ToList()</code> (ou <code class="code" id="gfk63y_596">.FirstOrDefault()</code>, <code class="code" id="gfk63y_597">.Count()</code>, etc.) qui d&eacute;clenche l'envoi de la requ&ecirc;te SQL &agrave; la base et la r&eacute;cup&eacute;ration des donn&eacute;es.</p></li></ul></li></ul><p id="gfk63y_572">Cette ex&eacute;cution diff&eacute;r&eacute;e permet &agrave; EF Core de construire des requ&ecirc;tes SQL tr&egrave;s complexes et optimis&eacute;es en encha&icirc;nant les appels LINQ.</p><p id="gfk63y_573"><span class="control" id="gfk63y_598">M&eacute;thodes qui forcent l'ex&eacute;cution imm&eacute;diate :</span></p><div class="table-wrapper"><table class="wide" id="gfk63y_574"><thead><tr class="ijRowHead" id="gfk63y_599"><th id="gfk63y_608"><p>M&eacute;thode</p></th><th id="gfk63y_609"><p>Retourne</p></th><th id="gfk63y_610"><p>Quand utiliser</p></th></tr></thead><tbody><tr id="gfk63y_600"><td id="gfk63y_611"><p><code class="code" id="gfk63y_614">ToList()</code></p></td><td id="gfk63y_612"><p><code class="code" id="gfk63y_615">List&lt;T&gt;</code></p></td><td id="gfk63y_613"><p>Tout charger en m&eacute;moire</p></td></tr><tr id="gfk63y_601"><td id="gfk63y_616"><p><code class="code" id="gfk63y_619">ToArray()</code></p></td><td id="gfk63y_617"><p><code class="code" id="gfk63y_620">T[]</code></p></td><td id="gfk63y_618"><p>Array n&eacute;cessaire</p></td></tr><tr id="gfk63y_602"><td id="gfk63y_621"><p><code class="code" id="gfk63y_624">ToDictionary()</code></p></td><td id="gfk63y_622"><p><code class="code" id="gfk63y_625">Dictionary&lt;K,V&gt;</code></p></td><td id="gfk63y_623"><p>Lookup rapide</p></td></tr><tr id="gfk63y_603"><td id="gfk63y_626"><p><code class="code" id="gfk63y_629">FirstOrDefault()</code></p></td><td id="gfk63y_627"><p><code class="code" id="gfk63y_630">T</code></p></td><td id="gfk63y_628"><p>Premier &eacute;l&eacute;ment</p></td></tr><tr id="gfk63y_604"><td id="gfk63y_631"><p><code class="code" id="gfk63y_634">SingleOrDefault()</code></p></td><td id="gfk63y_632"><p><code class="code" id="gfk63y_635">T</code></p></td><td id="gfk63y_633"><p>&Eacute;l&eacute;ment unique</p></td></tr><tr id="gfk63y_605"><td id="gfk63y_636"><p><code class="code" id="gfk63y_639">Count()</code></p></td><td id="gfk63y_637"><p><code class="code" id="gfk63y_640">int</code></p></td><td id="gfk63y_638"><p>Compter</p></td></tr><tr id="gfk63y_606"><td id="gfk63y_641"><p><code class="code" id="gfk63y_644">Any()</code></p></td><td id="gfk63y_642"><p><code class="code" id="gfk63y_645">bool</code></p></td><td id="gfk63y_643"><p>V&eacute;rifier existence</p></td></tr><tr id="gfk63y_607"><td id="gfk63y_646"><p><code class="code" id="gfk63y_649">Sum()</code>, <code class="code" id="gfk63y_650">Max()</code>, etc.</p></td><td id="gfk63y_647"><p>Valeur</p></td><td id="gfk63y_648"><p>Agr&eacute;gation</p></td></tr></tbody></table></div><p id="gfk63y_575"><span class="control" id="gfk63y_651">IQueryable vs IEnumerable :</span></p><div class="code-block" data-lang="csharp">
 // ✅ IQueryable : Filtrage côté base de données
 IQueryable&lt;Product&gt; query = _context.Products;
 query = query.Where(p =&gt; p.Price &gt; 50); // SQL WHERE
@@ -846,7 +857,7 @@ var results = query.ToList(); // SQL exécuté avec WHERE
 IEnumerable&lt;Product&gt; enumerable = _context.Products.ToList(); // Charge TOUT
 enumerable = enumerable.Where(p =&gt; p.Price &gt; 50); // Filtre en mémoire
 var results = enumerable.ToList();
-</div><p id="gfk63y_574"><span class="control" id="gfk63y_649">Pi&egrave;ge courant :</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_577"><span class="control" id="gfk63y_652">Pi&egrave;ge courant :</span></p><div class="code-block" data-lang="csharp">
 // Mauvais : N+1 queries
 var products = _context.Products.ToList(); // 1 query
 foreach (var product in products)
@@ -858,7 +869,7 @@ foreach (var product in products)
 var products = _context.Products
     .Include(p =&gt; p.Category)
     .ToList(); // 1 query
-</div></section><section class="chapter"><h3 id="5-3-requ-tes-avanc-es" data-toc="5-3-requ-tes-avanc-es">5.3 Requ&ecirc;tes Avanc&eacute;es</h3><p id="gfk63y_650"><span class="control" id="gfk63y_659">1. Recherche textuelle</span></p><div class="code-block" data-lang="csharp">
+</div></section><section class="chapter"><h3 id="5-3-requ-tes-avanc-es" data-toc="5-3-requ-tes-avanc-es">5.3 Requ&ecirc;tes Avanc&eacute;es</h3><p id="gfk63y_653"><span class="control" id="gfk63y_662">1. Recherche textuelle</span></p><div class="code-block" data-lang="csharp">
 // Contient
 var laptops = _context.Products
     .Where(p =&gt; p.Name.Contains(&quot;Laptop&quot;))
@@ -874,7 +885,7 @@ var search = &quot;laptop&quot;;
 var results = _context.Products
     .Where(p =&gt; EF.Functions.Like(p.Name, $&quot;%{search}%&quot;))
     .ToList();
-</div><p id="gfk63y_652"><span class="control" id="gfk63y_660">2. Dates</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_655"><span class="control" id="gfk63y_663">2. Dates</span></p><div class="code-block" data-lang="csharp">
 // Produits créés aujourd'hui
 var today = DateTime.Today;
 var todayProducts = _context.Products
@@ -886,7 +897,7 @@ var thisMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 var monthProducts = _context.Products
     .Where(p =&gt; p.CreatedAt &gt;= thisMonth)
     .ToList();
-</div><p id="gfk63y_654"><span class="control" id="gfk63y_661">3. Sous-requ&ecirc;tes</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_657"><span class="control" id="gfk63y_664">3. Sous-requ&ecirc;tes</span></p><div class="code-block" data-lang="csharp">
 // Produits des catégories qui ont plus de 10 produits
 var popularCategories = _context.Categories
     .Where(c =&gt; c.Products.Count() &gt; 10)
@@ -896,7 +907,7 @@ var popularCategories = _context.Categories
 var unsoldProducts = _context.Products
     .Where(p =&gt; !p.Orders.Any())
     .ToList();
-</div><p id="gfk63y_656"><span class="control" id="gfk63y_662">4. SQL brut (si n&eacute;cessaire)</span></p><div class="code-block" data-lang="csharp">
+</div><p id="gfk63y_659"><span class="control" id="gfk63y_665">4. SQL brut (si n&eacute;cessaire)</span></p><div class="code-block" data-lang="csharp">
 // FromSqlRaw pour requêtes complexes
 var products = _context.Products
     .FromSqlRaw(&quot;SELECT * FROM Products WHERE Price &gt; {0}&quot;, 50)
@@ -914,11 +925,11 @@ var filtered = _context.Products
     .Where(p =&gt; p.Price &gt; 100)
     .OrderBy(p =&gt; p.Name)
     .ToList();
-</div></section></section><section class="chapter"><h2 id="tp-remplacer-le-d-p-t-en-m-moire-par-ef-core" data-toc="tp-remplacer-le-d-p-t-en-m-moire-par-ef-core">TP : Remplacer le d&eacute;p&ocirc;t en m&eacute;moire par EF Core</h2><p id="gfk63y_663">Le moment est venu. Nous allons prendre notre projet de gestion de produits et remplacer son d&eacute;p&ocirc;t en m&eacute;moire par un vrai d&eacute;p&ocirc;t qui utilise une base de donn&eacute;es SQL Server LocalDB.</p><section class="procedure-steps" id="gfk63y_664"><ol class="list _decimal"><li class="list__item" id="gfk63y_666"><p id="gfk63y_672">Via la console du gestionnaire de paquets ou le gestionnaire NuGet, installez :</p><ul class="list _bullet" id="gfk63y_673"><li class="list__item" id="gfk63y_674"><p><code class="code" id="gfk63y_676">Microsoft.EntityFrameworkCore.SqlServer</code>: Le fournisseur pour SQL Server.</p></li><li class="list__item" id="gfk63y_675"><p><code class="code" id="gfk63y_677">Microsoft.EntityFrameworkCore.Tools</code>: Les outils pour les migrations.</p></li></ul></li><li class="list__item" id="gfk63y_667"><p id="gfk63y_678">Cr&eacute;ez la classe <code class="code" id="gfk63y_680">ApplicationDbContext</code> comme vu plus haut. Dans <code class="code" id="gfk63y_681">appsettings.json</code>, ajoutez une cha&icirc;ne de connexion :</p><div class="code-block" data-lang="json">
+</div></section></section><section class="chapter"><h2 id="tp-remplacer-le-d-p-t-en-m-moire-par-ef-core" data-toc="tp-remplacer-le-d-p-t-en-m-moire-par-ef-core">TP : Remplacer le d&eacute;p&ocirc;t en m&eacute;moire par EF Core</h2><p id="gfk63y_666">Le moment est venu. Nous allons prendre notre projet de gestion de produits et remplacer son d&eacute;p&ocirc;t en m&eacute;moire par un vrai d&eacute;p&ocirc;t qui utilise une base de donn&eacute;es SQL Server LocalDB.</p><section class="procedure-steps" id="gfk63y_667"><ol class="list _decimal"><li class="list__item" id="gfk63y_669"><p id="gfk63y_675">Via la console du gestionnaire de paquets ou le gestionnaire NuGet, installez :</p><ul class="list _bullet" id="gfk63y_676"><li class="list__item" id="gfk63y_677"><p><code class="code" id="gfk63y_679">Microsoft.EntityFrameworkCore.SqlServer</code>: Le fournisseur pour SQL Server.</p></li><li class="list__item" id="gfk63y_678"><p><code class="code" id="gfk63y_680">Microsoft.EntityFrameworkCore.Tools</code>: Les outils pour les migrations.</p></li></ul></li><li class="list__item" id="gfk63y_670"><p id="gfk63y_681">Cr&eacute;ez la classe <code class="code" id="gfk63y_683">ApplicationDbContext</code> comme vu plus haut. Dans <code class="code" id="gfk63y_684">appsettings.json</code>, ajoutez une cha&icirc;ne de connexion :</p><div class="code-block" data-lang="json">
 &quot;ConnectionStrings&quot;: {
   &quot;DefaultConnection&quot;: &quot;Server=(localdb)\\mssqllocaldb;Database=MonAppMvcDb;Trusted_Connection=True;MultipleActiveResultSets=true&quot;
 }
-</div></li><li class="list__item" id="gfk63y_668"><p id="gfk63y_682">Enregistrez votre DbContext dans le conteneur de services.</p></li><li class="list__item" id="gfk63y_669"><p id="gfk63y_683">Ajoutez les Data Annotations &agrave; votre mod&egrave;le <code class="code" id="gfk63y_684">Product</code>. Ex&eacute;cutez <code class="code" id="gfk63y_685">Add-Migration InitialCreate</code> puis <code class="code" id="gfk63y_686">Update-Database</code>.</p></li><li class="list__item" id="gfk63y_670"><p id="gfk63y_687">Cr&eacute;ez une nouvelle classe de d&eacute;p&ocirc;t qui impl&eacute;mente <code class="code" id="gfk63y_688">IProductRepository</code> mais qui utilise le <code class="code" id="gfk63y_689">DbContext</code> inject&eacute; pour faire les op&eacute;rations CRUD.</p></li><li class="list__item" id="gfk63y_671"><p id="gfk63y_690">Dans <code class="code" id="gfk63y_691">Program.cs</code>, changez la ligne qui enregistre le d&eacute;p&ocirc;t pour utiliser votre nouvelle classe <code class="code" id="gfk63y_692">EfProductRepository</code> au lieu de <code class="code" id="gfk63y_693">InMemoryProductRepository</code>.</p></li></ol></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h3 id="correction-tp-remplacer-le-d-p-t-en-m-moire-par-ef-core" data-toc="correction-tp-remplacer-le-d-p-t-en-m-moire-par-ef-core">Correction TP : Remplacer le d&eacute;p&ocirc;t en m&eacute;moire par EF Core</h3></div><div class="collapse__content"><div class="tabs" id="gfk63y_694" data-anchors="[gfk63y_696,gfk63y_697]"><div class="tabs__content" data-gtm="tab" id="gfk63y_696" data-title="Program.cs"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></li><li class="list__item" id="gfk63y_671"><p id="gfk63y_685">Enregistrez votre DbContext dans le conteneur de services.</p></li><li class="list__item" id="gfk63y_672"><p id="gfk63y_686">Ajoutez les Data Annotations &agrave; votre mod&egrave;le <code class="code" id="gfk63y_687">Product</code>. Ex&eacute;cutez <code class="code" id="gfk63y_688">Add-Migration InitialCreate</code> puis <code class="code" id="gfk63y_689">Update-Database</code>.</p></li><li class="list__item" id="gfk63y_673"><p id="gfk63y_690">Cr&eacute;ez une nouvelle classe de d&eacute;p&ocirc;t qui impl&eacute;mente <code class="code" id="gfk63y_691">IProductRepository</code> mais qui utilise le <code class="code" id="gfk63y_692">DbContext</code> inject&eacute; pour faire les op&eacute;rations CRUD.</p></li><li class="list__item" id="gfk63y_674"><p id="gfk63y_693">Dans <code class="code" id="gfk63y_694">Program.cs</code>, changez la ligne qui enregistre le d&eacute;p&ocirc;t pour utiliser votre nouvelle classe <code class="code" id="gfk63y_695">EfProductRepository</code> au lieu de <code class="code" id="gfk63y_696">InMemoryProductRepository</code>.</p></li></ol></section><section class="chapter"><div class="collapse"><div class="collapse__title"><h3 id="correction-tp-remplacer-le-d-p-t-en-m-moire-par-ef-core" data-toc="correction-tp-remplacer-le-d-p-t-en-m-moire-par-ef-core">Correction TP : Remplacer le d&eacute;p&ocirc;t en m&eacute;moire par EF Core</h3></div><div class="collapse__content"><div class="tabs" id="gfk63y_697" data-anchors="[gfk63y_699,gfk63y_700]"><div class="tabs__content" data-gtm="tab" id="gfk63y_699" data-title="Program.cs"><div class="code-block" data-lang="csharp" data-title="C#">
 // using MonAppMvc.Data;
 // using Microsoft.EntityFrameworkCore;
 // using MonAppMvc.Interfaces;
@@ -941,7 +952,7 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 // ...
 
-</div></div><div class="tabs__content" data-gtm="tab" id="gfk63y_697" data-title="EfProductRepository.cs"><div class="code-block" data-lang="csharp" data-title="C#">
+</div></div><div class="tabs__content" data-gtm="tab" id="gfk63y_700" data-title="EfProductRepository.cs"><div class="code-block" data-lang="csharp" data-title="C#">
 using MonAppMvc.Data;
 using MonAppMvc.Interfaces;
 using MonAppMvc.Models;
@@ -992,4 +1003,4 @@ namespace MonAppMvc.Services
         }
     }
 }
-</div></div></div><p> Lancez l'application. Elle devrait fonctionner exactement comme avant, mais cette fois, vos donn&eacute;es sont persistantes ! </p></div></div></section></section><section class="chapter"><h2 id="auto-valuation" data-toc="auto-valuation">Auto-&eacute;valuation</h2><ol class="list _decimal" id="gfk63y_700" type="1"><li class="list__item" id="gfk63y_710"><p id="gfk63y_711">Que signifie &quot;Code-First&quot; ?</p></li></ol><ul class="list _bullet" id="gfk63y_701"><li class="list__item" id="gfk63y_712"><p id="gfk63y_716">a) On &eacute;crit le code SQL avant le code C#.</p></li><li class="list__item" id="gfk63y_713"><p id="gfk63y_717">b) On &eacute;crit les classes C# avant de g&eacute;n&eacute;rer la base de donn&eacute;es.</p></li><li class="list__item" id="gfk63y_714"><p id="gfk63y_718">c) Le code est la chose la plus importante.</p></li><li class="list__item" id="gfk63y_715"><p id="gfk63y_719">d) On ne doit &eacute;crire que du code, pas de configuration.</p></li></ul><ol class="list _decimal" id="gfk63y_702" type="1" start="2"><li class="list__item" id="gfk63y_720"><p id="gfk63y_721">Quelle classe repr&eacute;sente votre session avec la base de donn&eacute;es ?</p></li></ol><ul class="list _bullet" id="gfk63y_703"><li class="list__item" id="gfk63y_722"><p id="gfk63y_726">a) <code class="code" id="gfk63y_727">DbSet&lt;T&gt;</code></p></li><li class="list__item" id="gfk63y_723"><p id="gfk63y_728">b) <code class="code" id="gfk63y_729">Entity</code></p></li><li class="list__item" id="gfk63y_724"><p id="gfk63y_730">c) <code class="code" id="gfk63y_731">DbContext</code></p></li><li class="list__item" id="gfk63y_725"><p id="gfk63y_732">d) <code class="code" id="gfk63y_733">Migration</code></p></li></ul><ol class="list _decimal" id="gfk63y_704" type="1" start="3"><li class="list__item" id="gfk63y_734"><p id="gfk63y_735">Quelle commande applique une migration en attente &agrave; la base de donn&eacute;es ?</p></li></ol><ul class="list _bullet" id="gfk63y_705"><li class="list__item" id="gfk63y_736"><p id="gfk63y_740">a) <code class="code" id="gfk63y_741">Add-Migration</code></p></li><li class="list__item" id="gfk63y_737"><p id="gfk63y_742">b) <code class="code" id="gfk63y_743">SaveChanges</code></p></li><li class="list__item" id="gfk63y_738"><p id="gfk63y_744">c) <code class="code" id="gfk63y_745">Update-Database</code></p></li><li class="list__item" id="gfk63y_739"><p id="gfk63y_746">d) <code class="code" id="gfk63y_747">New-Database</code></p></li></ul><ol class="list _decimal" id="gfk63y_706" type="1" start="4"><li class="list__item" id="gfk63y_748"><p id="gfk63y_749">Quand la requ&ecirc;te SQL est-elle r&eacute;ellement envoy&eacute;e &agrave; la base de donn&eacute;es dans ce code : <code class="code" id="gfk63y_750">var query = context.Products.Where(p =&gt; p.Price &gt; 10);</code>?</p></li></ol><ul class="list _bullet" id="gfk63y_707"><li class="list__item" id="gfk63y_751"><p id="gfk63y_755">a) Imm&eacute;diatement &agrave; la fin de la ligne.</p></li><li class="list__item" id="gfk63y_752"><p id="gfk63y_756">b) Jamais.</p></li><li class="list__item" id="gfk63y_753"><p id="gfk63y_757">c) Lorsque la variable <code class="code" id="gfk63y_758">query</code> est utilis&eacute;e dans une boucle ou convertie (ex: <code class="code" id="gfk63y_759">.ToList()</code>).</p></li><li class="list__item" id="gfk63y_754"><p id="gfk63y_760">d) Au d&eacute;marrage de l'application.</p></li></ul><ol class="list _decimal" id="gfk63y_708" type="1" start="5"><li class="list__item" id="gfk63y_761"><p id="gfk63y_764">Expliquez le r&ocirc;le de la commande <code class="code" id="gfk63y_765">Add-Migration</code> et ce qu'elle produit.</p></li><li class="list__item" id="gfk63y_762"><p id="gfk63y_766">Pourquoi est-il g&eacute;n&eacute;ralement pr&eacute;f&eacute;rable d'utiliser <code class="code" id="gfk63y_767">Find(id)</code> plut&ocirc;t que <code class="code" id="gfk63y_768">FirstOrDefault(p =&gt; p.Id == id)</code> pour r&eacute;cup&eacute;rer une entit&eacute; par sa cl&eacute; primaire ?</p></li><li class="list__item" id="gfk63y_763"><p id="gfk63y_769">D&eacute;crivez le &quot;Patron d'Unit&eacute; de Travail&quot; (Unit of Work) et comment <code class="code" id="gfk63y_770">SaveChanges()</code> l'impl&eacute;mente.</p></li></ol></section><section class="chapter"><h2 id="conclusion" data-toc="conclusion">Conclusion</h2><p id="gfk63y_771">Un immense bravo ! Vous venez de ma&icirc;triser l'une des comp&eacute;tences les plus demand&eacute;es et les plus puissantes de l' &eacute;cosyst&egrave;me .NET. Vous savez maintenant comment mod&eacute;liser des donn&eacute;es, cr&eacute;er une base de donn&eacute;es &agrave; partir de votre code, la faire &eacute;voluer de mani&egrave;re s&ucirc;re avec les <span class="control" id="gfk63y_774">migrations</span>, et la manipuler avec la simplicit&eacute; et la puissance de **LINQ **.</p><p id="gfk63y_772">En int&eacute;grant EF Core &agrave; notre architecture bas&eacute;e sur le pattern Repository et l'Injection de D&eacute;pendances, vous avez construit une couche d'acc&egrave;s aux donn&eacute;es professionnelle, robuste et facile &agrave; maintenir.</p><p id="gfk63y_773">Dans le prochain module, nous allons changer de perspective. Nous avons construit une excellente application web MVC. Il est maintenant temps d'apprendre &agrave; exposer nos donn&eacute;es et notre logique m&eacute;tier au monde ext&eacute;rieur en construisant une * <span class="emphasis" id="gfk63y_775">API RESTful</span>*, la pierre angulaire des applications modernes.</p></section><div class="last-modified">11 février 2026</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="004-01-advanced-services.html" class="navigation-links__prev">Module 4 : Architecture Avanc&eacute;e : Ma&icirc;trise des Services et des Filtres - Pour aller plus loin</a><a href="005-01-advanced-entity-framework.html" class="navigation-links__next">Module 5 : Ma&icirc;trise d'Entity Framework Core - Pour aller plus loin</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>
+</div></div></div><p> Lancez l'application. Elle devrait fonctionner exactement comme avant, mais cette fois, vos donn&eacute;es sont persistantes ! </p></div></div></section></section><section class="chapter"><h2 id="auto-valuation" data-toc="auto-valuation">Auto-&eacute;valuation</h2><ol class="list _decimal" id="gfk63y_703" type="1"><li class="list__item" id="gfk63y_713"><p id="gfk63y_714">Que signifie &quot;Code-First&quot; ?</p></li></ol><ul class="list _bullet" id="gfk63y_704"><li class="list__item" id="gfk63y_715"><p id="gfk63y_719">a) On &eacute;crit le code SQL avant le code C#.</p></li><li class="list__item" id="gfk63y_716"><p id="gfk63y_720">b) On &eacute;crit les classes C# avant de g&eacute;n&eacute;rer la base de donn&eacute;es.</p></li><li class="list__item" id="gfk63y_717"><p id="gfk63y_721">c) Le code est la chose la plus importante.</p></li><li class="list__item" id="gfk63y_718"><p id="gfk63y_722">d) On ne doit &eacute;crire que du code, pas de configuration.</p></li></ul><ol class="list _decimal" id="gfk63y_705" type="1" start="2"><li class="list__item" id="gfk63y_723"><p id="gfk63y_724">Quelle classe repr&eacute;sente votre session avec la base de donn&eacute;es ?</p></li></ol><ul class="list _bullet" id="gfk63y_706"><li class="list__item" id="gfk63y_725"><p id="gfk63y_729">a) <code class="code" id="gfk63y_730">DbSet&lt;T&gt;</code></p></li><li class="list__item" id="gfk63y_726"><p id="gfk63y_731">b) <code class="code" id="gfk63y_732">Entity</code></p></li><li class="list__item" id="gfk63y_727"><p id="gfk63y_733">c) <code class="code" id="gfk63y_734">DbContext</code></p></li><li class="list__item" id="gfk63y_728"><p id="gfk63y_735">d) <code class="code" id="gfk63y_736">Migration</code></p></li></ul><ol class="list _decimal" id="gfk63y_707" type="1" start="3"><li class="list__item" id="gfk63y_737"><p id="gfk63y_738">Quelle commande applique une migration en attente &agrave; la base de donn&eacute;es ?</p></li></ol><ul class="list _bullet" id="gfk63y_708"><li class="list__item" id="gfk63y_739"><p id="gfk63y_743">a) <code class="code" id="gfk63y_744">Add-Migration</code></p></li><li class="list__item" id="gfk63y_740"><p id="gfk63y_745">b) <code class="code" id="gfk63y_746">SaveChanges</code></p></li><li class="list__item" id="gfk63y_741"><p id="gfk63y_747">c) <code class="code" id="gfk63y_748">Update-Database</code></p></li><li class="list__item" id="gfk63y_742"><p id="gfk63y_749">d) <code class="code" id="gfk63y_750">New-Database</code></p></li></ul><ol class="list _decimal" id="gfk63y_709" type="1" start="4"><li class="list__item" id="gfk63y_751"><p id="gfk63y_752">Quand la requ&ecirc;te SQL est-elle r&eacute;ellement envoy&eacute;e &agrave; la base de donn&eacute;es dans ce code : <code class="code" id="gfk63y_753">var query = context.Products.Where(p =&gt; p.Price &gt; 10);</code>?</p></li></ol><ul class="list _bullet" id="gfk63y_710"><li class="list__item" id="gfk63y_754"><p id="gfk63y_758">a) Imm&eacute;diatement &agrave; la fin de la ligne.</p></li><li class="list__item" id="gfk63y_755"><p id="gfk63y_759">b) Jamais.</p></li><li class="list__item" id="gfk63y_756"><p id="gfk63y_760">c) Lorsque la variable <code class="code" id="gfk63y_761">query</code> est utilis&eacute;e dans une boucle ou convertie (ex: <code class="code" id="gfk63y_762">.ToList()</code>).</p></li><li class="list__item" id="gfk63y_757"><p id="gfk63y_763">d) Au d&eacute;marrage de l'application.</p></li></ul><ol class="list _decimal" id="gfk63y_711" type="1" start="5"><li class="list__item" id="gfk63y_764"><p id="gfk63y_767">Expliquez le r&ocirc;le de la commande <code class="code" id="gfk63y_768">Add-Migration</code> et ce qu'elle produit.</p></li><li class="list__item" id="gfk63y_765"><p id="gfk63y_769">Pourquoi est-il g&eacute;n&eacute;ralement pr&eacute;f&eacute;rable d'utiliser <code class="code" id="gfk63y_770">Find(id)</code> plut&ocirc;t que <code class="code" id="gfk63y_771">FirstOrDefault(p =&gt; p.Id == id)</code> pour r&eacute;cup&eacute;rer une entit&eacute; par sa cl&eacute; primaire ?</p></li><li class="list__item" id="gfk63y_766"><p id="gfk63y_772">D&eacute;crivez le &quot;Patron d'Unit&eacute; de Travail&quot; (Unit of Work) et comment <code class="code" id="gfk63y_773">SaveChanges()</code> l'impl&eacute;mente.</p></li></ol></section><section class="chapter"><h2 id="conclusion" data-toc="conclusion">Conclusion</h2><p id="gfk63y_774">Un immense bravo ! Vous venez de ma&icirc;triser l'une des comp&eacute;tences les plus demand&eacute;es et les plus puissantes de l' &eacute;cosyst&egrave;me .NET. Vous savez maintenant comment mod&eacute;liser des donn&eacute;es, cr&eacute;er une base de donn&eacute;es &agrave; partir de votre code, la faire &eacute;voluer de mani&egrave;re s&ucirc;re avec les <span class="control" id="gfk63y_777">migrations</span>, et la manipuler avec la simplicit&eacute; et la puissance de **LINQ **.</p><p id="gfk63y_775">En int&eacute;grant EF Core &agrave; notre architecture bas&eacute;e sur le pattern Repository et l'Injection de D&eacute;pendances, vous avez construit une couche d'acc&egrave;s aux donn&eacute;es professionnelle, robuste et facile &agrave; maintenir.</p><p id="gfk63y_776">Dans le prochain module, nous allons changer de perspective. Nous avons construit une excellente application web MVC. Il est maintenant temps d'apprendre &agrave; exposer nos donn&eacute;es et notre logique m&eacute;tier au monde ext&eacute;rieur en construisant une * <span class="emphasis" id="gfk63y_778">API RESTful</span>*, la pierre angulaire des applications modernes.</p></section><div class="last-modified">11 février 2026</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="004-01-advanced-services.html" class="navigation-links__prev">Module 4 : Architecture Avanc&eacute;e : Ma&icirc;trise des Services et des Filtres - Pour aller plus loin</a><a href="005-01-advanced-entity-framework.html" class="navigation-links__next">Module 5 : Ma&icirc;trise d'Entity Framework Core - Pour aller plus loin</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>
