@@ -116,6 +116,7 @@ Il faut également ne pas oublier de charger les dépendances suivantes avec Nug
 ```
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
 ```
 
 #### Les Entités (`DbSet<T>`) : Les plans de vos tables
@@ -640,6 +641,21 @@ décrit exactement comment passer de l'ancien état de votre base de données au
 Pensez à un architecte qui modifie les plans d'un bâtiment en construction. Il ne crie pas "ajoutez une fenêtre !". Il
 publie une révision du plan (une migration) qui dit précisément : "Sur le mur nord du 2ème étage, à 3 mètres du coin
 est, créer une ouverture de 1m x 1.5m".
+
+**Installation des outils CLI Entity Framework**
+
+```bash
+
+# Installation
+dotnet tool install --global dotnet-ef
+
+# Mise à jour
+dotnet tool update --global dotnet-ef
+
+# test
+dotnet ef
+```
+
 
 <procedure title="Le cycle de vie d'une migration">
 <step>

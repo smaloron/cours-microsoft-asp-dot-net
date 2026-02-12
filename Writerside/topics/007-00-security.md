@@ -1,8 +1,3 @@
-Absolument. C'est une excellente idée de dédier un module entier à la sécurité, car c'est un sujet trop important pour
-être survolé. Voici le nouveau Module 7, qui s'insère avant le déploiement.
-
----
-
 # Module 7 : Sécuriser vos Applications Web - L'essentiel
 
 ### Objectifs Pédagogiques
@@ -202,7 +197,7 @@ public class HomeController : Controller
 
 ## TP : Sécurisation d'un Forum de Discussion
 
-## Contexte du Projet
+### Contexte du Projet
 
 Nous allons construire et sécuriser une application de forum très simple. Les utilisateurs pourront s'inscrire, se connecter, créer de nouveaux sujets de discussion et poster des réponses.
 
@@ -219,7 +214,7 @@ Nous allons construire et sécuriser une application de forum très simple. Les 
 *   Appliquer l'autorisation basée sur l'identité (vérifier que l'utilisateur est le créateur).
 *   Mettre en place et utiliser l'autorisation basée sur les rôles ("Moderator").
 
-## Structure Initiale (à mettre en place)
+### Structure Initiale (à mettre en place)
 
 Pour gagner du temps, nous allons partir du principe que le projet MVC de base est créé et qu'EF Core avec SQLite est configuré.
 
@@ -248,7 +243,7 @@ public class Post
 
 ---
 
-## Énoncé du TP
+### Énoncé du TP
 
 <procedure>
 <step title="Étape 1 : Intégration d'ASP.NET Core Identity">
@@ -616,31 +611,31 @@ public async Task<IActionResult> Delete(int id)
 
 
 
-### Auto-évaluation
+## Auto-évaluation
 
 1. Un système qui vérifie votre mot de passe effectue une opération de :
-   a) Autorisation
-   b) Authentification
-   c) Validation
-   d) Encryption
+- a) Autorisation
+- b) Authentification
+- c) Validation
+- d) Encryption
 
 2. Quel attribut faut-il ajouter à une action `[HttpPost]` pour la protéger contre les attaques CSRF ?
-   a) `[Authorize]`
-   b) `[ValidateAntiForgeryToken]`
-   c) `[HttpPost]`
-   d) `[AllowAnonymous]`
+- a) `[Authorize]`
+- b) `[ValidateAntiForgeryToken]`
+- c) `[HttpPost]`
+- d) `[AllowAnonymous]`
 
 3. La protection par défaut de Razor contre les attaques XSS consiste à :
-   a) Supprimer toutes les balises `<script>`.
-   b) Encoder en HTML les données affichées.
-   c) Chiffrer les données.
-   d) Mettre les scripts en quarantaine.
+- a) Supprimer toutes les balises `<script>`.
+- b) Encoder en HTML les données affichées.
+- c) Chiffrer les données.
+- d) Mettre les scripts en quarantaine.
 
 4. Quel est le rôle du middleware `UseHttpsRedirection()` ?
-   a) Chiffrer le site.
-   b) Forcer les navigateurs à utiliser HTTPS au lieu de HTTP.
-   c) Gérer les certificats SSL.
-   d) Bloquer les requêtes HTTP.
+- a) Chiffrer le site.
+- b) Forcer les navigateurs à utiliser HTTPS au lieu de HTTP.
+- c) Gérer les certificats SSL.
+- d) Bloquer les requêtes HTTP.
 
 5. Avec vos propres mots, expliquez pourquoi un utilisateur authentifié pourrait ne pas être autorisé à effectuer une
    action. Donnez un exemple.
@@ -649,7 +644,7 @@ public async Task<IActionResult> Delete(int id)
 
 ---
 
-### Conclusion
+## Conclusion
 
 Vous avez maintenant les clés pour construire des applications qui non seulement fonctionnent, mais qui protègent aussi
 leurs utilisateurs et leurs données. Vous comprenez la danse cruciale entre l'**authentification** et l'**autorisation

@@ -1,14 +1,3 @@
-Parfait ! Entamons ce sixième module. Nous avons passé beaucoup de temps à construire une magnifique application web,
-conçue pour être utilisée par des humains via un navigateur. Mais le monde moderne ne se limite pas à ça. Les
-applications mobiles, les services d'autres entreprises, les objets connectés... tous ont besoin de communiquer avec nos
-systèmes.
-
-Aujourd'hui, nous allons apprendre à parler leur langue. Nous allons ouvrir notre application au monde en créant une API
-RESTful. C'est le passage obligé pour construire des applications qui s'intègrent dans un écosystème plus large, la
-compétence clé pour le développement backend moderne.
-
----
-
 # Module 6 : Construire et Sécuriser une API RESTful - L'essentiel
 
 ### Objectifs Pédagogiques
@@ -81,7 +70,7 @@ qu'il retourne.
     <p>Utilisez le template CLI approprié :</p>
 
     ```bash
-    dotnet new webapi -o MaSuperApi
+    dotnet new webapi --output MaSuperApi --use-controllers
     cd MaSuperApi
     ```
 

@@ -35,7 +35,7 @@ feront de vous un concepteur d'API recherché.
 
 ---
 
-### 1. Les DTOs (Data Transfer Objects) : L'emballage sur mesure
+## 1. Les DTOs (Data Transfer Objects) : L'emballage sur mesure
 
 **Le problème :** Dans notre TP, nous avons accepté et retourné notre entité EF Core `Product` directement. C'est
 simple, mais dangereux.
@@ -219,11 +219,11 @@ public class MappingProfile : Profile
           
           Sans cette règle :
           - ProductUpdateDto { Price = 15, Name = null, Stock = null }
-          - Résultat : Product.Name et Product.Stock seraient écrasés avec null ❌
+          - Résultat : Product.Name et Product.Stock seraient écrasés avec null
           
           Avec cette règle :
           - Seul Product.Price est mis à jour avec 15
-          - Product.Name et Product.Stock gardent leurs valeurs actuelles ✅
+          - Product.Name et Product.Stock gardent leurs valeurs actuelles
           
           C'est ce qu'on appelle un "PATCH partiel"
         */
@@ -344,9 +344,10 @@ public class ProductsController : ControllerBase
 ```
 
 
+
 ---
 
-### 2. Le Versioning d'API : Ne cassez pas Internet
+## 2. Le Versioning d'API : Ne cassez pas Internet
 
 **Le problème :** Votre API V1 est utilisée par 50 applications mobiles. Vous devez maintenant ajouter un champ
 obligatoire ou changer la structure d'un objet. Si vous déployez la modification, les 50 applications cessent de
@@ -395,7 +396,7 @@ Vous pouvez maintenant faire évoluer votre API en toute sécurité.
 
 ---
 
-### 3. Pagination : Gérez les grandes collections
+## 3. Pagination : Gérez les grandes collections
 
 **Le problème :** Votre endpoint `GET /api/products` retourne 10 000 produits. C'est énorme. La requête est lente, la
 charge sur le serveur et la base de données est immense, et le client reçoit une quantité de données qu'il ne peut
@@ -476,29 +477,563 @@ public ActionResult<IEnumerable<ProductDto>> GetProducts(
 }
 ```
 
+
+#### Retour des informations de pagination : Deux approches
+
+Voici deux méthodes pour retourner les métadonnées de pagination dans une API REST ASP.NET Core.
+
 ---
 
-### 4. Swagger et Postman : Les outils indispensables du développeur d'API
+##### Approche avec un DTO de réponse (Wrapper)
 
-* **Swagger (OpenAPI) :** C'est une spécification pour décrire des APIs REST. Les outils Swashbuckle (inclus dans le
-  template `webapi`) lisent votre code (contrôleurs, attributs, DTOs) et génèrent automatiquement :
-    1. Un fichier `swagger.json` qui décrit votre API de manière standardisée.
-    2. Une magnifique **interface utilisateur HTML interactive** qui vous permet de voir tous vos endpoints et de les
-       tester directement depuis le navigateur. C'est un outil de documentation et de test inestimable.
+Cette approche encapsule les données et les métadonnées dans un objet unique.
 
-* **Postman :** C'est un client HTTP avancé. C'est comme un navigateur surpuissant pour les développeurs d'API. Il vous
-  permet de :
-    * Forger n'importe quel type de requête HTTP (`GET`, `POST`, `PUT`...).
-    * Ajouter des en-têtes personnalisés (comme l'en-tête `Authorization` pour les tokens JWT).
-    * Envoyer des données dans le corps de la requête (JSON, form-data...).
-    * Sauvegarder et organiser vos requêtes dans des collections.
-    * Écrire des scripts de test.
+```c#
+// DTO pour encapsuler les données paginées
+public class PagedResult<T>
+{
+    public List<T> Data { get; set; }
+    public int PageNumber { get; set; }
+    public int PageSize { get; set; }
+    public int TotalRecords { get; set; }
+    public int TotalPages { get; set; }
+    public bool HasPreviousPage => PageNumber > 1;
+    public bool HasNextPage => PageNumber < TotalPages;
+}
 
-<tip>
+// Dans votre controller
+[HttpGet]
+public ActionResult<PagedResult<ProductDto>> GetProducts(
+    [FromQuery] int pageNumber = 1, 
+    [FromQuery] int pageSize = 10)
+{
+    var totalRecords = _repository.GetAll().Count();
+    
+    var products = _repository.GetAll()
+        .Skip((pageNumber - 1) * pageSize)
+        .Take(pageSize)
+        .ToList();
+    
+    var productDtos = _mapper.Map<List<ProductDto>>(products);
+    
+    var result = new PagedResult<ProductDto>
+    {
+        Data = productDtos,
+        PageNumber = pageNumber,
+        PageSize = pageSize,
+        TotalRecords = totalRecords,
+        TotalPages = (int)Math.Ceiling(totalRecords / (double)pageSize)
+    };
+    
+    return Ok(result);
+}
+```
 
-Apprendre à utiliser Postman est une compétence non négociable pour un développeur backend. C'est votre principal outil pour interagir avec et déboguer vos APIs.
+**Exemple de réponse JSON**
 
-</tip>
+```json
+{
+  "data": [
+    { "id": 11, "name": "Product 11", "price": 99.99 },
+    { "id": 12, "name": "Product 12", "price": 149.99 }
+  ],
+  "pageNumber": 2,
+  "pageSize": 10,
+  "totalRecords": 10000,
+  "totalPages": 1000,
+  "hasPreviousPage": true,
+  "hasNextPage": true
+}
+```
+
+**Avantages**
+- Simplicité pour le client (tout est dans le body JSON)
+- Facile à documenter dans Swagger
+- Pas de problèmes CORS
+- Parsing immédiat côté JavaScript
+
+**Inconvénients**
+- Moins conforme aux standards REST purs
+- Structure de réponse plus complexe
+
+---
+
+##### Approche avec un en-tête HTTP personnalisé
+
+Cette approche garde les données dans le body et place les métadonnées dans un header HTTP.
+
+
+
+```c#
+// Classe pour les métadonnées de pagination
+public class PaginationMetadata
+{
+    public int CurrentPage { get; set; }
+    public int PageSize { get; set; }
+    public int TotalRecords { get; set; }
+    public int TotalPages { get; set; }
+}
+
+// Dans votre controller
+[HttpGet]
+public ActionResult<IEnumerable<ProductDto>> GetProducts(
+    [FromQuery] int pageNumber = 1, 
+    [FromQuery] int pageSize = 10)
+{
+    var totalRecords = _repository.GetAll().Count();
+    
+    var products = _repository.GetAll()
+        .Skip((pageNumber - 1) * pageSize)
+        .Take(pageSize)
+        .ToList();
+    
+    var productDtos = _mapper.Map<List<ProductDto>>(products);
+    
+    // Créer les métadonnées de pagination
+    var metadata = new PaginationMetadata
+    {
+        CurrentPage = pageNumber,
+        PageSize = pageSize,
+        TotalRecords = totalRecords,
+        TotalPages = (int)Math.Ceiling(totalRecords / (double)pageSize)
+    };
+    
+    // Ajouter l'en-tête personnalisé
+    Response.Headers.Append("X-Pagination", 
+        JsonSerializer.Serialize(metadata));
+    
+    // Permettre au client d'accéder à cet en-tête (CORS)
+    Response.Headers.Append("Access-Control-Expose-Headers", "X-Pagination");
+    
+    return Ok(productDtos);
+}
+```
+
+**Exemple de réponse**
+
+**Headers:**
+```
+X-Pagination: {"currentPage":2,"pageSize":10,"totalRecords":10000,"totalPages":1000}
+Access-Control-Expose-Headers: X-Pagination
+```
+
+**Body (JSON):**
+```json
+[
+  { "id": 11, "name": "Product 11", "price": 99.99 },
+  { "id": 12, "name": "Product 12", "price": 149.99 }
+]
+```
+
+###### Exemple de consommation côté client (JavaScript)
+
+```javascript
+fetch('/api/products?pageNumber=2&pageSize=10')
+  .then(response => {
+    // Récupérer les métadonnées depuis le header
+    const paginationHeader = response.headers.get('X-Pagination');
+    const pagination = JSON.parse(paginationHeader);
+    
+    console.log(`Page ${pagination.currentPage} sur ${pagination.totalPages}`);
+    
+    return response.json();
+  })
+  .then(products => {
+    console.log(products);
+  });
+```
+
+**Avantages**
+- Plus conforme aux bonnes pratiques REST
+- Séparation claire entre données et métadonnées
+- Body JSON plus simple et direct
+
+**Inconvénients**
+- Nécessite configuration CORS (`Access-Control-Expose-Headers`)
+- Moins visible dans la documentation API
+- Parsing un peu plus complexe côté client
+
+---
+
+##### Tableau comparatif
+
+| Critère                | DTO Wrapper            | En-tête HTTP                                           |
+|------------------------|------------------------|--------------------------------------------------------|
+| **Simplicité client**  | ✅ Plus facile à parser | ⚠️ Nécessite d'accéder aux headers                     |
+| **Standards REST**     | ⚠️ Moins standard      | ✅ Plus proche des bonnes pratiques REST                |
+| **Support JavaScript** | ✅ Immédiat             | ⚠️ Nécessite `Access-Control-Expose-Headers` pour CORS |
+| **Documentation API**  | ✅ Visible dans Swagger | ⚠️ Moins visible                                       |
+| **Clarté du code**     | ⚠️ Structure imbriquée | ✅ Séparation nette                                     |
+
+---
+
+
+##### Bonus : Approche hybride
+
+Vous pouvez combiner les deux approches :
+- Retourner les métadonnées dans le body (pour la simplicité)
+- Ajouter également un header `Link` pour les URLs de navigation (standard RFC 5988)
+
+```c#
+// Ajouter des liens de navigation
+Response.Headers.Append("Link", 
+    $"</api/products?pageNumber=1&pageSize=10>; rel=\"first\", " +
+    $"</api/products?pageNumber={pageNumber - 1}&pageSize=10>; rel=\"prev\", " +
+    $"</api/products?pageNumber={pageNumber + 1}&pageSize=10>; rel=\"next\", " +
+    $"</api/products?pageNumber={totalPages}&pageSize=10>; rel=\"last\"");
+```
+
+Cette approche offre le meilleur des deux mondes !
+
+
+---
+
+## 4. Swagger/OpenAPI : La documentation automatique de l'API
+
+**Swagger (OpenAPI)** est une spécification pour décrire des APIs REST de manière standardisée. Les outils Swashbuckle (inclus dans le template `webapi` d'ASP.NET Core) lisent votre code (contrôleurs, attributs, DTOs) et génèrent automatiquement :
+
+1. Un fichier `swagger.json` qui décrit votre API de manière standardisée
+2. Une **interface utilisateur HTML interactive** (Swagger UI) qui vous permet de :
+    - Voir tous vos endpoints documentés
+    - Comprendre les paramètres requis
+    - Tester directement les endpoints depuis le navigateur
+    - Voir les modèles de données (DTOs)
+
+C'est un outil de documentation et de test inestimable qui transforme votre API en un produit professionnel.
+
+### Configuration de base
+
+#### Étape 1 : Installation (déjà inclus dans le template webapi)
+
+Si vous n'avez pas créé votre projet avec le template webapi, installez le package :
+
+```bash
+dotnet add package Swashbuckle.AspNetCore
+```
+
+#### Étape 2 : Configuration dans Program.cs
+
+```c#
+// Program.cs
+
+var builder = WebApplication.CreateBuilder(args);
+
+// ══════════════════════════════════════════════════════════
+// CONFIGURATION DES SERVICES
+// ══════════════════════════════════════════════════════════
+
+builder.Services.AddControllers();
+
+// Configuration de Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    // Informations générales sur l'API
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Products API",
+        Description = "Une API ASP.NET Core pour gérer des produits",
+        Contact = new OpenApiContact
+        {
+            Name = "Votre Nom",
+            Email = "votre.email@example.com",
+            Url = new Uri("https://votresite.com")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "MIT License",
+            Url = new Uri("https://opensource.org/licenses/MIT")
+        }
+    });
+
+    // Activer les commentaires XML pour enrichir la documentation
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+    options.IncludeXmlComments(xmlPath);
+});
+
+var app = builder.Build();
+
+// ══════════════════════════════════════════════════════════
+// CONFIGURATION DU PIPELINE HTTP
+// ══════════════════════════════════════════════════════════
+
+// Activer Swagger en développement ET en production
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Products API v1");
+        options.RoutePrefix = string.Empty; // Swagger UI à la racine (http://localhost:5000/)
+    });
+}
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
+```
+
+#### Étape 3 : Activer la génération des commentaires XML
+
+Modifiez votre fichier `.csproj` pour générer automatiquement le fichier XML de documentation :
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    
+    <!-- Génération du fichier XML pour Swagger -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn> <!-- Ignorer les warnings pour les membres non documentés -->
+  </PropertyGroup>
+
+</Project>
+```
+
+### Documenter vos endpoints avec des commentaires XML
+
+Ajoutez des commentaires XML au-dessus de vos actions pour enrichir la documentation Swagger :
+
+```c#
+/// <summary>
+/// Récupère tous les produits avec pagination
+/// </summary>
+/// <param name="pageNumber">Numéro de la page (défaut: 1)</param>
+/// <param name="pageSize">Taille de la page (défaut: 10)</param>
+/// <returns>Une liste paginée de produits</returns>
+/// <response code="200">Retourne la liste des produits</response>
+[HttpGet]
+[ProducesResponseType(typeof(PagedResult<ProductDto>), StatusCodes.Status200OK)]
+public ActionResult<PagedResult<ProductDto>> GetProducts(
+    [FromQuery] int pageNumber = 1, 
+    [FromQuery] int pageSize = 10)
+{
+    // ... implémentation
+}
+
+/// <summary>
+/// Récupère un produit spécifique par son ID
+/// </summary>
+/// <param name="id">L'identifiant unique du produit</param>
+/// <returns>Le produit demandé</returns>
+/// <response code="200">Retourne le produit</response>
+/// <response code="404">Si le produit n'existe pas</response>
+[HttpGet("{id}")]
+[ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+public ActionResult<ProductDto> GetById(int id)
+{
+    // ... implémentation
+}
+
+/// <summary>
+/// Crée un nouveau produit
+/// </summary>
+/// <param name="createDto">Les données du produit à créer</param>
+/// <returns>Le produit créé</returns>
+/// <response code="201">Retourne le produit nouvellement créé</response>
+/// <response code="400">Si les données sont invalides</response>
+[HttpPost]
+[ProducesResponseType(typeof(ProductDto), StatusCodes.Status201Created)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
+public ActionResult<ProductDto> Create([FromBody] ProductCreateDto createDto)
+{
+    // ... implémentation
+}
+
+/// <summary>
+/// Met à jour un produit existant
+/// </summary>
+/// <param name="id">L'identifiant du produit à modifier</param>
+/// <param name="updateDto">Les nouvelles données du produit</param>
+/// <response code="204">Mise à jour réussie</response>
+/// <response code="404">Si le produit n'existe pas</response>
+/// <response code="400">Si les données sont invalides</response>
+[HttpPut("{id}")]
+[ProducesResponseType(StatusCodes.Status204NoContent)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
+public IActionResult Update(int id, [FromBody] ProductUpdateDto updateDto)
+{
+    // ... implémentation
+}
+
+/// <summary>
+/// Supprime un produit
+/// </summary>
+/// <param name="id">L'identifiant du produit à supprimer</param>
+/// <response code="204">Suppression réussie</response>
+/// <response code="404">Si le produit n'existe pas</response>
+[HttpDelete("{id}")]
+[ProducesResponseType(StatusCodes.Status204NoContent)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+public IActionResult Delete(int id)
+{
+    // ... implémentation
+}
+```
+
+### Documenter vos DTOs
+
+N'oubliez pas de documenter également vos classes DTO :
+
+```c#
+/// <summary>
+/// Représente un produit retourné par l'API
+/// </summary>
+public class ProductDto
+{
+    /// <summary>
+    /// Identifiant unique du produit
+    /// </summary>
+    /// <example>1</example>
+    public int Id { get; set; }
+    
+    /// <summary>
+    /// Nom du produit
+    /// </summary>
+    /// <example>Laptop Dell XPS 15</example>
+    public string Name { get; set; }
+    
+    /// <summary>
+    /// Prix du produit en euros
+    /// </summary>
+    /// <example>1299.99</example>
+    public decimal Price { get; set; }
+    
+    /// <summary>
+    /// Nom de la catégorie du produit
+    /// </summary>
+    /// <example>Électronique</example>
+    public string CategoryName { get; set; }
+}
+
+/// <summary>
+/// Données requises pour créer un nouveau produit
+/// </summary>
+public class ProductCreateDto
+{
+    /// <summary>
+    /// Nom du produit
+    /// </summary>
+    /// <example>MacBook Pro 16"</example>
+    [Required(ErrorMessage = "Le nom est obligatoire")]
+    [StringLength(100, ErrorMessage = "Le nom ne peut pas dépasser 100 caractères")]
+    public string Name { get; set; }
+    
+    /// <summary>
+    /// Prix du produit (doit être positif)
+    /// </summary>
+    /// <example>2499.99</example>
+    [Required]
+    [Range(0, 999999.99, ErrorMessage = "Le prix doit être entre 0 et 999999.99")]
+    public decimal Price { get; set; }
+    
+    /// <summary>
+    /// ID de la catégorie du produit
+    /// </summary>
+    /// <example>3</example>
+    [Required]
+    public int CategoryId { get; set; }
+}
+```
+
+### Utiliser Swagger UI
+
+Une fois votre application lancée, accédez à Swagger UI :
+
+```
+https://localhost:5001/
+```
+
+Dans Swagger UI, vous pouvez :
+
+1. **Explorer tous les endpoints** : Voir la liste complète de vos routes
+2. **Voir les détails** : Paramètres requis, types de retour, codes de statut
+3. **Tester en direct** : Cliquer sur "Try it out" pour exécuter des requêtes
+4. **Voir les schémas** : Examiner la structure des DTOs
+5. **Copier les requêtes cURL** : Pour les utiliser en ligne de commande
+
+### Exemple de test dans Swagger UI
+
+**Étapes pour tester un endpoint POST :**
+
+1. Cliquez sur `POST /api/products`
+2. Cliquez sur "Try it out"
+3. Modifiez le JSON dans la zone de texte :
+   ```json
+   {
+     "name": "iPhone 15 Pro",
+     "price": 1199.99,
+     "categoryId": 1
+   }
+   ```
+4. Cliquez sur "Execute"
+5. Voyez la réponse avec le code de statut, les headers, et le body
+
+### Configuration avancée : Authentification JWT dans Swagger
+
+Si votre API utilise l'authentification JWT, configurez Swagger pour l'accepter :
+
+```c#
+builder.Services.AddSwaggerGen(options =>
+{
+    // ... configuration de base ...
+    
+    // Définir le schéma de sécurité
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header en utilisant le schéma Bearer. " +
+                      "Entrez 'Bearer' [espace] puis votre token. " +
+                      "Exemple: 'Bearer eyJhbGc...'",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
+```
+
+Cela ajoute un bouton "Authorize" dans Swagger UI où vous pouvez entrer votre JWT token.
+
+### Bonnes pratiques
+
+1. **Documentez tout** : Chaque endpoint, paramètre et DTO
+2. **Utilisez des exemples** : La balise `<example>` aide les utilisateurs
+3. **Spécifiez les codes de retour** : Avec `[ProducesResponseType]`
+4. **Versionnez votre documentation** : Un SwaggerDoc par version d'API
+5. **Gardez Swagger à jour** : La doc doit refléter le code actuel
+
+### Pourquoi Swagger est indispensable
+
+- **Documentation vivante** : Se met à jour automatiquement avec le code
+- **Environnement de test** : Testez sans Postman
+- **Communication d'équipe** : Les frontend devs savent exactement quoi appeler
+- **Standard universel** : OpenAPI est compris partout (compatible avec de nombreux outils)
+- **Professionnel** : Montre que vous prenez votre API au sérieux
+
 
 ---
 
