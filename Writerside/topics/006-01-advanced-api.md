@@ -1,13 +1,3 @@
-Parfaitement ! Maintenant que vous savez construire et sécuriser une API, il est temps d'apprendre les techniques
-avancées qui feront la différence entre une API fonctionnelle et une API de qualité professionnelle.
-
-Dans la partie essentielle, nous avons mis en place le service au volant de notre restaurant. Dans cette partie, nous
-allons optimiser le processus de commande, créer un menu détaillé pour nos clients programmeurs, et apprendre à gérer
-les commandes qui évoluent dans le temps. Ce sont les détails qui rendent une API agréable à utiliser, performante et
-pérenne.
-
----
-
 # Module 6 : Conception d'API Avancée et Bonnes Pratiques - Pour aller plus loin
 
 ### Objectifs Pédagogiques
